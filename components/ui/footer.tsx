@@ -1,5 +1,7 @@
-import Image from "next/image";
+"use client";
+
 import Link from "next/link";
+import LogoWithTextBlack from "@/components/svg/logo-with-text-black";
 
 import { Phone, Mail, MapPin, PoundSterling } from "lucide-react";
 
@@ -8,12 +10,7 @@ const Footer = () => {
     <footer className="bg-[#0A2540] text-white p-8">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
-          <Image
-            src="/placeholder.svg"
-            alt="KMK Legal Logo"
-            width={80}
-            height={80}
-          />
+          <LogoWithTextBlack className="w-20 h-10" fill="#fff" />
           <p className="mt-4">
             KMK Legal is authorised and regulated by the Solicitors Regulation
             Authority.
