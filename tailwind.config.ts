@@ -15,6 +15,11 @@ const config: Config = {
         kmk: {
           originalBlue: kmkColors.originalBlue,
           originalGrey: kmkColors.originalGrey,
+          charcoalGrey: kmkColors.charcoalGrey,
+          emeraldGreen: kmkColors.emeraldGreen,
+          forestGreen: kmkColors.forestGreen,
+          gold: kmkColors.gold,
+          antiqueBronze: kmkColors.antiqueBronze,
         },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
