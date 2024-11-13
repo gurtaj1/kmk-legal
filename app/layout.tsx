@@ -21,6 +21,8 @@ export const metadata: Metadata = {
   description: "Trusted Legal Representation",
 };
 
+const navBarHeight = 72;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -32,7 +34,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar />
-        {children}
+        <main className="flex-grow" style={{ paddingTop: navBarHeight }}>
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

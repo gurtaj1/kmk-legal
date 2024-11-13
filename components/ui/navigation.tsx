@@ -7,7 +7,7 @@ import LogoWithTextColor from "@/components/svg/logo-with-text-color";
 
 const Navbar = () => {
   return (
-    <nav className="bg-kmk-charcoalGrey text-white p-4 md:sticky md:top-0 lg:relative z-50">
+    <nav className="fixed top-0 left-0 right-0 w-full bg-kmk-charcoalGrey text-white p-4 z-50">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center">
           <LogoWithTextColor className="w-20 h-10" />
