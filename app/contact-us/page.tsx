@@ -8,7 +8,7 @@ const ContactUsPage = () => {
       <main className="flex-grow">
         <section className="py-16">
           <div className="container mx-auto">
-            <h1 className="text-4xl font-bold text-center mb-8 text-kmk-originalBlue">
+            <h1 className="text-4xl font-bold text-center mb-8 text-kmk-logoBlue">
               Contact Us
             </h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

@@ -17,14 +17,14 @@ const ThreeStepGrid = ({ features }: { features: Feature[] }) => {
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-12 text-kmk-originalBlue">
+        <h2 className="text-3xl font-bold text-center mb-12 text-kmk-logoBlue">
           What Sets Us Apart?
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              className="rounded-xl bg-white border border-kmk-originalBlue overflow-hidden h-full"
+              className="rounded-xl bg-white border border-kmk-logoBlue overflow-hidden h-full"
               variants={cardVariants}
               initial="initial"
               whileHover="whileHover"
@@ -41,7 +41,7 @@ const ThreeStepGrid = ({ features }: { features: Feature[] }) => {
                   />
                 </CardHeader>
                 <CardContent className="p-6 flex-grow">
-                  <CardTitle className="text-lg font-bold mb-4 text-kmk-originalBlue">
+                  <CardTitle className="text-lg font-bold mb-4 text-kmk-logoBlue">
                     {feature.title}
                   </CardTitle>
                   <p className="text-[#333333]">{feature.description}</p>

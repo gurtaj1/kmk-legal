@@ -1,5 +1,7 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -18,6 +20,9 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Home, Briefcase, Star } from "lucide-react";
+import ParallaxWithScrollWrapper from "@/components/ui/parallax-with-scroll-wrapper";
+
+import { cardVariants } from "@/app/globals/framer-variants";
 
 const Page = () => {
   return (
@@ -33,7 +38,7 @@ const Page = () => {
         />
         <div className="relative z-10 text-center px-4">
           <h1
-            className="text-4xl md:text-6xl font-bold text-white mb-6"
+            className="text-4xl md:text-8xl font-bold text-white mb-6"
             style={{ textShadow: "1px 1px 2px #fff" }}
           >
             Expert Property Law
@@ -43,7 +48,7 @@ const Page = () => {
           <Button
             asChild
             size="lg"
-            className="mb-4 bg-[#013220] hover:bg-kmk-originalBlue text-white"
+            className="mb-4 bg-kmk-emeraldGreen hover:bg-kmk-logoBlue text-white"
           >
             <Link href="/quote-calculator">Get a Quote</Link>
           </Button>
@@ -54,22 +59,30 @@ const Page = () => {
       </section>
 
       {/* Quality of Service Section */}
-      <section className="py-16 bg-[#F8F8F8]">
+      <section className="py-16 bg-kmk-offwhite">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4 text-kmk-originalBlue">
-            Exceptional Legal Services
-          </h2>
+          <ParallaxWithScrollWrapper>
+            <h2 className="text-4xl md:text-6xl font-bold mb-4 text-kmk-logoBlue">
+              Exceptional Legal Services
+            </h2>
+          </ParallaxWithScrollWrapper>
           <p className="mb-8 max-w-2xl mx-auto">
             At KMK Legal, we pride ourselves on delivering top-notch
             conveyancing services. Our team of experienced solicitors ensures a
             smooth and efficient property transaction process.
           </p>
-          <p className="mb-4 font-semibold text-kmk-originalBlue">
+        </div>
+      </section>
+
+      {/* Contact CTA Section */}
+      <section className="py-8 bg-white">
+        <div className="container mx-auto text-center">
+          <p className="mb-4 font-semibold text-kmk-logoBlue">
             Already have a quote? Contact us today!
           </p>
           <Button
             asChild
-            className="bg-[#013220] hover:bg-kmk-originalBlue text-white"
+            className="bg-kmk-emeraldGreen hover:bg-kmk-logoBlue text-white"
           >
             <Link href="/contact-us">Contact Us</Link>
           </Button>
@@ -77,90 +90,134 @@ const Page = () => {
       </section>
 
       {/* Services Graphic Section */}
-      <section className="py-16">
+      <section className="py-16 bg-kmk-logoGrey">
         <div className="container mx-auto text-center">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <Card className="bg-white border border-kmk-originalBlue">
+            <Card className="bg-kmk-offwhite border border-kmk-logoBlue">
               <CardHeader>
-                <Home className="w-12 h-12 mx-auto mb-2 text-[#013220]" />
-                <CardTitle className="text-kmk-originalBlue">Buying</CardTitle>
+                <Home className="w-12 h-12 mx-auto mb-2 text-kmk-charcoalGrey" />
+                <CardTitle className="text-kmk-charcoalGrey">Buying</CardTitle>
               </CardHeader>
               <CardContent>
                 <p>Expert guidance for property purchases</p>
               </CardContent>
             </Card>
-            <Card className="bg-white border border-kmk-originalBlue">
+            <Card className="bg-white border border-kmk-charcoalGrey">
               <CardHeader>
-                <Briefcase className="w-12 h-12 mx-auto mb-2 text-[#013220]" />
-                <CardTitle className="text-kmk-originalBlue">Selling</CardTitle>
+                <Briefcase className="w-12 h-12 mx-auto mb-2 text-kmk-charcoalGrey" />
+                <CardTitle className="text-kmk-charcoalGrey">Selling</CardTitle>
               </CardHeader>
               <CardContent>
                 <p>Smooth process for property sales</p>
               </CardContent>
             </Card>
-            <Card className="bg-white border border-kmk-originalBlue">
+            <Card className="bg-white border border-kmk-charcoalGrey">
               <CardHeader>
-                <Home className="w-12 h-12 mx-auto mb-2 text-[#013220]" />
-                <Briefcase className="w-12 h-12 mx-auto mb-2 text-[#013220]" />
-                <CardTitle className="text-kmk-originalBlue">Both?</CardTitle>
+                <div className="flex items-center justify-center gap-1">
+                  <Home className="w-12 h-12 mb-2 text-kmk-charcoalGrey" />
+                  <Briefcase className="w-12 h-12 mb-2 text-kmk-charcoalGrey" />
+                </div>
+                <CardTitle className="text-kmk-charcoalGrey">Both?</CardTitle>
               </CardHeader>
               <CardContent>
                 <p>Comprehensive services for buying and selling</p>
               </CardContent>
             </Card>
           </div>
-          <Button
-            asChild
-            size="lg"
-            className="mb-4 bg-[#013220] hover:bg-kmk-originalBlue text-white"
-          >
-            <Link href="/quote-calculator">Get a Free Quote Now</Link>
-          </Button>
-          <div className="flex justify-center space-x-4 mb-4">
+          <div className="flex flex-col items-center w-1/3 mx-auto">
             <Button
               asChild
-              variant="outline"
-              className="border-kmk-originalBlue text-kmk-originalBlue hover:bg-kmk-originalBlue hover:text-white"
+              size="lg"
+              className="w-full mb-4 bg-kmk-emeraldGreen hover:bg-kmk-logoBlue text-white"
             >
-              <Link href="/purchase-info">Purchase Info</Link>
+              <motion.div
+                className="w-full"
+                variants={cardVariants}
+                initial="initial"
+                whileHover="whileHover"
+                whileTap="whileTap"
+              >
+                <Link href="/quote-calculator" className="w-full">
+                  Get a Free Quote Now
+                </Link>
+              </motion.div>
             </Button>
+            <div className="flex justify-center space-x-4 mb-4 w-full">
+              <Button
+                asChild
+                variant="outline"
+                className="flex-1 border-kmk-logoBlue text-kmk-logoBlue hover:bg-kmk-logoBlue hover:text-white"
+              >
+                <motion.div
+                  className="w-full"
+                  variants={cardVariants}
+                  initial="initial"
+                  whileHover="whileHover"
+                  whileTap="whileTap"
+                >
+                  <Link href="/purchase-info" className="w-full">
+                    Purchase Info
+                  </Link>
+                </motion.div>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                className="flex-1 border-kmk-logoBlue text-kmk-logoBlue hover:bg-kmk-logoBlue hover:text-white"
+              >
+                <motion.div
+                  className="w-full"
+                  variants={cardVariants}
+                  initial="initial"
+                  whileHover="whileHover"
+                  whileTap="whileTap"
+                >
+                  <Link href="/sale-info" className="w-full">
+                    Sale Info
+                  </Link>
+                </motion.div>
+              </Button>
+            </div>
             <Button
               asChild
               variant="outline"
-              className="border-kmk-originalBlue text-kmk-originalBlue hover:bg-kmk-originalBlue hover:text-white"
+              className="w-full border-kmk-logoBlue text-kmk-logoBlue hover:bg-kmk-logoBlue hover:text-white"
             >
-              <Link href="/sale-info">Sale Info</Link>
+              <motion.div
+                className="w-full"
+                variants={cardVariants}
+                initial="initial"
+                whileHover="whileHover"
+                whileTap="whileTap"
+              >
+                <Link href="/linked-purchase-sale-info" className="w-full">
+                  Linked Purchase and Sale Info
+                </Link>
+              </motion.div>
             </Button>
           </div>
-          <Button
-            asChild
-            variant="outline"
-            className="border-kmk-originalBlue text-kmk-originalBlue hover:bg-kmk-originalBlue hover:text-white"
-          >
-            <Link href="/linked-purchase-sale-info">
-              Linked Purchase and Sale Info
-            </Link>
-          </Button>
         </div>
       </section>
 
       {/* Smooth Process Section */}
-      <section className="py-16 bg-[#F8F8F8]">
+      <section className="py-16 bg-kmk-offwhite">
         <div className="container mx-auto">
           <Image
-            src="/placeholder.svg?height=400&width=1200"
+            src="/inside-house-view.jpg"
             alt="Beautiful home with nature background"
             width={1200}
             height={400}
             className="w-full h-64 object-cover mb-8 rounded-lg"
           />
-          <h2 className="text-3xl font-bold text-center mb-8 text-kmk-originalBlue">
-            Your Smooth Property Journey
-          </h2>
+          <ParallaxWithScrollWrapper>
+            <h2 className="text-4xl md:text-6xl font-bold text-center mb-8 text-kmk-logoBlue">
+              Your Smooth Property Journey
+            </h2>
+          </ParallaxWithScrollWrapper>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="bg-white border border-kmk-originalBlue">
+            <Card className="bg-white border border-kmk-logoBlue">
               <CardHeader>
-                <CardTitle className="text-kmk-originalBlue">
+                <CardTitle className="text-kmk-logoBlue">
                   1. Do It Online
                 </CardTitle>
               </CardHeader>
@@ -170,9 +227,9 @@ const Page = () => {
                 </p>
               </CardContent>
             </Card>
-            <Card className="bg-white border border-kmk-originalBlue">
+            <Card className="bg-white border border-kmk-logoBlue">
               <CardHeader>
-                <CardTitle className="text-kmk-originalBlue">
+                <CardTitle className="text-kmk-logoBlue">
                   2. Stay in the Loop
                 </CardTitle>
               </CardHeader>
@@ -180,9 +237,9 @@ const Page = () => {
                 <p>Regular updates and transparent communication throughout</p>
               </CardContent>
             </Card>
-            <Card className="bg-white border border-kmk-originalBlue">
+            <Card className="bg-white border border-kmk-logoBlue">
               <CardHeader>
-                <CardTitle className="text-kmk-originalBlue">
+                <CardTitle className="text-kmk-logoBlue">
                   3. Move Sooner
                 </CardTitle>
               </CardHeader>
@@ -197,22 +254,26 @@ const Page = () => {
       </section>
 
       {/* Our Services Section */}
-      <section className="py-16">
+      <section className="py-16 bg-kmk-logoGrey">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 text-kmk-originalBlue">
-            Our Services
-          </h2>
+          <ParallaxWithScrollWrapper>
+            <h2 className="text-4xl md:text-6xl font-bold text-center mb-12 text-white">
+              Our Services
+            </h2>
+          </ParallaxWithScrollWrapper>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <Card className="bg-white border border-kmk-originalBlue">
+            <Card className="bg-white border border-kmk-logoBlue group">
               <CardHeader>
-                <Image
-                  src="/placeholder.svg?height=300&width=500"
-                  alt="Residential Conveyancing"
-                  width={500}
-                  height={300}
-                  className="w-full h-48 object-cover rounded-t-lg"
-                />
-                <CardTitle className="mt-4 text-kmk-originalBlue">
+                <div className="overflow-hidden rounded-t-lg">
+                  <Image
+                    src="/residential-conveyancing.jpg"
+                    alt="Residential Conveyancing"
+                    width={500}
+                    height={300}
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-all duration-1000"
+                  />
+                </div>
+                <CardTitle className="mt-4 text-kmk-logoBlue">
                   Residential Conveyancing
                 </CardTitle>
               </CardHeader>
@@ -225,29 +286,45 @@ const Page = () => {
               <CardFooter className="flex justify-between">
                 <Button
                   asChild
-                  className="bg-[#013220] hover:bg-kmk-originalBlue text-white"
+                  className="bg-kmk-emeraldGreen hover:bg-kmk-logoBlue text-white"
                 >
-                  <Link href="/quote-calculator">Get a Quote</Link>
+                  <motion.div
+                    variants={cardVariants}
+                    initial="initial"
+                    whileHover="whileHover"
+                    whileTap="whileTap"
+                  >
+                    <Link href="/quote-calculator">Get a Quote</Link>
+                  </motion.div>
                 </Button>
                 <Button
                   asChild
                   variant="outline"
-                  className="border-kmk-originalBlue text-kmk-originalBlue hover:bg-kmk-originalBlue hover:text-white"
+                  className="border-kmk-logoBlue text-kmk-logoBlue hover:bg-kmk-logoBlue hover:text-white"
                 >
-                  <Link href="/residential-conveyancing">Learn More</Link>
+                  <motion.div
+                    variants={cardVariants}
+                    initial="initial"
+                    whileHover="whileHover"
+                    whileTap="whileTap"
+                  >
+                    <Link href="/residential-conveyancing">Learn More</Link>
+                  </motion.div>
                 </Button>
               </CardFooter>
             </Card>
-            <Card className="bg-white border border-kmk-originalBlue">
+            <Card className="bg-white border border-kmk-logoBlue group">
               <CardHeader>
-                <Image
-                  src="/placeholder.svg?height=300&width=500"
-                  alt="Commercial Conveyancing"
-                  width={500}
-                  height={300}
-                  className="w-full h-48 object-cover rounded-t-lg"
-                />
-                <CardTitle className="mt-4 text-kmk-originalBlue">
+                <div className="overflow-hidden rounded-t-lg">
+                  <Image
+                    src="/commercial-conveyancing.jpg"
+                    alt="Commercial Conveyancing"
+                    width={500}
+                    height={300}
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-all duration-1000"
+                  />
+                </div>
+                <CardTitle className="mt-4 text-kmk-logoBlue">
                   Commercial Conveyancing
                 </CardTitle>
               </CardHeader>
@@ -261,16 +338,30 @@ const Page = () => {
               <CardFooter className="flex justify-between">
                 <Button
                   asChild
-                  className="bg-[#013220] hover:bg-kmk-originalBlue text-white"
+                  className="bg-kmk-emeraldGreen hover:bg-kmk-logoBlue text-white"
                 >
-                  <Link href="/quote-calculator">Get a Quote</Link>
+                  <motion.div
+                    variants={cardVariants}
+                    initial="initial"
+                    whileHover="whileHover"
+                    whileTap="whileTap"
+                  >
+                    <Link href="/quote-calculator">Get a Quote</Link>
+                  </motion.div>
                 </Button>
                 <Button
                   asChild
                   variant="outline"
-                  className="border-kmk-originalBlue text-kmk-originalBlue hover:bg-kmk-originalBlue hover:text-white"
+                  className="border-kmk-logoBlue text-kmk-logoBlue hover:bg-kmk-logoBlue hover:text-white"
                 >
-                  <Link href="/commercial-conveyancing">Learn More</Link>
+                  <motion.div
+                    variants={cardVariants}
+                    initial="initial"
+                    whileHover="whileHover"
+                    whileTap="whileTap"
+                  >
+                    <Link href="/commercial-conveyancing">Learn More</Link>
+                  </motion.div>
                 </Button>
               </CardFooter>
             </Card>
@@ -279,9 +370,9 @@ const Page = () => {
       </section>
 
       {/* Google Reviews Section */}
-      <section className="py-16 bg-[#F8F8F8]">
+      <section className="py-16 bg-kmk-offwhite">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-8 text-kmk-originalBlue">
+          <h2 className="text-4xl md:text-6xl font-bold text-center mb-8 text-kmk-logoBlue">
             What Our Clients Say
           </h2>
           <Carousel>
@@ -291,7 +382,7 @@ const Page = () => {
                   key={review}
                   className="md:basis-1/2 lg:basis-1/3"
                 >
-                  <Card className="bg-white border border-kmk-originalBlue">
+                  <Card className="bg-white border border-kmk-logoBlue">
                     <CardHeader>
                       <CardTitle className="flex items-center">
                         <Star className="w-5 h-5 text-[#FFD700]" />
@@ -303,8 +394,8 @@ const Page = () => {
                     </CardHeader>
                     <CardContent>
                       <p>
-                        "Excellent service from KMK Legal. They made our
-                        property purchase smooth and stress-free."
+                        &quot;Excellent service from KMK Legal. They made our
+                        property purchase smooth and stress-free.&quot;
                       </p>
                     </CardContent>
                     <CardFooter>
@@ -323,7 +414,7 @@ const Page = () => {
       {/* Google Maps Section */}
       <section className="py-16">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-8 text-kmk-originalBlue">
+          <h2 className="text-4xl md:text-6xl font-bold text-center mb-8 text-kmk-logoBlue">
             Find Us
           </h2>
           <div className="aspect-w-16 aspect-h-9">

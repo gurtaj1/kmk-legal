@@ -44,7 +44,7 @@ const Navbar = () => {
         <Button
           variant="outline"
           size="icon"
-          className="md:hidden text-white border-white hover:bg-[#013220] hover:text-white"
+          className="md:hidden text-white border-white hover:bg-kmk-emeraldGreen hover:text-white"
         >
           <Menu className="h-6 w-6" />
           <span className="sr-only">Toggle menu</span>

@@ -13,8 +13,9 @@ const config: Config = {
     extend: {
       colors: {
         kmk: {
-          originalBlue: kmkColors.originalBlue,
-          originalGrey: kmkColors.originalGrey,
+          logoBlue: kmkColors.logoBlue,
+          logoGrey: kmkColors.logoGrey,
+          offwhite: kmkColors.offwhite,
           charcoalGrey: kmkColors.charcoalGrey,
           emeraldGreen: kmkColors.emeraldGreen,
           forestGreen: kmkColors.forestGreen,
