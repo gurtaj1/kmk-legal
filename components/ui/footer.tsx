@@ -7,7 +7,7 @@ import { Phone, Mail, MapPin, PoundSterling } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0A2540] text-white p-8">
+    <footer className="bg-kmk-originalBlue text-white p-8">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
           <LogoWithTextBlack className="w-20 h-10" fill="#fff" />
