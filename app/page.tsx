@@ -26,7 +26,7 @@ import { cardVariants } from "@/app/globals/framer-variants";
 
 const Page = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-white text-[#333333]">
+    <div className="min-h-screen flex flex-col bg-white text-[#333333] overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative h-[calc(100vh-4rem)] flex items-center justify-center">
         <div
@@ -48,9 +48,16 @@ const Page = () => {
           <Button
             asChild
             size="lg"
-            className="mb-4 bg-kmk-emeraldGreen hover:bg-kmk-logoBlue text-white"
+            className="mb-4 bg-kmk-blueberryBlue hover:bg-kmk-emeraldGreen text-white"
           >
-            <Link href="/quote-calculator">Get a Quote</Link>
+            <motion.div
+              variants={cardVariants}
+              initial="initial"
+              whileHover="whileHover"
+              whileTap="whileTap"
+            >
+              <Link href="/quote-calculator">Get a Quote</Link>
+            </motion.div>
           </Button>
           <p className="text-xl md:text-2xl text-white">
             Your trusted partner for all your property needs
@@ -60,7 +67,7 @@ const Page = () => {
 
       {/* Quality of Service Section */}
       <section className="py-16 bg-kmk-offwhite">
-        <div className="container mx-auto text-center">
+        <div className="container mx-auto px-4 text-center">
           <ParallaxWithScrollWrapper>
             <h2 className="text-4xl md:text-6xl font-bold mb-4 text-kmk-logoBlue">
               Exceptional Legal Services
@@ -75,23 +82,30 @@ const Page = () => {
       </section>
 
       {/* Contact CTA Section */}
-      <section className="py-8 bg-white">
-        <div className="container mx-auto text-center">
-          <p className="mb-4 font-semibold text-kmk-logoBlue">
+      <section className="py-8 bg-kmk-charcoalGrey">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-2xl md:text-3xl mb-4 font-semibold text-white">
             Already have a quote? Contact us today!
           </p>
           <Button
             asChild
-            className="bg-kmk-emeraldGreen hover:bg-kmk-logoBlue text-white"
+            className="bg-kmk-blueberryBlue hover:bg-kmk-emeraldGreen text-white"
           >
-            <Link href="/contact-us">Contact Us</Link>
+            <motion.div
+              variants={cardVariants}
+              initial="initial"
+              whileHover="whileHover"
+              whileTap="whileTap"
+            >
+              <Link href="/contact-us">Contact Us</Link>
+            </motion.div>
           </Button>
         </div>
       </section>
 
       {/* Services Graphic Section */}
       <section className="py-16 bg-kmk-logoGrey">
-        <div className="container mx-auto text-center">
+        <div className="container mx-auto px-4 text-center">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <Card className="bg-kmk-offwhite border border-kmk-logoBlue">
               <CardHeader>
@@ -124,20 +138,23 @@ const Page = () => {
               </CardContent>
             </Card>
           </div>
-          <div className="flex flex-col items-center w-1/3 mx-auto">
+          <div className="flex flex-col items-center w-full md:w-1/3 mx-auto">
             <Button
               asChild
               size="lg"
-              className="w-full mb-4 bg-kmk-emeraldGreen hover:bg-kmk-logoBlue text-white"
+              className="w-full mb-4 bg-kmk-blueberryBlue hover:bg-kmk-emeraldGreen text-white min-h-[44px]"
             >
               <motion.div
-                className="w-full"
+                className="w-full h-full"
                 variants={cardVariants}
                 initial="initial"
                 whileHover="whileHover"
                 whileTap="whileTap"
               >
-                <Link href="/quote-calculator" className="w-full">
+                <Link
+                  href="/quote-calculator"
+                  className="w-full h-full flex items-center justify-center"
+                >
                   Get a Free Quote Now
                 </Link>
               </motion.div>
@@ -146,16 +163,19 @@ const Page = () => {
               <Button
                 asChild
                 variant="outline"
-                className="flex-1 border-kmk-logoBlue text-kmk-logoBlue hover:bg-kmk-logoBlue hover:text-white"
+                className="flex-1 border-kmk-logoBlue text-kmk-logoBlue hover:bg-kmk-emeraldGreen hover:text-white min-h-[44px]"
               >
                 <motion.div
-                  className="w-full"
+                  className="w-full h-full"
                   variants={cardVariants}
                   initial="initial"
                   whileHover="whileHover"
                   whileTap="whileTap"
                 >
-                  <Link href="/purchase-info" className="w-full">
+                  <Link
+                    href="/purchase-info"
+                    className="w-full h-full flex items-center justify-center"
+                  >
                     Purchase Info
                   </Link>
                 </motion.div>
@@ -163,16 +183,19 @@ const Page = () => {
               <Button
                 asChild
                 variant="outline"
-                className="flex-1 border-kmk-logoBlue text-kmk-logoBlue hover:bg-kmk-logoBlue hover:text-white"
+                className="flex-1 border-kmk-logoBlue text-kmk-logoBlue hover:bg-kmk-emeraldGreen hover:text-white min-h-[44px]"
               >
                 <motion.div
-                  className="w-full"
+                  className="w-full h-full"
                   variants={cardVariants}
                   initial="initial"
                   whileHover="whileHover"
                   whileTap="whileTap"
                 >
-                  <Link href="/sale-info" className="w-full">
+                  <Link
+                    href="/sale-info"
+                    className="w-full h-full flex items-center justify-center"
+                  >
                     Sale Info
                   </Link>
                 </motion.div>
@@ -181,16 +204,19 @@ const Page = () => {
             <Button
               asChild
               variant="outline"
-              className="w-full border-kmk-logoBlue text-kmk-logoBlue hover:bg-kmk-logoBlue hover:text-white"
+              className="w-full border-kmk-logoBlue text-kmk-logoBlue hover:bg-kmk-emeraldGreen hover:text-white min-h-[44px] py-2 px-4"
             >
               <motion.div
-                className="w-full"
+                className="w-full h-full"
                 variants={cardVariants}
                 initial="initial"
                 whileHover="whileHover"
                 whileTap="whileTap"
               >
-                <Link href="/linked-purchase-sale-info" className="w-full">
+                <Link
+                  href="/linked-purchase-sale-info"
+                  className="w-full h-full flex items-center justify-center text-center px-2 whitespace-normal"
+                >
                   Linked Purchase and Sale Info
                 </Link>
               </motion.div>
@@ -201,7 +227,7 @@ const Page = () => {
 
       {/* Smooth Process Section */}
       <section className="py-16 bg-kmk-offwhite">
-        <div className="container mx-auto">
+        <div className="container mx-auto px-4">
           <Image
             src="/inside-house-view.jpg"
             alt="Beautiful home with nature background"
@@ -255,7 +281,7 @@ const Page = () => {
 
       {/* Our Services Section */}
       <section className="py-16 bg-kmk-logoGrey">
-        <div className="container mx-auto">
+        <div className="container mx-auto px-4">
           <ParallaxWithScrollWrapper>
             <h2 className="text-4xl md:text-6xl font-bold text-center mb-12 text-white">
               Our Services
@@ -286,7 +312,7 @@ const Page = () => {
               <CardFooter className="flex justify-between">
                 <Button
                   asChild
-                  className="bg-kmk-emeraldGreen hover:bg-kmk-logoBlue text-white"
+                  className="bg-kmk-blueberryBlue hover:bg-kmk-emeraldGreen text-white"
                 >
                   <motion.div
                     variants={cardVariants}
@@ -300,7 +326,7 @@ const Page = () => {
                 <Button
                   asChild
                   variant="outline"
-                  className="border-kmk-logoBlue text-kmk-logoBlue hover:bg-kmk-logoBlue hover:text-white"
+                  className="border-kmk-logoBlue text-kmk-logoBlue hover:bg-kmk-emeraldGreen hover:text-white"
                 >
                   <motion.div
                     variants={cardVariants}
@@ -338,7 +364,7 @@ const Page = () => {
               <CardFooter className="flex justify-between">
                 <Button
                   asChild
-                  className="bg-kmk-emeraldGreen hover:bg-kmk-logoBlue text-white"
+                  className="bg-kmk-blueberryBlue hover:bg-kmk-emeraldGreen text-white"
                 >
                   <motion.div
                     variants={cardVariants}
@@ -352,7 +378,7 @@ const Page = () => {
                 <Button
                   asChild
                   variant="outline"
-                  className="border-kmk-logoBlue text-kmk-logoBlue hover:bg-kmk-logoBlue hover:text-white"
+                  className="border-kmk-logoBlue text-kmk-logoBlue hover:bg-kmk-emeraldGreen hover:text-white"
                 >
                   <motion.div
                     variants={cardVariants}
@@ -371,11 +397,13 @@ const Page = () => {
 
       {/* Google Reviews Section */}
       <section className="py-16 bg-kmk-offwhite">
-        <div className="container mx-auto">
-          <h2 className="text-4xl md:text-6xl font-bold text-center mb-8 text-kmk-logoBlue">
-            What Our Clients Say
-          </h2>
-          <Carousel>
+        <div className="container mx-auto px-4">
+          <ParallaxWithScrollWrapper>
+            <h2 className="text-4xl md:text-6xl font-bold text-center mb-8 text-kmk-logoBlue">
+              What Our Clients Say
+            </h2>
+          </ParallaxWithScrollWrapper>
+          <Carousel className="w-full">
             <CarouselContent>
               {[1, 2, 3, 4, 5].map((review) => (
                 <CarouselItem
@@ -412,11 +440,13 @@ const Page = () => {
       </section>
 
       {/* Google Maps Section */}
-      <section className="py-16">
-        <div className="container mx-auto">
-          <h2 className="text-4xl md:text-6xl font-bold text-center mb-8 text-kmk-logoBlue">
-            Find Us
-          </h2>
+      <section className="py-16 bg-kmk-logoGrey">
+        <div className="container mx-auto px-4">
+          <ParallaxWithScrollWrapper>
+            <h2 className="text-4xl md:text-6xl font-bold text-center mb-8 text-kmk-logoBlue">
+              Find Us
+            </h2>
+          </ParallaxWithScrollWrapper>
           <div className="aspect-w-16 aspect-h-9">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2469.8088025254456!2d-0.4137013840820206!3d51.87967397970151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48764144b18d4d2d%3A0x44436b0c5b275f8c!2sLuton!5e0!3m2!1sen!2suk!4v1635000000000!5m2!1sen!2suk"
