@@ -4,19 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
+import LogoWithTextColor from "@/components/svg/logo-with-text-color";
 
 const Navbar = () => {
   return (
-    <nav className="bg-[#0A2540] text-white p-4 md:sticky md:top-0 lg:relative z-50">
+    <nav className="bg-white text-kmk-originalBlue p-4 md:sticky md:top-0 lg:relative z-50">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center">
-          <Image
-            src="/placeholder.svg"
-            alt="KMK Legal Logo"
-            width={40}
-            height={40}
-          />
-          <span className="ml-2 text-2xl font-bold">KMK Legal</span>
+          <LogoWithTextColor className="w-20 h-10" />
         </Link>
         <div className="hidden md:flex space-x-4">
           <Link href="/property-law" className="hover:text-[#FFD700]">

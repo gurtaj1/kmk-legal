@@ -28,13 +28,18 @@ const Page = () => {
           <div
             className="absolute inset-0 bg-cover bg-center z-0"
             style={{
-              backgroundImage: "url('/placeholder.svg?height=1080&width=1920')",
+              backgroundImage: "url('/home-hero.jpg')",
             }}
             aria-hidden="true"
           />
           <div className="relative z-10 text-center px-4">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Expert Property Law Services in England
+            <h1
+              className="text-4xl md:text-6xl font-bold text-white mb-6"
+              style={{ textShadow: "1px 1px 2px #fff" }}
+            >
+              Expert Property Law
+              <br />
+              Services in England
             </h1>
             <Button
               asChild
