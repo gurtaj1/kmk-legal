@@ -1,10 +1,12 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
+import { Menu, ChevronDown } from "lucide-react";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, ChevronDown } from "lucide-react";
 import LogoWithTextColor from "@/components/svg/logo-with-text-color";
-import { useState, useEffect, useRef } from "react";
+import Search from "@/components/ui/search";
 
 type LinkItem = {
   label: string;
@@ -210,13 +212,7 @@ const Navbar = () => {
                 +44 (0) 123 456 7890
               </a>
             </div>
-            <div>
-              <input
-                type="search"
-                placeholder="Search..."
-                className="px-4 py-1 rounded bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:border-kmk-gold cursor-text"
-              />
-            </div>
+            <Search />
           </div>
         </div>
       </div>
