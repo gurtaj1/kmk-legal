@@ -86,15 +86,13 @@ const PropertyLawPage = () => {
               </div>
             </div>
             <div className="w-full md:w-1/4">
-              <OpacityGradientWrapper>
-                <Image
-                  src="/property-law.jpg"
-                  alt="Property Law Services"
-                  width={400}
-                  height={300}
-                  className="w-full h-auto rounded-lg shadow-lg"
-                />
-              </OpacityGradientWrapper>
+              <Image
+                src="/property-law.jpg"
+                alt="Property Law Services"
+                width={400}
+                height={300}
+                className="w-full h-auto rounded-lg shadow-lg"
+              />
             </div>
           </div>
         </div>
