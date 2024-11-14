@@ -1,5 +1,8 @@
-import { useRef, useState } from "react";
-import { useIntersectionObservers } from "@/app/hooks/intersection-observers";
+import {
+  useRef,
+  // useState
+} from "react";
+// import { useIntersectionObservers } from "@/app/hooks/intersection-observers";
 import { motion } from "framer-motion";
 
 const OpacityGradientWrapper = ({
@@ -8,16 +11,16 @@ const OpacityGradientWrapper = ({
   children: React.ReactNode;
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const [scrollOffset, setScrollOffset] = useState(0);
+  //   const [scrollOffset, setScrollOffset] = useState(0);
 
-  useIntersectionObservers({
-    parallaxTargets: [
-      {
-        ref: wrapperRef,
-        onScroll: (offset) => setScrollOffset(offset),
-      },
-    ],
-  });
+  //   useIntersectionObservers({
+  //     parallaxTargets: [
+  //       {
+  //         ref: wrapperRef,
+  //         onScroll: (offset) => setScrollOffset(offset),
+  //       },
+  //     ],
+  //   });
 
   const getGradientStyle = () => {
     // Calculate the distance from the element's center to the viewport's center
