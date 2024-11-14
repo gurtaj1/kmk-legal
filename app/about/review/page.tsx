@@ -1,17 +1,15 @@
 "use client";
 
-const ConveyancingProcessPage = () => {
+const ReviewPage = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white text-[#333333]">
       <section className="py-16">
         <div className="container mx-auto">
           <h1 className="text-4xl font-bold text-center mb-8 text-kmk-logoBlue">
-            Conveyancing Process
+            Leave us a Review
           </h1>
           <div className="prose max-w-none">
-            <p className="mb-4">
-              Understanding the steps involved in your property transaction.
-            </p>
+            <p className="mb-4">Share your experience with KMK Legal.</p>
           </div>
         </div>
       </section>
@@ -19,4 +17,4 @@ const ConveyancingProcessPage = () => {
   );
 };
 
-export default ConveyancingProcessPage;
+export default ReviewPage;

@@ -1,16 +1,16 @@
 "use client";
 
-const QuoteCalculatorPage = () => {
+const NewsPage = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white text-[#333333]">
       <section className="py-16">
         <div className="container mx-auto">
           <h1 className="text-4xl font-bold text-center mb-8 text-kmk-logoBlue">
-            Quote Calculator
+            Legal News
           </h1>
           <div className="prose max-w-none">
             <p className="mb-4">
-              Calculate an estimate for your legal services needs.
+              Keep up to date with the latest legal news and developments.
             </p>
           </div>
         </div>
@@ -19,4 +19,4 @@ const QuoteCalculatorPage = () => {
   );
 };
 
-export default QuoteCalculatorPage;
+export default NewsPage;

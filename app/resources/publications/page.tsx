@@ -1,17 +1,17 @@
 "use client";
 
-const SourceOfFundsPage = () => {
+const PublicationsPage = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white text-[#333333]">
       <section className="py-16">
         <div className="container mx-auto">
           <h1 className="text-4xl font-bold text-center mb-8 text-kmk-logoBlue">
-            Source of Funds
+            Legal Publications
           </h1>
           <div className="prose max-w-none">
             <p className="mb-4">
-              Understanding our source of funds requirements and verification
-              process.
+              Browse our library of legal publications, articles, and research
+              papers.
             </p>
           </div>
         </div>
@@ -20,4 +20,4 @@ const SourceOfFundsPage = () => {
   );
 };
 
-export default SourceOfFundsPage;
+export default PublicationsPage;

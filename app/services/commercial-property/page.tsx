@@ -1,15 +1,18 @@
 "use client";
 
-const RemortgagingPage = () => {
+const CommercialPropertyPage = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white text-[#333333]">
       <section className="py-16">
         <div className="container mx-auto">
           <h1 className="text-4xl font-bold text-center mb-8 text-kmk-logoBlue">
-            Remortgaging Services
+            Commercial Property Services
           </h1>
           <div className="prose max-w-none">
-            <p className="mb-4">Expert guidance for your remortgaging needs.</p>
+            <p className="mb-4">
+              Comprehensive legal services for commercial property transactions
+              and management.
+            </p>
           </div>
         </div>
       </section>
@@ -17,4 +20,4 @@ const RemortgagingPage = () => {
   );
 };
 
-export default RemortgagingPage;
+export default CommercialPropertyPage;

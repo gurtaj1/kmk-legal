@@ -1,18 +1,22 @@
 "use client";
 
-const FAQsPage = () => {
+const ExcellencePage = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white text-[#333333]">
       <section className="py-16">
         <div className="container mx-auto">
           <h1 className="text-4xl font-bold text-center mb-8 text-kmk-logoBlue">
-            Frequently Asked Questions
+            Commitment to Excellence
           </h1>
-          <div className="max-w-3xl mx-auto">{/* Add FAQ items here */}</div>
+          <div className="prose max-w-none">
+            <p className="mb-4">
+              Discover how we maintain the highest standards in legal services.
+            </p>
+          </div>
         </div>
       </section>
     </div>
   );
 };
 
-export default FAQsPage;
+export default ExcellencePage;

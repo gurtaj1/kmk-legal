@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   description: "Trusted Legal Representation",
 };
 
-const navBarHeight = 72;
+const navBarHeight = 100;
 
 export default function RootLayout({
   children,
