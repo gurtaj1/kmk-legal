@@ -2,7 +2,6 @@
 
 import ThreeStepGrid from "@/components/ui/three-step-grid";
 import Image from "next/image";
-import OpacityGradientWrapper from "@/components/ui/opacity-gradient-wrapper";
 
 const features = [
   {
