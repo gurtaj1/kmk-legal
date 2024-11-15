@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import LogoColor from "@/components/svg/logo-color";
 
 import { cardVariants } from "@/app/globals/framer-variants";
+import SmartCarousel from "@/components/ui/smart-carousel";
 
 const Page = () => {
   return (
@@ -71,9 +72,9 @@ const Page = () => {
         </div>
       </section>
 
-      <section className="py-12 bg-kmk-logoGrey">
+      <section className="py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-8 text-white">
+          <h2 className="text-3xl font-bold text-center mb-8 text-kmk-logoBlue">
             Our Services
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -88,7 +89,7 @@ const Page = () => {
                 <Card className="h-full bg-kmk-blueberry/20 hover:bg-kmk-emeraldGreen/50 group">
                   <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
                     <h3 className="text-xl font-semibold mb-2">Conveyancing</h3>
-                    <div className="overflow-hidden">
+                    <div className="rounded-xl overflow-hidden">
                       <img
                         src="/residential-conveyancing.jpg"
                         alt="Conveyancing"
@@ -116,7 +117,7 @@ const Page = () => {
                     <h3 className="text-xl font-semibold mb-2">
                       Commercial Property
                     </h3>
-                    <div className="overflow-hidden">
+                    <div className="rounded-xl overflow-hidden">
                       <img
                         src="/commercial-conveyancing.jpg"
                         alt="Commercial Property"
@@ -141,7 +142,7 @@ const Page = () => {
                 <Card className="h-full bg-kmk-blueberry/20 hover:bg-kmk-emeraldGreen/50 group">
                   <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
                     <h3 className="text-xl font-semibold mb-2">Family Law</h3>
-                    <div className="overflow-hidden">
+                    <div className="rounded-xl overflow-hidden">
                       <img
                         src="/family-law.jpg"
                         alt="Family Law"
@@ -166,7 +167,7 @@ const Page = () => {
                 <Card className="h-full bg-kmk-blueberry/20 hover:bg-kmk-emeraldGreen/50 group">
                   <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
                     <h3 className="text-xl font-semibold mb-2">Children Law</h3>
-                    <div className="overflow-hidden">
+                    <div className="rounded-xl overflow-hidden">
                       <img
                         src="/children-law.jpg"
                         alt="Children Law"
@@ -193,7 +194,7 @@ const Page = () => {
                     <h3 className="text-xl font-semibold mb-2">
                       Estate Planning
                     </h3>
-                    <div className="overflow-hidden">
+                    <div className="rounded-xl overflow-hidden">
                       <img
                         src="/estate-planning.jpg"
                         alt="Estate Planning"
@@ -218,7 +219,7 @@ const Page = () => {
                 <Card className="h-full bg-kmk-blueberry/20 hover:bg-kmk-emeraldGreen/50 group">
                   <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
                     <h3 className="text-xl font-semibold mb-2">Trusts</h3>
-                    <div className="overflow-hidden">
+                    <div className="rounded-xl overflow-hidden">
                       <img
                         src="/trust-law.jpg"
                         alt="Trusts"
@@ -257,9 +258,9 @@ const Page = () => {
           <h2 className="text-3xl font-bold text-center mb-8">
             Client Testimonials
           </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[...Array(6)].map((_, i) => (
-              <Card key={i}>
+          <SmartCarousel
+            items={[...Array(6)].map((_, i) => (
+              <Card key={i} className="mx-2">
                 <CardContent className="p-6">
                   <p className="mb-4">
                     &quot;Excellent service and professional advice throughout
@@ -272,7 +273,11 @@ const Page = () => {
                 </CardContent>
               </Card>
             ))}
-          </div>
+            slidesToShow={3}
+            autoplay={true}
+            autoplayInterval={5000}
+            boxShadowColor="dental-teal"
+          />
         </div>
       </section>
       <section className="py-12 bg-muted">

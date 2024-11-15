@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
 import { Menu, ChevronDown, Phone, Mail } from "lucide-react";
 
 import Link from "next/link";
@@ -24,29 +23,6 @@ type MenuItems = {
 };
 
 const Navbar = () => {
-  const [openMenu, setOpenMenu] = useState<string | null>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setOpenMenu(null);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const handleMenuToggle = (menuName: string) => {
-    setOpenMenu(openMenu === menuName ? null : menuName);
-  };
-
   const menuItems: MenuItems = {
     about: {
       title: "About",
@@ -121,36 +97,31 @@ const Navbar = () => {
             </Link>
 
             {/* Navigation links section */}
-            <div className="flex flex-col space-y-1" ref={dropdownRef}>
+            <div className="flex flex-col space-y-1">
               {/* First row */}
               <div className="flex space-x-6">
                 {firstRowMenus.map((key) => (
-                  <div key={key} className="relative group cursor-pointer">
-                    <button
-                      onClick={() => handleMenuToggle(key)}
-                      className="flex items-center space-x-1 hover:text-kmk-gold py-1 w-full"
-                    >
+                  <div key={key} className="relative group">
+                    <div className="flex items-center space-x-1 hover:text-kmk-gold py-1 w-full">
                       <span>{menuItems[key].title}</span>
                       <ChevronDown className="h-4 w-4" />
-                    </button>
-                    {openMenu === key && (
-                      <div className="absolute top-full left-0 bg-kmk-charcoalGrey border border-kmk-gold rounded-md py-2 min-w-[200px] shadow-lg">
-                        {menuItems[key].headerText && (
-                          <div className="px-4 py-2 text-kmk-gold font-semibold">
-                            {menuItems[key].headerText}
-                          </div>
-                        )}
-                        {menuItems[key].items.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            className="block w-full px-4 py-2 hover:bg-kmk-emeraldGreen hover:text-white cursor-pointer"
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
+                    </div>
+                    <div className="absolute top-full left-0 bg-kmk-charcoalGrey border border-kmk-gold rounded-md py-2 min-w-[200px] shadow-lg z-10 hidden group-hover:block">
+                      {menuItems[key].headerText && (
+                        <div className="px-4 py-2 text-kmk-gold font-semibold">
+                          {menuItems[key].headerText}
+                        </div>
+                      )}
+                      {menuItems[key].items.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="block w-full px-4 py-2 hover:bg-kmk-emeraldGreen hover:text-white"
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -158,37 +129,32 @@ const Navbar = () => {
               {/* Second row */}
               <div className="flex space-x-6">
                 {secondRowMenus.map((key) => (
-                  <div key={key} className="relative group cursor-pointer">
-                    <button
-                      onClick={() => handleMenuToggle(key)}
-                      className="flex items-center space-x-1 hover:text-kmk-gold py-1 w-full"
-                    >
+                  <div key={key} className="relative group">
+                    <div className="flex items-center space-x-1 hover:text-kmk-gold py-1 w-full">
                       <span>{menuItems[key].title}</span>
                       <ChevronDown className="h-4 w-4" />
-                    </button>
-                    {openMenu === key && (
-                      <div className="absolute top-full left-0 bg-kmk-charcoalGrey border border-kmk-gold rounded-md py-2 min-w-[200px] shadow-lg">
-                        {menuItems[key].headerText && (
-                          <div className="px-4 py-2 text-kmk-gold font-semibold">
-                            {menuItems[key].headerText}
-                          </div>
-                        )}
-                        {menuItems[key].items.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            className="block w-full px-4 py-2 hover:bg-kmk-emeraldGreen hover:text-white cursor-pointer"
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
+                    </div>
+                    <div className="absolute top-full left-0 bg-kmk-charcoalGrey border border-kmk-gold rounded-md py-2 min-w-[200px] shadow-lg z-10 hidden group-hover:block">
+                      {menuItems[key].headerText && (
+                        <div className="px-4 py-2 text-kmk-gold font-semibold">
+                          {menuItems[key].headerText}
+                        </div>
+                      )}
+                      {menuItems[key].items.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="block w-full px-4 py-2 hover:bg-kmk-emeraldGreen hover:text-white"
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 ))}
                 <Link
                   href="/contact"
-                  className="py-1 hover:text-kmk-gold cursor-pointer block"
+                  className="py-1 hover:text-kmk-gold block"
                 >
                   Contact Us
                 </Link>
@@ -201,14 +167,14 @@ const Navbar = () => {
             <div className="flex space-x-4">
               <a
                 href="mailto:info@example.com"
-                className="hover:text-kmk-gold cursor-pointer flex items-center gap-2"
+                className="hover:text-kmk-gold flex items-center gap-2"
               >
                 <Mail className="h-4 w-4" />
                 info@example.com
               </a>
               <a
                 href="tel:+441234567890"
-                className="hover:text-kmk-gold cursor-pointer flex items-center gap-2"
+                className="hover:text-kmk-gold flex items-center gap-2"
               >
                 <Phone className="h-4 w-4" />
                 +44 (0) 123 456 7890
