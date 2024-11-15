@@ -60,7 +60,7 @@ export default function Search() {
       />
 
       {showResults && results.length > 0 && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-md shadow-lg border border-gray-200 max-h-96 overflow-y-auto z-50">
+        <div className="fixed bottom-[60px] sm:bottom-auto sm:absolute sm:top-full left-0 right-0 mx-auto w-[calc(100%-2rem)] sm:w-full bg-white rounded-md shadow-lg border border-gray-200 max-h-96 overflow-y-auto z-[100]">
           {results.map((result, index) => (
             <button
               key={index}

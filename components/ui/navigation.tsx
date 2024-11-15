@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, ChevronDown, Phone, Mail } from "lucide-react";
+import { Menu, ChevronDown, Phone, Mail, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
@@ -28,6 +28,7 @@ type MenuItems = {
 
 const Navbar = () => {
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const menuItems: MenuItems = {
     about: {
@@ -88,11 +89,78 @@ const Navbar = () => {
             variant="outline"
             size="icon"
             className="text-white border-white hover:bg-kmk-emeraldGreen hover:text-white"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <Menu className="h-6 w-6" />
+            {isMobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
             <span className="sr-only">Toggle menu</span>
           </Button>
         </div>
+
+        {/* Mobile menu dropdown */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-kmk-charcoalGrey border-t border-kmk-blueberry"
+            >
+              <div className="flex flex-col p-4 space-y-4">
+                {Object.entries(menuItems).map(([key, section]) => (
+                  <div key={key} className="space-y-2">
+                    <div className="font-semibold text-kmk-blueberry">
+                      {section.title}
+                    </div>
+                    <div className="flex flex-col space-y-2 pl-4">
+                      {section.items.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="hover:text-kmk-blueberry"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+                <div className="space-y-2">
+                  <Link
+                    href="/contact"
+                    className="hover:text-kmk-blueberry block"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Contact Us
+                  </Link>
+                  <div className="flex flex-col space-y-2 text-sm">
+                    <a
+                      href="mailto:info@example.com"
+                      className="hover:text-kmk-blueberry flex items-center gap-2"
+                    >
+                      <Mail className="h-4 w-4" />
+                      info@example.com
+                    </a>
+                    <a
+                      href="tel:+441234567890"
+                      className="hover:text-kmk-blueberry flex items-center gap-2"
+                    >
+                      <Phone className="h-4 w-4" />
+                      +44 (0) 123 456 7890
+                    </a>
+                  </div>
+                </div>
+                <div className="pt-2 border-t border-kmk-blueberry">
+                  <Search />
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Desktop navigation area */}
         <div className="hidden md:flex justify-between items-start">
