@@ -1,6 +1,8 @@
 "use client";
 
 import { Menu, ChevronDown, Phone, Mail } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -23,6 +25,8 @@ type MenuItems = {
 };
 
 const Navbar = () => {
+  const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
+
   const menuItems: MenuItems = {
     about: {
       title: "About",
@@ -101,27 +105,57 @@ const Navbar = () => {
               {/* First row */}
               <div className="flex space-x-6">
                 {firstRowMenus.map((key) => (
-                  <div key={key} className="relative group">
+                  <div
+                    key={key}
+                    className="relative"
+                    onMouseEnter={() => setHoveredMenu(key)}
+                    onMouseLeave={() => setHoveredMenu(null)}
+                  >
                     <div className="flex items-center space-x-1 hover:text-kmk-blueberry py-1 w-full">
                       <span>{menuItems[key].title}</span>
                       <ChevronDown className="h-4 w-4" />
                     </div>
-                    <div className="absolute top-full left-0 bg-kmk-charcoalGrey border border-kmk-blueberry rounded-md py-2 min-w-[200px] shadow-lg z-10 hidden group-hover:block">
-                      {menuItems[key].headerText && (
-                        <div className="px-4 py-2 text-kmk-blueberry font-semibold">
-                          {menuItems[key].headerText}
-                        </div>
-                      )}
-                      {menuItems[key].items.map((item) => (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          className="block w-full px-4 py-2 hover:bg-kmk-emeraldGreen hover:text-white"
+                    <AnimatePresence>
+                      {hoveredMenu === key && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 30,
+                          }}
+                          className="absolute top-full left-0 bg-kmk-charcoalGrey border border-kmk-blueberry rounded-md py-2 min-w-[200px] shadow-lg z-10"
                         >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </div>
+                          {menuItems[key].headerText && (
+                            <div className="px-4 py-2 text-kmk-blueberry font-semibold">
+                              {menuItems[key].headerText}
+                            </div>
+                          )}
+                          {menuItems[key].items.map((item) => (
+                            <motion.div
+                              key={item.href}
+                              whileHover={{
+                                scale: 1.03,
+                                transition: {
+                                  type: "spring",
+                                  stiffness: 400,
+                                  damping: 30,
+                                },
+                              }}
+                            >
+                              <Link
+                                href={item.href}
+                                className="block w-full px-4 py-2 hover:bg-kmk-emeraldGreen hover:text-white"
+                              >
+                                {item.label}
+                              </Link>
+                            </motion.div>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 ))}
               </div>
@@ -129,27 +163,57 @@ const Navbar = () => {
               {/* Second row */}
               <div className="flex space-x-6">
                 {secondRowMenus.map((key) => (
-                  <div key={key} className="relative group">
+                  <div
+                    key={key}
+                    className="relative"
+                    onMouseEnter={() => setHoveredMenu(key)}
+                    onMouseLeave={() => setHoveredMenu(null)}
+                  >
                     <div className="flex items-center space-x-1 hover:text-kmk-blueberry py-1 w-full">
                       <span>{menuItems[key].title}</span>
                       <ChevronDown className="h-4 w-4" />
                     </div>
-                    <div className="absolute top-full left-0 bg-kmk-charcoalGrey border border-kmk-blueberry rounded-md py-2 min-w-[200px] shadow-lg z-10 hidden group-hover:block">
-                      {menuItems[key].headerText && (
-                        <div className="px-4 py-2 text-kmk-blueberry font-semibold">
-                          {menuItems[key].headerText}
-                        </div>
-                      )}
-                      {menuItems[key].items.map((item) => (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          className="block w-full px-4 py-2 hover:bg-kmk-emeraldGreen hover:text-white"
+                    <AnimatePresence>
+                      {hoveredMenu === key && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 30,
+                          }}
+                          className="absolute top-full left-0 bg-kmk-charcoalGrey border border-kmk-blueberry rounded-md py-2 min-w-[200px] shadow-lg z-10"
                         >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </div>
+                          {menuItems[key].headerText && (
+                            <div className="px-4 py-2 text-kmk-blueberry font-semibold">
+                              {menuItems[key].headerText}
+                            </div>
+                          )}
+                          {menuItems[key].items.map((item) => (
+                            <motion.div
+                              key={item.href}
+                              whileHover={{
+                                scale: 1.03,
+                                transition: {
+                                  type: "spring",
+                                  stiffness: 400,
+                                  damping: 30,
+                                },
+                              }}
+                            >
+                              <Link
+                                href={item.href}
+                                className="block w-full px-4 py-2 hover:bg-kmk-emeraldGreen hover:text-white"
+                              >
+                                {item.label}
+                              </Link>
+                            </motion.div>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 ))}
                 <Link
