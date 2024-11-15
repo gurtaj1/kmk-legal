@@ -90,10 +90,10 @@ const Navbar = () => {
 
         {/* Desktop navigation area */}
         <div className="hidden md:flex justify-between items-start">
-          <div className="flex items-start gap-8">
+          <div className="flex items-start gap-8 items-center">
             {/* Logo section */}
             <Link href="/" className="flex items-center">
-              <LogoWithTextColor className="w-20 h-10" />
+              <LogoWithTextColor className="w-24 h-16" />
             </Link>
 
             {/* Navigation links section */}
@@ -102,13 +102,13 @@ const Navbar = () => {
               <div className="flex space-x-6">
                 {firstRowMenus.map((key) => (
                   <div key={key} className="relative group">
-                    <div className="flex items-center space-x-1 hover:text-kmk-gold py-1 w-full">
+                    <div className="flex items-center space-x-1 hover:text-kmk-blueberry py-1 w-full">
                       <span>{menuItems[key].title}</span>
                       <ChevronDown className="h-4 w-4" />
                     </div>
-                    <div className="absolute top-full left-0 bg-kmk-charcoalGrey border border-kmk-gold rounded-md py-2 min-w-[200px] shadow-lg z-10 hidden group-hover:block">
+                    <div className="absolute top-full left-0 bg-kmk-charcoalGrey border border-kmk-blueberry rounded-md py-2 min-w-[200px] shadow-lg z-10 hidden group-hover:block">
                       {menuItems[key].headerText && (
-                        <div className="px-4 py-2 text-kmk-gold font-semibold">
+                        <div className="px-4 py-2 text-kmk-blueberry font-semibold">
                           {menuItems[key].headerText}
                         </div>
                       )}
@@ -130,13 +130,13 @@ const Navbar = () => {
               <div className="flex space-x-6">
                 {secondRowMenus.map((key) => (
                   <div key={key} className="relative group">
-                    <div className="flex items-center space-x-1 hover:text-kmk-gold py-1 w-full">
+                    <div className="flex items-center space-x-1 hover:text-kmk-blueberry py-1 w-full">
                       <span>{menuItems[key].title}</span>
                       <ChevronDown className="h-4 w-4" />
                     </div>
-                    <div className="absolute top-full left-0 bg-kmk-charcoalGrey border border-kmk-gold rounded-md py-2 min-w-[200px] shadow-lg z-10 hidden group-hover:block">
+                    <div className="absolute top-full left-0 bg-kmk-charcoalGrey border border-kmk-blueberry rounded-md py-2 min-w-[200px] shadow-lg z-10 hidden group-hover:block">
                       {menuItems[key].headerText && (
-                        <div className="px-4 py-2 text-kmk-gold font-semibold">
+                        <div className="px-4 py-2 text-kmk-blueberry font-semibold">
                           {menuItems[key].headerText}
                         </div>
                       )}
@@ -154,7 +154,7 @@ const Navbar = () => {
                 ))}
                 <Link
                   href="/contact"
-                  className="py-1 hover:text-kmk-gold block"
+                  className="py-1 hover:text-kmk-blueberry block"
                 >
                   Contact Us
                 </Link>
@@ -167,14 +167,14 @@ const Navbar = () => {
             <div className="flex space-x-4">
               <a
                 href="mailto:info@example.com"
-                className="hover:text-kmk-gold flex items-center gap-2"
+                className="hover:text-kmk-blueberry flex items-center gap-2"
               >
                 <Mail className="h-4 w-4" />
                 info@example.com
               </a>
               <a
                 href="tel:+441234567890"
-                className="hover:text-kmk-gold flex items-center gap-2"
+                className="hover:text-kmk-blueberry flex items-center gap-2"
               >
                 <Phone className="h-4 w-4" />
                 +44 (0) 123 456 7890

@@ -31,7 +31,7 @@ const Page = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="flex items-center justify-start align-middle">
             <LogoColor className="w-20 h-10" mFill="#fff" />
-            <h1 className="text-4xl font-bold mb-4 text-white">KMK LEGAL</h1>
+            <h1 className="text-4xl font-bold mb-2 text-white">KMK LEGAL</h1>
           </div>
           <p className="text-xl text-white/80 mb-8">
             Providing expert legal services for over 25 years
