@@ -66,19 +66,15 @@ const hexToRgb = (color: string): string => {
           .join("")
       : hex;
 
-  try {
-    const r = parseInt(fullHex.substring(0, 2), 16);
-    const g = parseInt(fullHex.substring(2, 4), 16);
-    const b = parseInt(fullHex.substring(4, 6), 16);
+  const r = parseInt(fullHex.substring(0, 2), 16);
+  const g = parseInt(fullHex.substring(2, 4), 16);
+  const b = parseInt(fullHex.substring(4, 6), 16);
 
-    if (isNaN(r) || isNaN(g) || isNaN(b)) {
-      return "0, 0, 0";
-    }
-
-    return `${r}, ${g}, ${b}`;
-  } catch (e) {
+  if (isNaN(r) || isNaN(g) || isNaN(b)) {
     return "0, 0, 0";
   }
+
+  return `${r}, ${g}, ${b}`;
 };
 
 export default function SmartCarousel({
