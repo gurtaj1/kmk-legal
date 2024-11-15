@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import LogoWithTextColor from "@/components/svg/logo-with-text-color";
 import Search from "@/components/ui/search";
 
+import { buttonVariants } from "@/app/globals/framer-variants";
+
 type LinkItem = {
   label: string;
   href: string;
@@ -147,14 +149,9 @@ const Navbar = () => {
                           {menuItems[key].items.map((item) => (
                             <motion.div
                               key={item.href}
-                              whileHover={{
-                                scale: 1.03,
-                                transition: {
-                                  type: "spring",
-                                  stiffness: 400,
-                                  damping: 30,
-                                },
-                              }}
+                              variants={buttonVariants}
+                              whileHover="whileHover"
+                              whileTap="whileTap"
                             >
                               <Link
                                 href={item.href}
@@ -205,14 +202,9 @@ const Navbar = () => {
                           {menuItems[key].items.map((item) => (
                             <motion.div
                               key={item.href}
-                              whileHover={{
-                                scale: 1.03,
-                                transition: {
-                                  type: "spring",
-                                  stiffness: 400,
-                                  damping: 30,
-                                },
-                              }}
+                              variants={buttonVariants}
+                              whileHover="whileHover"
+                              whileTap="whileTap"
                             >
                               <Link
                                 href={item.href}
