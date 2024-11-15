@@ -20,3 +20,22 @@ export const cardVariants = {
     },
   },
 };
+
+export const buttonVariants = {
+  whileHover: {
+    scale: 1.02,
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 20,
+    },
+  },
+  whileTap: {
+    scale: 0.98,
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 20,
+    },
+  },
+};

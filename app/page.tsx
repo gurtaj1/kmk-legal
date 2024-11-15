@@ -11,7 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import LogoColor from "@/components/svg/logo-color";
 
-import { cardVariants } from "@/app/globals/framer-variants";
+import { cardVariants, buttonVariants } from "@/app/globals/framer-variants";
 import SmartCarousel from "@/components/ui/smart-carousel";
 
 const Page = () => {
@@ -63,10 +63,22 @@ const Page = () => {
               </CardContent>
             </Card>
             <div className="space-y-4 flex flex-col justify-center">
-              <Button className="w-full">Arrange a Callback</Button>
-              <Button variant="outline" className="w-full">
-                Get a Free Quote
-              </Button>
+              <motion.div
+                variants={buttonVariants}
+                whileHover="whileHover"
+                whileTap="whileTap"
+              >
+                <Button className="w-full">Arrange a Callback</Button>
+              </motion.div>
+              <motion.div
+                variants={buttonVariants}
+                whileHover="whileHover"
+                whileTap="whileTap"
+              >
+                <Button variant="outline" className="w-full">
+                  Get a Free Quote
+                </Button>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -282,53 +294,146 @@ const Page = () => {
       </section>
       <section className="py-12 bg-muted">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-8">Contact Us</h2>
-          <div className="max-w-2xl mx-auto">
-            <form className="grid gap-4">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium">
-                    Name
-                  </label>
-                  <Input id="name" required />
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Contact Info Column */}
+            <div className="lg:col-span-1 space-y-6">
+              <h2 className="text-3xl font-bold text-kmk-logoBlue">
+                Contact Us
+              </h2>
+              <div className="space-y-4">
+                <div>
+                  <h3 className="font-semibold text-xl mb-2">Our Office</h3>
+                  <address className="not-italic text-muted-foreground">
+                    KMK Legal
+                    <br />
+                    123 Law Street
+                    <br />
+                    Cityville, CV1 2AB
+                    <br />
+                    United Kingdom
+                  </address>
                 </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium">
-                    Email
-                  </label>
-                  <Input id="email" type="email" required />
+                <div>
+                  <h3 className="font-semibold text-xl mb-2">Get in Touch</h3>
+                  <div className="space-y-2 text-muted-foreground">
+                    <p>Phone: 01234 567890</p>
+                    <p>Email: info@kmklegal.com</p>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-xl mb-2">Opening Hours</h3>
+                  <div className="space-y-1 text-muted-foreground">
+                    <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
+                    <p>Saturday - Sunday: Closed</p>
+                  </div>
                 </div>
               </div>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label htmlFor="phone" className="text-sm font-medium">
-                    Phone Number
-                  </label>
-                  <Input id="phone" type="tel" />
+            </div>
+
+            {/* Form Column */}
+            <div className="lg:col-span-2">
+              <form className="grid gap-4 bg-white p-6 rounded-lg shadow-sm">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <motion.div
+                    className="space-y-2"
+                    variants={buttonVariants}
+                    whileHover="whileHover"
+                    whileTap="whileTap"
+                  >
+                    <label htmlFor="name" className="text-sm font-medium">
+                      Name
+                    </label>
+                    <Input
+                      id="name"
+                      required
+                      className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
+                    />
+                  </motion.div>
+                  <motion.div
+                    className="space-y-2"
+                    variants={buttonVariants}
+                    whileHover="whileHover"
+                    whileTap="whileTap"
+                  >
+                    <label htmlFor="email" className="text-sm font-medium">
+                      Email
+                    </label>
+                    <Input
+                      id="email"
+                      type="email"
+                      required
+                      className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
+                    />
+                  </motion.div>
                 </div>
-                <div className="space-y-2">
-                  <label htmlFor="area" className="text-sm font-medium">
-                    Area of Law
-                  </label>
-                  <Input id="area" />
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <motion.div
+                    className="space-y-2"
+                    variants={buttonVariants}
+                    whileHover="whileHover"
+                    whileTap="whileTap"
+                  >
+                    <label htmlFor="phone" className="text-sm font-medium">
+                      Phone Number
+                    </label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
+                    />
+                  </motion.div>
+                  <motion.div
+                    className="space-y-2"
+                    variants={buttonVariants}
+                    whileHover="whileHover"
+                    whileTap="whileTap"
+                  >
+                    <label htmlFor="area" className="text-sm font-medium">
+                      Area of Law
+                    </label>
+                    <Input
+                      id="area"
+                      className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
+                    />
+                  </motion.div>
                 </div>
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium">
-                  Message
-                </label>
-                <Textarea id="message" required />
-              </div>
-              <div className="flex items-center gap-2">
-                <Checkbox id="subscribe" />
-                <label htmlFor="subscribe" className="text-sm">
-                  Subscribe to our updates
-                </label>
-              </div>
-              <Button type="submit" className="w-full">
-                Send Enquiry
-              </Button>
-            </form>
+                <motion.div
+                  className="space-y-2"
+                  variants={buttonVariants}
+                  whileHover="whileHover"
+                  whileTap="whileTap"
+                >
+                  <label htmlFor="message" className="text-sm font-medium">
+                    Message
+                  </label>
+                  <Textarea
+                    id="message"
+                    required
+                    className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
+                  />
+                </motion.div>
+                <motion.div
+                  className="flex items-center gap-2"
+                  variants={buttonVariants}
+                  whileHover="whileHover"
+                  whileTap="whileTap"
+                >
+                  <Checkbox id="subscribe" />
+                  <label htmlFor="subscribe" className="text-sm">
+                    Subscribe to our updates
+                  </label>
+                </motion.div>
+                <motion.div
+                  variants={buttonVariants}
+                  whileHover="whileHover"
+                  whileTap="whileTap"
+                >
+                  <Button type="submit" className="w-full">
+                    Send Enquiry
+                  </Button>
+                </motion.div>
+              </form>
+            </div>
           </div>
         </div>
       </section>

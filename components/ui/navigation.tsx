@@ -96,9 +96,20 @@ const Navbar = () => {
         <div className="hidden md:flex justify-between items-start">
           <div className="flex items-start gap-8 items-center">
             {/* Logo section */}
-            <Link href="/" className="flex items-center">
-              <LogoWithTextColor className="w-24 h-16" />
-            </Link>
+            <motion.div
+              whileHover={{
+                scale: 1.05,
+                transition: {
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 30,
+                },
+              }}
+            >
+              <Link href="/" className="flex items-center">
+                <LogoWithTextColor className="w-24 h-16" />
+              </Link>
+            </motion.div>
 
             {/* Navigation links section */}
             <div className="flex flex-col space-y-1">
