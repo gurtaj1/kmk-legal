@@ -2,8 +2,16 @@
 
 import Link from "next/link";
 import LogoWithTextBlack from "@/components/svg/logo-with-text-black";
-
-import { Phone, Mail, MapPin, PoundSterling } from "lucide-react";
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Twitter,
+  Phone,
+  Mail,
+  MapPin,
+  PoundSterling,
+} from "lucide-react";
 
 const Footer = () => {
   return (
@@ -11,6 +19,20 @@ const Footer = () => {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
           <LogoWithTextBlack className="w-20 h-10" fill="#fff" />
+          <div className="flex gap-4 mt-5">
+            <Link href="#" className="text-white hover:text-[#FFD700]">
+              <Facebook className="h-5 w-5" />
+            </Link>
+            <Link href="#" className="text-white hover:text-[#FFD700]">
+              <Twitter className="h-5 w-5" />
+            </Link>
+            <Link href="#" className="text-white hover:text-[#FFD700]">
+              <Instagram className="h-5 w-5" />
+            </Link>
+            <Link href="#" className="text-white hover:text-[#FFD700]">
+              <Linkedin className="h-5 w-5" />
+            </Link>
+          </div>
           <p className="mt-4">
             KMK Legal is authorised and regulated by the Solicitors Regulation
             Authority.

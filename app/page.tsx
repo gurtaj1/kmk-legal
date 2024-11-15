@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
+import LogoColor from "@/components/svg/logo-color";
 
 const Page = () => {
   return (
@@ -24,21 +25,22 @@ const Page = () => {
         <div className="absolute inset-0 bg-white/50" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <h1 className="text-4xl font-bold mb-4 text-white">
-            Your Trusted Legal Partner
-          </h1>
+          <div className="flex items-center justify-start align-middle">
+            <LogoColor className="w-20 h-10" mFill="#fff" />
+            <h1 className="text-4xl font-bold mb-4 text-white">KMK LEGAL</h1>
+          </div>
           <p className="text-xl text-white/80 mb-8">
             Providing expert legal services for over 25 years
           </p>
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="bg-white/95">
               <CardContent className="p-6">
-                <h2 className="text-2xl font-semibold mb-4">Why Choose Us</h2>
+                <h2 className="text-2xl font-semibold mb-4">Our Slogans</h2>
                 <ul className="space-y-2">
-                  <li>✓ Expert legal advice</li>
-                  <li>✓ Personalized service</li>
-                  <li>✓ Proven track record</li>
-                  <li>✓ Competitive rates</li>
+                  <li>&quot;Justice You Can Trust&quot;</li>
+                  <li>&quot;Your Rights, Our Priority&quot;</li>
+                  <li>&quot;Excellence in Legal Care&quot;</li>
+                  <li>&quot;Partners in Justice&quot;</li>
                 </ul>
               </CardContent>
             </Card>
@@ -49,10 +51,10 @@ const Page = () => {
                   We believe in delivering justice with compassion, integrity,
                   and excellence. Our commitment goes beyond legal
                   representation – we strive to be your trusted partner in
-                  navigating life's legal challenges.
+                  navigating life&apos;s legal challenges.
                 </p>
                 <div className="text-sm font-medium">
-                  "Justice with a personal touch"
+                  &quot;Justice with a personal touch&quot;
                 </div>
               </CardContent>
             </Card>
