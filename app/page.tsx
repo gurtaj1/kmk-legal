@@ -89,14 +89,14 @@ const Page = () => {
                 <Card className="h-full bg-kmk-blueberry/20 hover:bg-kmk-emeraldGreen/50 group">
                   <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
                     <h3 className="text-xl font-semibold mb-2">Conveyancing</h3>
-                    <div className="rounded-xl overflow-hidden">
+                    <div className="rounded-xl overflow-hidden h-48 mb-4">
                       <img
                         src="/residential-conveyancing.jpg"
                         alt="Conveyancing"
-                        className="mb-4 w-full group-hover:scale-105 transition-all duration-300"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
                       />
                     </div>
-                    <p className="text-muted-foreground text-white">
+                    <p className="text-muted-foreground text-black">
                       Expert property law services for buying and selling
                       properties.
                     </p>
@@ -117,14 +117,14 @@ const Page = () => {
                     <h3 className="text-xl font-semibold mb-2">
                       Commercial Property
                     </h3>
-                    <div className="rounded-xl overflow-hidden">
+                    <div className="rounded-xl overflow-hidden h-48 mb-4">
                       <img
                         src="/commercial-conveyancing.jpg"
                         alt="Commercial Property"
-                        className="mb-4 w-full group-hover:scale-105 transition-all duration-300"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
                       />
                     </div>
-                    <p className="text-muted-foreground text-white">
+                    <p className="text-muted-foreground text-black">
                       Comprehensive legal support for business property matters.
                     </p>
                   </CardContent>
@@ -142,14 +142,14 @@ const Page = () => {
                 <Card className="h-full bg-kmk-blueberry/20 hover:bg-kmk-emeraldGreen/50 group">
                   <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
                     <h3 className="text-xl font-semibold mb-2">Family Law</h3>
-                    <div className="rounded-xl overflow-hidden">
+                    <div className="rounded-xl overflow-hidden h-48 mb-4">
                       <img
                         src="/family-law.jpg"
                         alt="Family Law"
-                        className="mb-4 w-full group-hover:scale-105 transition-all duration-300"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
                       />
                     </div>
-                    <p className="text-muted-foreground text-white">
+                    <p className="text-muted-foreground text-black">
                       Sensitive handling of family legal matters and disputes.
                     </p>
                   </CardContent>
@@ -167,14 +167,14 @@ const Page = () => {
                 <Card className="h-full bg-kmk-blueberry/20 hover:bg-kmk-emeraldGreen/50 group">
                   <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
                     <h3 className="text-xl font-semibold mb-2">Children Law</h3>
-                    <div className="rounded-xl overflow-hidden">
+                    <div className="rounded-xl overflow-hidden h-48 mb-4">
                       <img
                         src="/children-law.jpg"
                         alt="Children Law"
-                        className="mb-4 w-full group-hover:scale-105 transition-all duration-300"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
                       />
                     </div>
-                    <p className="text-muted-foreground text-white">
+                    <p className="text-muted-foreground text-black">
                       Expert representation in children law cases.
                     </p>
                   </CardContent>
@@ -194,14 +194,14 @@ const Page = () => {
                     <h3 className="text-xl font-semibold mb-2">
                       Estate Planning
                     </h3>
-                    <div className="rounded-xl overflow-hidden">
+                    <div className="rounded-xl overflow-hidden h-48 mb-4">
                       <img
                         src="/estate-planning.jpg"
                         alt="Estate Planning"
-                        className="mb-4 w-full group-hover:scale-105 transition-all duration-300"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
                       />
                     </div>
-                    <p className="text-muted-foreground text-white">
+                    <p className="text-muted-foreground text-black">
                       Professional will writing and estate planning services.
                     </p>
                   </CardContent>
@@ -219,14 +219,14 @@ const Page = () => {
                 <Card className="h-full bg-kmk-blueberry/20 hover:bg-kmk-emeraldGreen/50 group">
                   <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
                     <h3 className="text-xl font-semibold mb-2">Trusts</h3>
-                    <div className="rounded-xl overflow-hidden">
+                    <div className="rounded-xl overflow-hidden h-48 mb-4">
                       <img
                         src="/trust-law.jpg"
                         alt="Trusts"
-                        className="mb-4 w-full group-hover:scale-105 transition-all duration-300"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
                       />
                     </div>
-                    <p className="text-muted-foreground text-white">
+                    <p className="text-muted-foreground text-black">
                       Specialist advice on trust formation and management.
                     </p>
                   </CardContent>
