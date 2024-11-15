@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Menu, ChevronDown } from "lucide-react";
+import { Menu, ChevronDown, Phone, Mail } from "lucide-react";
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -201,14 +201,16 @@ const Navbar = () => {
             <div className="flex space-x-4">
               <a
                 href="mailto:info@example.com"
-                className="hover:text-kmk-gold cursor-pointer"
+                className="hover:text-kmk-gold cursor-pointer flex items-center gap-2"
               >
+                <Mail className="h-4 w-4" />
                 info@example.com
               </a>
               <a
                 href="tel:+441234567890"
-                className="hover:text-kmk-gold cursor-pointer"
+                className="hover:text-kmk-gold cursor-pointer flex items-center gap-2"
               >
+                <Phone className="h-4 w-4" />
                 +44 (0) 123 456 7890
               </a>
             </div>

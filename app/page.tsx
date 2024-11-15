@@ -2,462 +2,216 @@
 
 import { motion } from "framer-motion";
 
-import Image from "next/image";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import { Home, Briefcase, Star } from "lucide-react";
-import ParallaxWithScrollWrapper from "@/components/ui/parallax-with-scroll-wrapper";
+import { Card, CardContent } from "@/components/ui/card";
 
-import { cardVariants } from "@/app/globals/framer-variants";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
 
 const Page = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white text-[#333333] overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative h-[calc(100vh-4rem)] flex items-center justify-center">
-        <div
-          className="absolute inset-0 bg-cover bg-center z-0"
-          style={{
-            backgroundImage: "url('/home-hero.jpg')",
-          }}
-          aria-hidden="true"
-        />
-        <div className="relative z-10 text-center px-4">
-          <h1
-            className="text-4xl md:text-8xl font-bold text-white mb-6"
-            style={{ textShadow: "1px 1px 2px #fff" }}
-          >
-            Expert Property Law
-            <br />
-            Services in England
+      <section
+        className="py-12 bg-muted relative"
+        style={{
+          backgroundImage: "url('/home-hero.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-white/50" />
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <h1 className="text-4xl font-bold mb-4 text-white">
+            Your Trusted Legal Partner
           </h1>
-          <Button
-            asChild
-            size="lg"
-            className="mb-4 bg-kmk-blueberryBlue hover:bg-kmk-emeraldGreen text-white"
-          >
-            <motion.div
-              variants={cardVariants}
-              initial="initial"
-              whileHover="whileHover"
-              whileTap="whileTap"
-            >
-              <Link href="/quote-calculator">Get a Quote</Link>
-            </motion.div>
-          </Button>
-          <p className="text-xl md:text-2xl text-white">
-            Your trusted partner for all your property needs
+          <p className="text-xl text-white/80 mb-8">
+            Providing expert legal services for over 25 years
           </p>
-        </div>
-      </section>
-
-      {/* Quality of Service Section */}
-      <section className="py-16 bg-kmk-offwhite">
-        <div className="container mx-auto px-4 text-center">
-          <ParallaxWithScrollWrapper>
-            <h2 className="text-4xl md:text-6xl font-bold mb-4 text-kmk-logoBlue">
-              Exceptional Legal Services
-            </h2>
-          </ParallaxWithScrollWrapper>
-          <p className="mb-8 max-w-2xl mx-auto">
-            At KMK Legal, we pride ourselves on delivering top-notch
-            conveyancing services. Our team of experienced solicitors ensures a
-            smooth and efficient property transaction process.
-          </p>
-        </div>
-      </section>
-
-      {/* Contact CTA Section */}
-      <section className="py-8 bg-kmk-charcoalGrey">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-2xl md:text-3xl mb-4 font-semibold text-white">
-            Already have a quote? Contact us today!
-          </p>
-          <Button
-            asChild
-            className="bg-kmk-blueberryBlue hover:bg-kmk-emeraldGreen text-white"
-          >
-            <motion.div
-              variants={cardVariants}
-              initial="initial"
-              whileHover="whileHover"
-              whileTap="whileTap"
-            >
-              <Link href="/contact-us">Contact Us</Link>
-            </motion.div>
-          </Button>
-        </div>
-      </section>
-
-      {/* Services Graphic Section */}
-      <section className="py-16 bg-kmk-logoGrey">
-        <div className="container mx-auto px-4 text-center">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <Card className="bg-kmk-offwhite border border-kmk-logoBlue">
-              <CardHeader>
-                <Home className="w-12 h-12 mx-auto mb-2 text-kmk-charcoalGrey" />
-                <CardTitle className="text-kmk-charcoalGrey">Buying</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>Expert guidance for property purchases</p>
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="bg-white/95">
+              <CardContent className="p-6">
+                <h2 className="text-2xl font-semibold mb-4">Why Choose Us</h2>
+                <ul className="space-y-2">
+                  <li>✓ Expert legal advice</li>
+                  <li>✓ Personalized service</li>
+                  <li>✓ Proven track record</li>
+                  <li>✓ Competitive rates</li>
+                </ul>
               </CardContent>
             </Card>
-            <Card className="bg-white border border-kmk-charcoalGrey">
-              <CardHeader>
-                <Briefcase className="w-12 h-12 mx-auto mb-2 text-kmk-charcoalGrey" />
-                <CardTitle className="text-kmk-charcoalGrey">Selling</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>Smooth process for property sales</p>
-              </CardContent>
-            </Card>
-            <Card className="bg-white border border-kmk-charcoalGrey">
-              <CardHeader>
-                <div className="flex items-center justify-center gap-1">
-                  <Home className="w-12 h-12 mb-2 text-kmk-charcoalGrey" />
-                  <Briefcase className="w-12 h-12 mb-2 text-kmk-charcoalGrey" />
+            <Card className="bg-white/95">
+              <CardContent className="p-6">
+                <h2 className="text-2xl font-semibold mb-4">Our Ethos</h2>
+                <p className="text-muted-foreground mb-3">
+                  We believe in delivering justice with compassion, integrity,
+                  and excellence. Our commitment goes beyond legal
+                  representation – we strive to be your trusted partner in
+                  navigating life's legal challenges.
+                </p>
+                <div className="text-sm font-medium">
+                  "Justice with a personal touch"
                 </div>
-                <CardTitle className="text-kmk-charcoalGrey">Both?</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>Comprehensive services for buying and selling</p>
               </CardContent>
             </Card>
-          </div>
-          <div className="flex flex-col items-center w-full md:w-1/3 mx-auto">
-            <Button
-              asChild
-              size="lg"
-              className="w-full mb-4 bg-kmk-blueberryBlue hover:bg-kmk-emeraldGreen text-white min-h-[44px]"
-            >
-              <motion.div
-                className="w-full h-full"
-                variants={cardVariants}
-                initial="initial"
-                whileHover="whileHover"
-                whileTap="whileTap"
-              >
-                <Link
-                  href="/quote-calculator"
-                  className="w-full h-full flex items-center justify-center"
-                >
-                  Get a Free Quote Now
-                </Link>
-              </motion.div>
-            </Button>
-            <div className="flex justify-center space-x-4 mb-4 w-full">
-              <Button
-                asChild
-                variant="outline"
-                className="flex-1 border-kmk-logoBlue text-kmk-logoBlue hover:bg-kmk-emeraldGreen hover:text-white min-h-[44px]"
-              >
-                <motion.div
-                  className="w-full h-full"
-                  variants={cardVariants}
-                  initial="initial"
-                  whileHover="whileHover"
-                  whileTap="whileTap"
-                >
-                  <Link
-                    href="/purchase-info"
-                    className="w-full h-full flex items-center justify-center"
-                  >
-                    Purchase Info
-                  </Link>
-                </motion.div>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                className="flex-1 border-kmk-logoBlue text-kmk-logoBlue hover:bg-kmk-emeraldGreen hover:text-white min-h-[44px]"
-              >
-                <motion.div
-                  className="w-full h-full"
-                  variants={cardVariants}
-                  initial="initial"
-                  whileHover="whileHover"
-                  whileTap="whileTap"
-                >
-                  <Link
-                    href="/sale-info"
-                    className="w-full h-full flex items-center justify-center"
-                  >
-                    Sale Info
-                  </Link>
-                </motion.div>
+            <div className="space-y-4 flex flex-col justify-center">
+              <Button className="w-full">Arrange a Callback</Button>
+              <Button variant="outline" className="w-full">
+                Get a Free Quote
               </Button>
             </div>
-            <Button
-              asChild
-              variant="outline"
-              className="w-full border-kmk-logoBlue text-kmk-logoBlue hover:bg-kmk-emeraldGreen hover:text-white min-h-[44px] py-2 px-4"
-            >
-              <motion.div
-                className="w-full h-full"
-                variants={cardVariants}
-                initial="initial"
-                whileHover="whileHover"
-                whileTap="whileTap"
+          </div>
+        </div>
+      </section>
+      <section className="py-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-8">Our Services</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Conveyancing</h3>
+                <p className="text-muted-foreground">
+                  Expert property law services for buying and selling
+                  properties.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-2">
+                  Commercial Property
+                </h3>
+                <p className="text-muted-foreground">
+                  Comprehensive legal support for business property matters.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Family Law</h3>
+                <p className="text-muted-foreground">
+                  Sensitive handling of family legal matters and disputes.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Civil Law</h3>
+                <p className="text-muted-foreground">
+                  Expert representation in civil litigation cases.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Estate Planning</h3>
+                <p className="text-muted-foreground">
+                  Professional will writing and estate planning services.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Trusts</h3>
+                <p className="text-muted-foreground">
+                  Specialist advice on trust formation and management.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+      <section className="py-12 bg-muted">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-8">
+            Accreditations & Awards
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {[...Array(6)].map((_, i) => (
+              <div
+                key={i}
+                className="bg-background rounded-lg p-4 aspect-square flex items-center justify-center"
               >
-                <Link
-                  href="/linked-purchase-sale-info"
-                  className="w-full h-full flex items-center justify-center text-center px-2 whitespace-normal"
-                >
-                  Linked Purchase and Sale Info
-                </Link>
-              </motion.div>
-            </Button>
+                <div className="w-16 h-16 bg-muted rounded" />
+              </div>
+            ))}
           </div>
         </div>
       </section>
-
-      {/* Smooth Process Section */}
-      <section className="py-16 bg-kmk-offwhite">
-        <div className="container mx-auto px-4">
-          <Image
-            src="/inside-house-view.jpg"
-            alt="Beautiful home with nature background"
-            width={1200}
-            height={400}
-            className="w-full h-64 object-cover mb-8 rounded-lg"
-          />
-          <ParallaxWithScrollWrapper>
-            <h2 className="text-4xl md:text-6xl font-bold text-center mb-8 text-kmk-logoBlue">
-              Your Smooth Property Journey
-            </h2>
-          </ParallaxWithScrollWrapper>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="bg-white border border-kmk-logoBlue">
-              <CardHeader>
-                <CardTitle className="text-kmk-logoBlue">
-                  1. Do It Online
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>
-                  Convenient online process for all your property transactions
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="bg-white border border-kmk-logoBlue">
-              <CardHeader>
-                <CardTitle className="text-kmk-logoBlue">
-                  2. Stay in the Loop
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>Regular updates and transparent communication throughout</p>
-              </CardContent>
-            </Card>
-            <Card className="bg-white border border-kmk-logoBlue">
-              <CardHeader>
-                <CardTitle className="text-kmk-logoBlue">
-                  3. Move Sooner
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>
-                  Efficient processes to help you move into your new home faster
-                </p>
-              </CardContent>
-            </Card>
+      <section className="py-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-8">
+            Client Testimonials
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[...Array(6)].map((_, i) => (
+              <Card key={i}>
+                <CardContent className="p-6">
+                  <p className="mb-4">
+                    &quot;Excellent service and professional advice throughout
+                    the whole process.&quot;
+                  </p>
+                  <p className="font-semibold">Client Name</p>
+                  <p className="text-sm text-muted-foreground">
+                    Service Used: Conveyancing
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
-
-      {/* Our Services Section */}
-      <section className="py-16 bg-kmk-logoGrey">
-        <div className="container mx-auto px-4">
-          <ParallaxWithScrollWrapper>
-            <h2 className="text-4xl md:text-6xl font-bold text-center mb-12 text-white">
-              Our Services
-            </h2>
-          </ParallaxWithScrollWrapper>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <Card className="bg-white border border-kmk-logoBlue group">
-              <CardHeader>
-                <div className="overflow-hidden rounded-t-lg">
-                  <Image
-                    src="/residential-conveyancing.jpg"
-                    alt="Residential Conveyancing"
-                    width={500}
-                    height={300}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-all duration-1000"
-                  />
+      <section className="py-12 bg-muted">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-8">Contact Us</h2>
+          <div className="max-w-2xl mx-auto">
+            <form className="grid gap-4">
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label htmlFor="name" className="text-sm font-medium">
+                    Name
+                  </label>
+                  <Input id="name" required />
                 </div>
-                <CardTitle className="mt-4 text-kmk-logoBlue">
-                  Residential Conveyancing
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-4">
-                  Expert legal assistance for buying, selling, or remortgaging
-                  residential properties in the UK market.
-                </p>
-              </CardContent>
-              <CardFooter className="flex justify-between">
-                <Button
-                  asChild
-                  className="bg-kmk-blueberryBlue hover:bg-kmk-emeraldGreen text-white"
-                >
-                  <motion.div
-                    variants={cardVariants}
-                    initial="initial"
-                    whileHover="whileHover"
-                    whileTap="whileTap"
-                  >
-                    <Link href="/quote-calculator">Get a Quote</Link>
-                  </motion.div>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="border-kmk-logoBlue text-kmk-logoBlue hover:bg-kmk-emeraldGreen hover:text-white"
-                >
-                  <motion.div
-                    variants={cardVariants}
-                    initial="initial"
-                    whileHover="whileHover"
-                    whileTap="whileTap"
-                  >
-                    <Link href="/residential-conveyancing">Learn More</Link>
-                  </motion.div>
-                </Button>
-              </CardFooter>
-            </Card>
-            <Card className="bg-white border border-kmk-logoBlue group">
-              <CardHeader>
-                <div className="overflow-hidden rounded-t-lg">
-                  <Image
-                    src="/commercial-conveyancing.jpg"
-                    alt="Commercial Conveyancing"
-                    width={500}
-                    height={300}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-all duration-1000"
-                  />
+                <div className="space-y-2">
+                  <label htmlFor="email" className="text-sm font-medium">
+                    Email
+                  </label>
+                  <Input id="email" type="email" required />
                 </div>
-                <CardTitle className="mt-4 text-kmk-logoBlue">
-                  Commercial Conveyancing
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-4">
-                  Comprehensive legal services for commercial property
-                  transactions in the UK, including leases and property
-                  development.
-                </p>
-              </CardContent>
-              <CardFooter className="flex justify-between">
-                <Button
-                  asChild
-                  className="bg-kmk-blueberryBlue hover:bg-kmk-emeraldGreen text-white"
-                >
-                  <motion.div
-                    variants={cardVariants}
-                    initial="initial"
-                    whileHover="whileHover"
-                    whileTap="whileTap"
-                  >
-                    <Link href="/quote-calculator">Get a Quote</Link>
-                  </motion.div>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="border-kmk-logoBlue text-kmk-logoBlue hover:bg-kmk-emeraldGreen hover:text-white"
-                >
-                  <motion.div
-                    variants={cardVariants}
-                    initial="initial"
-                    whileHover="whileHover"
-                    whileTap="whileTap"
-                  >
-                    <Link href="/commercial-conveyancing">Learn More</Link>
-                  </motion.div>
-                </Button>
-              </CardFooter>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Google Reviews Section */}
-      <section className="py-16 bg-kmk-offwhite">
-        <div className="container mx-auto px-4">
-          <ParallaxWithScrollWrapper>
-            <h2 className="text-4xl md:text-6xl font-bold text-center mb-8 text-kmk-logoBlue">
-              What Our Clients Say
-            </h2>
-          </ParallaxWithScrollWrapper>
-          <Carousel className="w-full">
-            <CarouselContent>
-              {[1, 2, 3, 4, 5].map((review) => (
-                <CarouselItem
-                  key={review}
-                  className="md:basis-1/2 lg:basis-1/3"
-                >
-                  <Card className="bg-white border border-kmk-logoBlue">
-                    <CardHeader>
-                      <CardTitle className="flex items-center">
-                        <Star className="w-5 h-5 text-[#FFD700]" />
-                        <Star className="w-5 h-5 text-[#FFD700]" />
-                        <Star className="w-5 h-5 text-[#FFD700]" />
-                        <Star className="w-5 h-5 text-[#FFD700]" />
-                        <Star className="w-5 h-5 text-[#FFD700]" />
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p>
-                        &quot;Excellent service from KMK Legal. They made our
-                        property purchase smooth and stress-free.&quot;
-                      </p>
-                    </CardContent>
-                    <CardFooter>
-                      <p className="text-sm text-[#333333]">John Doe</p>
-                    </CardFooter>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
-        </div>
-      </section>
-
-      {/* Google Maps Section */}
-      <section className="py-16 bg-kmk-logoGrey">
-        <div className="container mx-auto px-4">
-          <ParallaxWithScrollWrapper>
-            <h2 className="text-4xl md:text-6xl font-bold text-center mb-8 text-kmk-logoBlue">
-              Find Us
-            </h2>
-          </ParallaxWithScrollWrapper>
-          <div className="aspect-w-16 aspect-h-9">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2469.8088025254456!2d-0.4137013840820206!3d51.87967397970151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48764144b18d4d2d%3A0x44436b0c5b275f8c!2sLuton!5e0!3m2!1sen!2suk!4v1635000000000!5m2!1sen!2suk"
-              width="100%"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="KMK Legal Location"
-            ></iframe>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label htmlFor="phone" className="text-sm font-medium">
+                    Phone Number
+                  </label>
+                  <Input id="phone" type="tel" />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="area" className="text-sm font-medium">
+                    Area of Law
+                  </label>
+                  <Input id="area" />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="message" className="text-sm font-medium">
+                  Message
+                </label>
+                <Textarea id="message" required />
+              </div>
+              <div className="flex items-center gap-2">
+                <Checkbox id="subscribe" />
+                <label htmlFor="subscribe" className="text-sm">
+                  Subscribe to our updates
+                </label>
+              </div>
+              <Button type="submit" className="w-full">
+                Send Enquiry
+              </Button>
+            </form>
           </div>
         </div>
       </section>
