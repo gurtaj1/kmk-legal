@@ -2,7 +2,7 @@
 
 import { Menu, ChevronDown, Phone, Mail, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -77,6 +77,20 @@ const Navbar = () => {
   const firstRowMenus = ["about", "services"];
   const secondRowMenus = ["resources", "fees"];
 
+  // Add useEffect to handle body scrolling
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    // Cleanup function
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <nav className="fixed top-0 left-0 right-0 w-full bg-kmk-charcoalGrey text-white p-4 z-50">
       <div className="container mx-auto">
@@ -88,7 +102,7 @@ const Navbar = () => {
           <Button
             variant="outline"
             size="icon"
-            className="text-white border-white hover:bg-kmk-emeraldGreen hover:text-white"
+            className="text-kmk-blueberry hover:text-white border-white hover:bg-kmk-emeraldGreen hover:text-white"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
@@ -105,9 +119,9 @@ const Navbar = () => {
           {isMobileMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
+              animate={{ opacity: 1, height: "calc(100vh - 80px)" }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-kmk-charcoalGrey border-t border-kmk-blueberry"
+              className="md:hidden bg-kmk-charcoalGrey border-t border-kmk-blueberry fixed top-[80px] left-0 right-0 bottom-0 overflow-y-auto"
             >
               <div className="flex flex-col p-4 space-y-4">
                 {Object.entries(menuItems).map(([key, section]) => (
