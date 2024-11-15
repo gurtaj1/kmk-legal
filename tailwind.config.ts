@@ -21,7 +21,7 @@ const config: Config = {
           forestGreen: kmkColors.forestGreen,
           gold: kmkColors.gold,
           antiqueBronze: kmkColors.antiqueBronze,
-          blueberryBlue: kmkColors.blueberryBlue,
+          blueberry: kmkColors.blueberry,
         },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

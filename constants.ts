@@ -7,5 +7,5 @@ export const kmkColors = {
   forestGreen: "rgb(77 145 87)",
   gold: "rgb(224 183 20)",
   antiqueBronze: "rgb(224 183 20)",
-  blueberryBlue: "rgb(46 99 207)",
+  blueberry: "rgb(46 99 207)",
 };

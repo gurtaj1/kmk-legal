@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -9,6 +10,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import LogoColor from "@/components/svg/logo-color";
+
+import { cardVariants } from "@/app/globals/framer-variants";
 
 const Page = () => {
   return (
@@ -67,61 +70,168 @@ const Page = () => {
           </div>
         </div>
       </section>
-      <section className="py-12">
+
+      <section className="py-12 bg-kmk-logoGrey">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-8">Our Services</h2>
+          <h2 className="text-3xl font-bold text-center mb-8 text-white">
+            Our Services
+          </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Conveyancing</h3>
-                <p className="text-muted-foreground">
-                  Expert property law services for buying and selling
-                  properties.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-2">
-                  Commercial Property
-                </h3>
-                <p className="text-muted-foreground">
-                  Comprehensive legal support for business property matters.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Family Law</h3>
-                <p className="text-muted-foreground">
-                  Sensitive handling of family legal matters and disputes.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Civil Law</h3>
-                <p className="text-muted-foreground">
-                  Expert representation in civil litigation cases.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Estate Planning</h3>
-                <p className="text-muted-foreground">
-                  Professional will writing and estate planning services.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Trusts</h3>
-                <p className="text-muted-foreground">
-                  Specialist advice on trust formation and management.
-                </p>
-              </CardContent>
-            </Card>
+            <Link href="/services/conveyancing" className="h-full">
+              <motion.div
+                className="rounded-xl h-full"
+                variants={cardVariants}
+                initial="initial"
+                whileHover="whileHover"
+                whileTap="whileTap"
+              >
+                <Card className="h-full bg-kmk-blueberry/20 hover:bg-kmk-emeraldGreen/50 group">
+                  <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
+                    <h3 className="text-xl font-semibold mb-2">Conveyancing</h3>
+                    <div className="overflow-hidden">
+                      <img
+                        src="/residential-conveyancing.jpg"
+                        alt="Conveyancing"
+                        className="mb-4 w-full group-hover:scale-105 transition-all duration-300"
+                      />
+                    </div>
+                    <p className="text-muted-foreground text-white">
+                      Expert property law services for buying and selling
+                      properties.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </Link>
+            <Link href="/services/commercial-property" className="h-full">
+              <motion.div
+                className="rounded-xl h-full"
+                variants={cardVariants}
+                initial="initial"
+                whileHover="whileHover"
+                whileTap="whileTap"
+              >
+                <Card className="h-full bg-kmk-blueberry/20 hover:bg-kmk-emeraldGreen/50 group">
+                  <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
+                    <h3 className="text-xl font-semibold mb-2">
+                      Commercial Property
+                    </h3>
+                    <div className="overflow-hidden">
+                      <img
+                        src="/commercial-conveyancing.jpg"
+                        alt="Commercial Property"
+                        className="mb-4 w-full group-hover:scale-105 transition-all duration-300"
+                      />
+                    </div>
+                    <p className="text-muted-foreground text-white">
+                      Comprehensive legal support for business property matters.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </Link>
+            <Link href="/services/family-law" className="h-full">
+              <motion.div
+                className="rounded-xl h-full"
+                variants={cardVariants}
+                initial="initial"
+                whileHover="whileHover"
+                whileTap="whileTap"
+              >
+                <Card className="h-full bg-kmk-blueberry/20 hover:bg-kmk-emeraldGreen/50 group">
+                  <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
+                    <h3 className="text-xl font-semibold mb-2">Family Law</h3>
+                    <div className="overflow-hidden">
+                      <img
+                        src="/family-law.jpg"
+                        alt="Family Law"
+                        className="mb-4 w-full group-hover:scale-105 transition-all duration-300"
+                      />
+                    </div>
+                    <p className="text-muted-foreground text-white">
+                      Sensitive handling of family legal matters and disputes.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </Link>
+            <Link href="/services/children-law" className="h-full">
+              <motion.div
+                className="rounded-xl h-full"
+                variants={cardVariants}
+                initial="initial"
+                whileHover="whileHover"
+                whileTap="whileTap"
+              >
+                <Card className="h-full bg-kmk-blueberry/20 hover:bg-kmk-emeraldGreen/50 group">
+                  <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
+                    <h3 className="text-xl font-semibold mb-2">Children Law</h3>
+                    <div className="overflow-hidden">
+                      <img
+                        src="/children-law.jpg"
+                        alt="Children Law"
+                        className="mb-4 w-full group-hover:scale-105 transition-all duration-300"
+                      />
+                    </div>
+                    <p className="text-muted-foreground text-white">
+                      Expert representation in children law cases.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </Link>
+            <Link href="/services/estate-planning" className="h-full">
+              <motion.div
+                className="rounded-xl h-full"
+                variants={cardVariants}
+                initial="initial"
+                whileHover="whileHover"
+                whileTap="whileTap"
+              >
+                <Card className="h-full bg-kmk-blueberry/20 hover:bg-kmk-emeraldGreen/50 group">
+                  <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
+                    <h3 className="text-xl font-semibold mb-2">
+                      Estate Planning
+                    </h3>
+                    <div className="overflow-hidden">
+                      <img
+                        src="/estate-planning.jpg"
+                        alt="Estate Planning"
+                        className="mb-4 w-full group-hover:scale-105 transition-all duration-300"
+                      />
+                    </div>
+                    <p className="text-muted-foreground text-white">
+                      Professional will writing and estate planning services.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </Link>
+            <Link href="/services/trusts" className="h-full">
+              <motion.div
+                className="rounded-xl h-full"
+                variants={cardVariants}
+                initial="initial"
+                whileHover="whileHover"
+                whileTap="whileTap"
+              >
+                <Card className="h-full bg-kmk-blueberry/20 hover:bg-kmk-emeraldGreen/50 group">
+                  <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
+                    <h3 className="text-xl font-semibold mb-2">Trusts</h3>
+                    <div className="overflow-hidden">
+                      <img
+                        src="/trust-law.jpg"
+                        alt="Trusts"
+                        className="mb-4 w-full group-hover:scale-105 transition-all duration-300"
+                      />
+                    </div>
+                    <p className="text-muted-foreground text-white">
+                      Specialist advice on trust formation and management.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </Link>
           </div>
         </div>
       </section>
