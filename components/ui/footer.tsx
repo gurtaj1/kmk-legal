@@ -42,12 +42,7 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-4">Important Links</h3>
           <ul className="space-y-2">
             <li>
-              <Link href="/have-a-concern" className="hover:text-[#FFD700]">
-                Have a Concern
-              </Link>
-            </li>
-            <li>
-              <Link href="/complaints" className="hover:text-[#FFD700]">
+              <Link href="/about#complaints" className="hover:text-[#FFD700]">
                 Complaints
               </Link>
             </li>

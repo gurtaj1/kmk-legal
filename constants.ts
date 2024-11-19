@@ -9,3 +9,6 @@ export const kmkColors = {
   antiqueBronze: "rgb(224 183 20)",
   blueberry: "rgb(46 99 207)",
 };
+
+export const navbarHeight = "100px";
+export const navbarMobileHeight = "80px";

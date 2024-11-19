@@ -13,12 +13,17 @@ type Feature = {
   description: string;
 };
 
-const ThreeStepGrid = ({ features }: { features: Feature[] }) => {
+type ThreeStepGridProps = {
+  title: string;
+  features: Feature[];
+};
+
+const ThreeStepGrid = ({ title, features }: ThreeStepGridProps) => {
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto">
         <h2 className="text-3xl font-bold text-center mb-12 text-kmk-logoBlue">
-          What Sets Us Apart?
+          {title}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((feature, index) => (

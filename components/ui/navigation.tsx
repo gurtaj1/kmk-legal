@@ -36,11 +36,11 @@ const Navbar = () => {
       title: "About",
       titleLink: "/about",
       items: [
-        { label: "Meet our Team", href: "/about/team" },
-        { label: "Our Ethos", href: "/about/ethos" },
-        { label: "Commitment to Excellence", href: "/about/excellence" },
-        { label: "Leave us a Review", href: "/about/review" },
-        { label: "Complaints Procedure", href: "/about/complaints" },
+        { label: "Meet our Team", href: "/about#meet-our-team" },
+        { label: "Our Ethos", href: "/about#ethos" },
+        { label: "Commitment to Excellence", href: "/about#excellence" },
+        { label: "Leave us a Review", href: "/about#review" },
+        { label: "Complaints Procedure", href: "/about#complaints" },
       ],
     },
     services: {
