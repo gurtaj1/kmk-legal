@@ -19,6 +19,7 @@ type LinkItem = {
 type MenuItem = {
   title: string;
   headerText?: string;
+  titleLink?: string;
   items: LinkItem[];
 };
 
@@ -33,6 +34,7 @@ const Navbar = () => {
   const menuItems: MenuItems = {
     about: {
       title: "About",
+      titleLink: "/about",
       items: [
         { label: "Meet our Team", href: "/about/team" },
         { label: "Our Ethos", href: "/about/ethos" },
@@ -127,7 +129,11 @@ const Navbar = () => {
                 {Object.entries(menuItems).map(([key, section]) => (
                   <div key={key} className="space-y-2">
                     <div className="font-semibold text-kmk-blueberry">
-                      {section.title}
+                      {section.titleLink ? (
+                        <Link href={section.titleLink}>{section.title}</Link>
+                      ) : (
+                        section.title
+                      )}
                     </div>
                     <div className="flex flex-col space-y-2 pl-4">
                       {section.items.map((item) => (
@@ -207,7 +213,13 @@ const Navbar = () => {
                     onMouseLeave={() => setHoveredMenu(null)}
                   >
                     <div className="flex items-center space-x-1 hover:text-kmk-blueberry py-1 w-full">
-                      <span>{menuItems[key].title}</span>
+                      {menuItems[key].titleLink ? (
+                        <Link href={menuItems[key].titleLink}>
+                          <span>{menuItems[key].title}</span>
+                        </Link>
+                      ) : (
+                        <span>{menuItems[key].title}</span>
+                      )}
                       <ChevronDown className="h-4 w-4" />
                     </div>
                     <AnimatePresence>
