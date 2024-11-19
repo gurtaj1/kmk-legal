@@ -292,7 +292,11 @@ const Page = () => {
           />
         </div>
       </section>
-      <section className="py-12 bg-muted">
+
+      <section
+        className="py-12 bg-muted scroll-mt-navbarMobile md:scroll-mt-navbar"
+        id="contact"
+      >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Contact Info Column */}
