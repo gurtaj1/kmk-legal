@@ -26,7 +26,7 @@ const Page = () => {
           backgroundPosition: "center",
         }}
       >
-        <div className="absolute inset-0 bg-white/50" />
+        <div className="absolute inset-0 bg-black/10" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="flex items-center justify-start align-middle">
@@ -37,8 +37,8 @@ const Page = () => {
             Providing expert legal services for over 25 years
           </p>
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="bg-white/95">
-              <CardContent className="p-6">
+            <Card className="bg-transparent border-0 shadow-none text-white">
+              <CardContent className="p-0">
                 <h2 className="text-2xl font-semibold mb-4">Our Slogans</h2>
                 <ul className="space-y-2">
                   <li>&quot;Justice You Can Trust&quot;</li>
@@ -48,10 +48,10 @@ const Page = () => {
                 </ul>
               </CardContent>
             </Card>
-            <Card className="bg-white/95">
-              <CardContent className="p-6">
+            <Card className="bg-transparent border-0 shadow-none text-white">
+              <CardContent className="p-0">
                 <h2 className="text-2xl font-semibold mb-4">Our Ethos</h2>
-                <p className="text-muted-foreground mb-3">
+                <p className="mb-3">
                   We believe in delivering justice with compassion, integrity,
                   and excellence. Our commitment goes beyond legal
                   representation – we strive to be your trusted partner in
