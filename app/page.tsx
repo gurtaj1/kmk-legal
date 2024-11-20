@@ -84,8 +84,8 @@ const Page = () => {
         </div>
       </section>
 
-      <section className="py-12">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 relative">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <h2 className="text-3xl font-bold text-center mb-8 text-kmk-logoBlue">
             Our Services
           </h2>
@@ -98,7 +98,7 @@ const Page = () => {
                 whileHover="whileHover"
                 whileTap="whileTap"
               >
-                <Card className="h-full bg-kmk-blueberry/20 hover:bg-kmk-emeraldGreen/50 group">
+                <Card className="h-full bg-muted/20 hover:bg-kmk-emeraldGreen/50 group">
                   <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
                     <h3 className="text-xl font-semibold mb-2">Conveyancing</h3>
                     <div className="rounded-xl overflow-hidden h-48 mb-4">
@@ -124,7 +124,7 @@ const Page = () => {
                 whileHover="whileHover"
                 whileTap="whileTap"
               >
-                <Card className="h-full bg-kmk-blueberry/20 hover:bg-kmk-emeraldGreen/50 group">
+                <Card className="h-full bg-muted/20 hover:bg-kmk-emeraldGreen/50 group">
                   <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
                     <h3 className="text-xl font-semibold mb-2">
                       Commercial Property
@@ -151,7 +151,7 @@ const Page = () => {
                 whileHover="whileHover"
                 whileTap="whileTap"
               >
-                <Card className="h-full bg-kmk-blueberry/20 hover:bg-kmk-emeraldGreen/50 group">
+                <Card className="h-full bg-muted/20 hover:bg-kmk-emeraldGreen/50 group">
                   <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
                     <h3 className="text-xl font-semibold mb-2">Family Law</h3>
                     <div className="rounded-xl overflow-hidden h-48 mb-4">
@@ -176,7 +176,7 @@ const Page = () => {
                 whileHover="whileHover"
                 whileTap="whileTap"
               >
-                <Card className="h-full bg-kmk-blueberry/20 hover:bg-kmk-emeraldGreen/50 group">
+                <Card className="h-full bg-muted/20 hover:bg-kmk-emeraldGreen/50 group">
                   <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
                     <h3 className="text-xl font-semibold mb-2">Children Law</h3>
                     <div className="rounded-xl overflow-hidden h-48 mb-4">
@@ -201,7 +201,7 @@ const Page = () => {
                 whileHover="whileHover"
                 whileTap="whileTap"
               >
-                <Card className="h-full bg-kmk-blueberry/20 hover:bg-kmk-emeraldGreen/50 group">
+                <Card className="h-full bg-muted/20 hover:bg-kmk-emeraldGreen/50 group">
                   <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
                     <h3 className="text-xl font-semibold mb-2">
                       Estate Planning
@@ -228,7 +228,7 @@ const Page = () => {
                 whileHover="whileHover"
                 whileTap="whileTap"
               >
-                <Card className="h-full bg-kmk-blueberry/20 hover:bg-kmk-emeraldGreen/50 group">
+                <Card className="h-full bg-muted/20 hover:bg-kmk-emeraldGreen/50 group">
                   <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
                     <h3 className="text-xl font-semibold mb-2">Trusts</h3>
                     <div className="rounded-xl overflow-hidden h-48 mb-4">
@@ -248,8 +248,16 @@ const Page = () => {
           </div>
         </div>
       </section>
-      <section className="py-12 bg-muted">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 relative">
+        {/* <div className="absolute inset-0 bg-muted transform skew-y-2" />
+         */}
+        <div
+          className="absolute inset-0 bg-muted"
+          style={{
+            clipPath: "polygon(0 0, 100% 10%, 100% 100%, 0 100%)",
+          }}
+        />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <h2 className="text-3xl font-bold text-center mb-8">
             Accreditations & Awards
           </h2>
@@ -265,8 +273,9 @@ const Page = () => {
           </div>
         </div>
       </section>
-      <section className="py-12">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+
+      <section className="py-12 relative">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <h2 className="text-3xl font-bold text-center mb-8">
             Client Testimonials
           </h2>
@@ -294,10 +303,16 @@ const Page = () => {
       </section>
 
       <section
-        className="py-12 bg-muted scroll-mt-navbarMobile md:scroll-mt-navbar"
+        className="py-12 relative scroll-mt-navbarMobile md:scroll-mt-navbar"
         id="contact"
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          className="absolute inset-0 bg-muted"
+          style={{
+            clipPath: "polygon(0 6%, 100% 0, 100% 100%, 0 100%)",
+          }}
+        />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Contact Info Column */}
             <div className="lg:col-span-1 space-y-6">
