@@ -1,6 +1,5 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
 import ServiceOverview from "@/components/ui/service-overview";
 
 import ExpertiseAndTeamSection from "@/components/ui/expertise-and-team-section";
