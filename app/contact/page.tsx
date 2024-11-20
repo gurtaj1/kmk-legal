@@ -7,10 +7,16 @@ import { buttonVariants } from "@/app/globals/framer-variants";
 
 const ContactPage = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-white text-[#333333]">
+    <div className="min-h-screen flex flex-col bg-kmk-blueberry/20 text-[#333333]">
       {/* Hero Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
+      <section className="relative py-16">
+        <div
+          className="absolute inset-0 bg-gray-50"
+          style={{
+            clipPath: "polygon(0 0, 100% 0, 100% 95%, 0 100%)",
+          }}
+        />
+        <div className="container mx-auto px-4 relative">
           <div className="grid md:grid-cols-2 gap-8">
             {/* Left column - Text content */}
             <div className="space-y-6">
@@ -44,8 +50,14 @@ const ContactPage = () => {
       </section>
 
       {/* Office Details Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <section className="relative py-16">
+        <div
+          className="absolute inset-0 bg-gray-50"
+          style={{
+            clipPath: "polygon(0 5%, 100% 0, 100% 95%, 0 100%)",
+          }}
+        />
+        <div className="container mx-auto px-4 relative">
           <h2 className="text-3xl font-bold text-kmk-logoBlue mb-8">
             Office Details
           </h2>
@@ -110,8 +122,14 @@ const ContactPage = () => {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="relative py-16">
+        <div
+          className="absolute inset-0 bg-gray-50"
+          style={{
+            clipPath: "polygon(0 5%, 100% 0, 100% 100%, 0 95%)",
+          }}
+        />
+        <div className="container mx-auto px-4 relative">
           <h2 className="text-3xl font-bold text-kmk-logoBlue mb-8 text-center">
             Get in touch with us
           </h2>
