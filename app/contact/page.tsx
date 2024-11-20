@@ -11,7 +11,7 @@ const ContactPage = () => {
       {/* Hero Section */}
       <section className="relative py-16">
         <div
-          className="absolute inset-0 bg-gray-50"
+          className="absolute inset-0"
           style={{
             clipPath: "polygon(0 0, 100% 0, 100% 95%, 0 100%)",
           }}
@@ -124,7 +124,7 @@ const ContactPage = () => {
       {/* Contact Form Section */}
       <section className="relative py-16">
         <div
-          className="absolute inset-0 bg-gray-50"
+          className="absolute inset-0"
           style={{
             clipPath: "polygon(0 5%, 100% 0, 100% 100%, 0 95%)",
           }}
