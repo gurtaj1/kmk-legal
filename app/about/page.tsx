@@ -33,7 +33,7 @@ const teamMembers = [
 
 const AboutPage = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-white text-[#333333]">
+    <div className="min-h-screen flex flex-col bg-kmk-blueberry/20 text-[#333333]">
       {/* Hero Section with Background Image */}
       <section className="relative h-[400px]">
         <div className="absolute inset-0">
@@ -71,10 +71,16 @@ const AboutPage = () => {
 
       {/* Our Ethos Section */}
       <section
-        className="py-16 bg-gray-50 scroll-mt-navbarMobile md:scroll-mt-navbar"
+        className="relative py-16 scroll-mt-navbarMobile md:scroll-mt-navbar"
         id="ethos"
       >
-        <div className="container mx-auto">
+        <div
+          className="absolute inset-0 bg-gray-50"
+          style={{
+            clipPath: "polygon(0 5%, 100% 0, 100% 95%, 0 100%)",
+          }}
+        />
+        <div className="container mx-auto relative">
           <h2 className="text-3xl font-bold text-center mb-8 text-kmk-logoBlue">
             Our Ethos
           </h2>
@@ -132,10 +138,16 @@ const AboutPage = () => {
 
       {/* Reviews Section */}
       <section
-        className="py-16 bg-gray-50 scroll-mt-navbarMobile md:scroll-mt-navbar"
+        className="relative py-16 scroll-mt-navbarMobile md:scroll-mt-navbar"
         id="review"
       >
-        <div className="container mx-auto">
+        <div
+          className="absolute inset-0 bg-gray-50"
+          style={{
+            clipPath: "polygon(0 5%, 100% 0, 100% 95%, 0 100%)",
+          }}
+        />
+        <div className="container mx-auto relative">
           <h2 className="text-3xl font-bold text-center mb-12 text-kmk-logoBlue">
             Leave us a Review
           </h2>
