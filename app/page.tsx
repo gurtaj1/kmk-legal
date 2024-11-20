@@ -14,6 +14,8 @@ import LogoColor from "@/components/svg/logo-color";
 import { cardVariants, buttonVariants } from "@/app/globals/framer-variants";
 import SmartCarousel from "@/components/ui/smart-carousel";
 
+import ScrollMotionWrapper from "@/components/ui/scroll-motion-wrapper";
+
 const Page = () => {
   return (
     <div className="min-h-screen flex flex-col bg-kmk-blueberry/20 text-[#333333] overflow-x-hidden">
@@ -86,9 +88,11 @@ const Page = () => {
 
       <section className="py-12 relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <h2 className="text-3xl font-bold text-center mb-8 text-kmk-logoBlue">
-            Our Services
-          </h2>
+          <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
+            <h2 className="text-3xl font-bold text-center mb-8 text-kmk-logoBlue">
+              Our Services
+            </h2>
+          </ScrollMotionWrapper>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <Link href="/services/conveyancing" className="h-full">
               <motion.div
@@ -258,9 +262,11 @@ const Page = () => {
           }}
         />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <h2 className="text-3xl font-bold text-center mb-8">
-            Accreditations & Awards
-          </h2>
+          <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
+            <h2 className="text-3xl font-bold text-center mb-8">
+              Accreditations & Awards
+            </h2>
+          </ScrollMotionWrapper>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {[...Array(6)].map((_, i) => (
               <div
@@ -276,9 +282,11 @@ const Page = () => {
 
       <section className="py-12 relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <h2 className="text-3xl font-bold text-center mb-8">
-            Client Testimonials
-          </h2>
+          <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
+            <h2 className="text-3xl font-bold text-center mb-8">
+              Client Testimonials
+            </h2>
+          </ScrollMotionWrapper>
           <SmartCarousel
             items={[...Array(6)].map((_, i) => (
               <Card key={i} className="mx-2">
