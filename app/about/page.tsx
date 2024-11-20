@@ -146,7 +146,7 @@ const AboutPage = () => {
                 initial="initial"
                 whileHover="whileHover"
                 whileTap="whileTap"
-                className="w-full max-w-md"
+                className="w-full max-w-md rounded-lg"
               >
                 <Link
                   href="https://g.page/r/YOUR-GOOGLE-REVIEW-LINK"
@@ -173,7 +173,7 @@ const AboutPage = () => {
                 initial="initial"
                 whileHover="whileHover"
                 whileTap="whileTap"
-                className="w-full max-w-md"
+                className="w-full max-w-md rounded-lg"
               >
                 <Link
                   href="https://www.reviewsolicitors.co.uk/YOUR-PROFILE"
