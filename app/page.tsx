@@ -16,7 +16,7 @@ import SmartCarousel from "@/components/ui/smart-carousel";
 
 const Page = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-white text-[#333333] overflow-x-hidden">
+    <div className="min-h-screen flex flex-col bg-kmk-blueberry/20 text-[#333333] overflow-x-hidden">
       {/* Hero Section */}
       <section
         className="py-12 bg-muted relative"
@@ -98,17 +98,17 @@ const Page = () => {
                 whileHover="whileHover"
                 whileTap="whileTap"
               >
-                <Card className="h-full bg-muted/20 hover:bg-kmk-emeraldGreen/50 group">
+                <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
                   <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
                     <h3 className="text-xl font-semibold mb-2">Conveyancing</h3>
-                    <div className="rounded-xl overflow-hidden h-48 mb-4">
+                    <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
                       <img
                         src="/residential-conveyancing.jpg"
                         alt="Conveyancing"
                         className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
                       />
                     </div>
-                    <p className="text-muted-foreground text-black">
+                    <p className="text-muted-foreground text-black group-hover:text-white">
                       Expert property law services for buying and selling
                       properties.
                     </p>
@@ -124,19 +124,19 @@ const Page = () => {
                 whileHover="whileHover"
                 whileTap="whileTap"
               >
-                <Card className="h-full bg-muted/20 hover:bg-kmk-emeraldGreen/50 group">
+                <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
                   <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
                     <h3 className="text-xl font-semibold mb-2">
                       Commercial Property
                     </h3>
-                    <div className="rounded-xl overflow-hidden h-48 mb-4">
+                    <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
                       <img
                         src="/commercial-conveyancing.jpg"
                         alt="Commercial Property"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
+                        className="w-full h-full object-cover group-hover:scale-105 group-hover:border-2 group-hover:border-kmk-logoBlue transition-all duration-300 group-hover:border-2 group-hover:border-white"
                       />
                     </div>
-                    <p className="text-muted-foreground text-black">
+                    <p className="text-muted-foreground text-black group-hover:text-white">
                       Comprehensive legal support for business property matters.
                     </p>
                   </CardContent>
@@ -151,17 +151,17 @@ const Page = () => {
                 whileHover="whileHover"
                 whileTap="whileTap"
               >
-                <Card className="h-full bg-muted/20 hover:bg-kmk-emeraldGreen/50 group">
+                <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
                   <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
                     <h3 className="text-xl font-semibold mb-2">Family Law</h3>
-                    <div className="rounded-xl overflow-hidden h-48 mb-4">
+                    <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
                       <img
                         src="/family-law.jpg"
                         alt="Family Law"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
+                        className="w-full h-full object-cover group-hover:scale-105 group-hover:border-2 group-hover:border-kmk-logoBlue transition-all duration-300"
                       />
                     </div>
-                    <p className="text-muted-foreground text-black">
+                    <p className="text-muted-foreground text-black group-hover:text-white">
                       Sensitive handling of family legal matters and disputes.
                     </p>
                   </CardContent>
@@ -176,17 +176,17 @@ const Page = () => {
                 whileHover="whileHover"
                 whileTap="whileTap"
               >
-                <Card className="h-full bg-muted/20 hover:bg-kmk-emeraldGreen/50 group">
+                <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
                   <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
                     <h3 className="text-xl font-semibold mb-2">Children Law</h3>
-                    <div className="rounded-xl overflow-hidden h-48 mb-4">
+                    <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
                       <img
                         src="/children-law.jpg"
                         alt="Children Law"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
+                        className="w-full h-full object-cover group-hover:scale-105 group-hover:border-2 group-hover:border-kmk-logoBlue transition-all duration-300"
                       />
                     </div>
-                    <p className="text-muted-foreground text-black">
+                    <p className="text-muted-foreground text-black group-hover:text-white">
                       Expert representation in children law cases.
                     </p>
                   </CardContent>
@@ -201,19 +201,19 @@ const Page = () => {
                 whileHover="whileHover"
                 whileTap="whileTap"
               >
-                <Card className="h-full bg-muted/20 hover:bg-kmk-emeraldGreen/50 group">
+                <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
                   <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
                     <h3 className="text-xl font-semibold mb-2">
                       Estate Planning
                     </h3>
-                    <div className="rounded-xl overflow-hidden h-48 mb-4">
+                    <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
                       <img
                         src="/estate-planning.jpg"
                         alt="Estate Planning"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
+                        className="w-full h-full object-cover group-hover:scale-105 group-hover:border-2 group-hover:border-kmk-logoBlue transition-all duration-300"
                       />
                     </div>
-                    <p className="text-muted-foreground text-black">
+                    <p className="text-muted-foreground text-black group-hover:text-white">
                       Professional will writing and estate planning services.
                     </p>
                   </CardContent>
@@ -228,17 +228,17 @@ const Page = () => {
                 whileHover="whileHover"
                 whileTap="whileTap"
               >
-                <Card className="h-full bg-muted/20 hover:bg-kmk-emeraldGreen/50 group">
+                <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
                   <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
                     <h3 className="text-xl font-semibold mb-2">Trusts</h3>
-                    <div className="rounded-xl overflow-hidden h-48 mb-4">
+                    <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
                       <img
                         src="/trust-law.jpg"
                         alt="Trusts"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
+                        className="w-full h-full object-cover group-hover:scale-105 group-hover:border-2 group-hover:border-kmk-logoBlue transition-all duration-300"
                       />
                     </div>
-                    <p className="text-muted-foreground text-black">
+                    <p className="text-muted-foreground text-black group-hover:text-white">
                       Specialist advice on trust formation and management.
                     </p>
                   </CardContent>
