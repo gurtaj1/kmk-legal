@@ -99,7 +99,7 @@ const Navbar = () => {
         {/* Mobile view - logo and menu button */}
         <div className="flex justify-between items-center mb-2 md:hidden">
           <Link href="/" className="flex items-center">
-            <LogoWithTextColor className="w-20 h-10" />
+            <LogoWithTextColor className="w-20 h-10" mFill="#fff" />
           </Link>
           <Button
             variant="outline"
@@ -197,7 +197,7 @@ const Navbar = () => {
               }}
             >
               <Link href="/" className="flex items-center">
-                <LogoWithTextColor className="w-24 h-16" />
+                <LogoWithTextColor className="w-24 h-16" mFill="#fff" />
               </Link>
             </motion.div>
 
