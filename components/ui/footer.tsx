@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import LogoWithTextBlack from "@/components/svg/logo-with-text-black";
+import LogoWithTextColor from "@/components/svg/logo-with-text-color";
 import {
   Facebook,
   Instagram,
@@ -13,12 +13,18 @@ import {
   PoundSterling,
 } from "lucide-react";
 
+import { kmkColors } from "@/constants";
+
 const Footer = () => {
   return (
     <footer className="bg-kmk-logoBlue text-white p-8">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
-          <LogoWithTextBlack className="w-20 h-10" fill="#fff" />
+          <LogoWithTextColor
+            className="w-20 h-10"
+            kFill="#fff"
+            mFill={kmkColors.logoGrey}
+          />
           <div className="flex gap-4 mt-5">
             <Link href="#" className="text-white hover:text-[#FFD700]">
               <Facebook className="h-5 w-5" />

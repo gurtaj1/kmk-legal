@@ -94,7 +94,7 @@ const Navbar = () => {
   }, [isMobileMenuOpen]);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 w-full bg-kmk-charcoalGrey text-white p-4 z-50">
+    <nav className="fixed top-0 left-0 right-0 w-full bg-kmk-logoGrey text-white p-4 z-50">
       <div className="container mx-auto">
         {/* Mobile view - logo and menu button */}
         <div className="flex justify-between items-center mb-2 md:hidden">
