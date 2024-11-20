@@ -44,7 +44,7 @@ const ScrollMotionWrapper = ({
   const scale = useTransform(
     scrollYProgress,
     customScale?.scrollProgress ?? [0, 0.3, 0.7, 1],
-    customScale?.values ?? [1, 1.05, 1.05, 1]
+    customScale?.values ?? [0.97, 1, 1, 0.97]
   );
   const y = useTransform(
     scrollYProgress,

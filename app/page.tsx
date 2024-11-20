@@ -92,164 +92,169 @@ const Page = () => {
             <h2 className="text-3xl font-bold text-center mb-8 text-kmk-logoBlue">
               Our Services
             </h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <Link href="/services/conveyancing" className="h-full">
+                <motion.div
+                  className="rounded-xl h-full"
+                  variants={cardVariants}
+                  initial="initial"
+                  whileHover="whileHover"
+                  whileTap="whileTap"
+                >
+                  <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
+                    <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
+                      <h3 className="text-xl font-semibold mb-2">
+                        Conveyancing
+                      </h3>
+                      <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
+                        <img
+                          src="/residential-conveyancing.jpg"
+                          alt="Conveyancing"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
+                        />
+                      </div>
+                      <p className="text-muted-foreground text-black group-hover:text-white">
+                        Expert property law services for buying and selling
+                        properties.
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </Link>
+              <Link href="/services/commercial-property" className="h-full">
+                <motion.div
+                  className="rounded-xl h-full"
+                  variants={cardVariants}
+                  initial="initial"
+                  whileHover="whileHover"
+                  whileTap="whileTap"
+                >
+                  <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
+                    <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
+                      <h3 className="text-xl font-semibold mb-2">
+                        Commercial Property
+                      </h3>
+                      <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
+                        <img
+                          src="/commercial-conveyancing.jpg"
+                          alt="Commercial Property"
+                          className="w-full h-full object-cover group-hover:scale-105 group-hover:border-2 group-hover:border-kmk-logoBlue transition-all duration-300 group-hover:border-2 group-hover:border-white"
+                        />
+                      </div>
+                      <p className="text-muted-foreground text-black group-hover:text-white">
+                        Comprehensive legal support for business property
+                        matters.
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </Link>
+              <Link href="/services/family-law" className="h-full">
+                <motion.div
+                  className="rounded-xl h-full"
+                  variants={cardVariants}
+                  initial="initial"
+                  whileHover="whileHover"
+                  whileTap="whileTap"
+                >
+                  <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
+                    <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
+                      <h3 className="text-xl font-semibold mb-2">Family Law</h3>
+                      <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
+                        <img
+                          src="/family-law.jpg"
+                          alt="Family Law"
+                          className="w-full h-full object-cover group-hover:scale-105 group-hover:border-2 group-hover:border-kmk-logoBlue transition-all duration-300"
+                        />
+                      </div>
+                      <p className="text-muted-foreground text-black group-hover:text-white">
+                        Sensitive handling of family legal matters and disputes.
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </Link>
+              <Link href="/services/children-law" className="h-full">
+                <motion.div
+                  className="rounded-xl h-full"
+                  variants={cardVariants}
+                  initial="initial"
+                  whileHover="whileHover"
+                  whileTap="whileTap"
+                >
+                  <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
+                    <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
+                      <h3 className="text-xl font-semibold mb-2">
+                        Children Law
+                      </h3>
+                      <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
+                        <img
+                          src="/children-law.jpg"
+                          alt="Children Law"
+                          className="w-full h-full object-cover group-hover:scale-105 group-hover:border-2 group-hover:border-kmk-logoBlue transition-all duration-300"
+                        />
+                      </div>
+                      <p className="text-muted-foreground text-black group-hover:text-white">
+                        Expert representation in children law cases.
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </Link>
+              <Link href="/services/estate-planning" className="h-full">
+                <motion.div
+                  className="rounded-xl h-full"
+                  variants={cardVariants}
+                  initial="initial"
+                  whileHover="whileHover"
+                  whileTap="whileTap"
+                >
+                  <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
+                    <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
+                      <h3 className="text-xl font-semibold mb-2">
+                        Estate Planning
+                      </h3>
+                      <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
+                        <img
+                          src="/estate-planning.jpg"
+                          alt="Estate Planning"
+                          className="w-full h-full object-cover group-hover:scale-105 group-hover:border-2 group-hover:border-kmk-logoBlue transition-all duration-300"
+                        />
+                      </div>
+                      <p className="text-muted-foreground text-black group-hover:text-white">
+                        Professional will writing and estate planning services.
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </Link>
+              <Link href="/services/trusts" className="h-full">
+                <motion.div
+                  className="rounded-xl h-full"
+                  variants={cardVariants}
+                  initial="initial"
+                  whileHover="whileHover"
+                  whileTap="whileTap"
+                >
+                  <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
+                    <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
+                      <h3 className="text-xl font-semibold mb-2">Trusts</h3>
+                      <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
+                        <img
+                          src="/trust-law.jpg"
+                          alt="Trusts"
+                          className="w-full h-full object-cover group-hover:scale-105 group-hover:border-2 group-hover:border-kmk-logoBlue transition-all duration-300"
+                        />
+                      </div>
+                      <p className="text-muted-foreground text-black group-hover:text-white">
+                        Specialist advice on trust formation and management.
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </Link>
+            </div>
           </ScrollMotionWrapper>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Link href="/services/conveyancing" className="h-full">
-              <motion.div
-                className="rounded-xl h-full"
-                variants={cardVariants}
-                initial="initial"
-                whileHover="whileHover"
-                whileTap="whileTap"
-              >
-                <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
-                  <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
-                    <h3 className="text-xl font-semibold mb-2">Conveyancing</h3>
-                    <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
-                      <img
-                        src="/residential-conveyancing.jpg"
-                        alt="Conveyancing"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
-                      />
-                    </div>
-                    <p className="text-muted-foreground text-black group-hover:text-white">
-                      Expert property law services for buying and selling
-                      properties.
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </Link>
-            <Link href="/services/commercial-property" className="h-full">
-              <motion.div
-                className="rounded-xl h-full"
-                variants={cardVariants}
-                initial="initial"
-                whileHover="whileHover"
-                whileTap="whileTap"
-              >
-                <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
-                  <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
-                    <h3 className="text-xl font-semibold mb-2">
-                      Commercial Property
-                    </h3>
-                    <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
-                      <img
-                        src="/commercial-conveyancing.jpg"
-                        alt="Commercial Property"
-                        className="w-full h-full object-cover group-hover:scale-105 group-hover:border-2 group-hover:border-kmk-logoBlue transition-all duration-300 group-hover:border-2 group-hover:border-white"
-                      />
-                    </div>
-                    <p className="text-muted-foreground text-black group-hover:text-white">
-                      Comprehensive legal support for business property matters.
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </Link>
-            <Link href="/services/family-law" className="h-full">
-              <motion.div
-                className="rounded-xl h-full"
-                variants={cardVariants}
-                initial="initial"
-                whileHover="whileHover"
-                whileTap="whileTap"
-              >
-                <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
-                  <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
-                    <h3 className="text-xl font-semibold mb-2">Family Law</h3>
-                    <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
-                      <img
-                        src="/family-law.jpg"
-                        alt="Family Law"
-                        className="w-full h-full object-cover group-hover:scale-105 group-hover:border-2 group-hover:border-kmk-logoBlue transition-all duration-300"
-                      />
-                    </div>
-                    <p className="text-muted-foreground text-black group-hover:text-white">
-                      Sensitive handling of family legal matters and disputes.
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </Link>
-            <Link href="/services/children-law" className="h-full">
-              <motion.div
-                className="rounded-xl h-full"
-                variants={cardVariants}
-                initial="initial"
-                whileHover="whileHover"
-                whileTap="whileTap"
-              >
-                <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
-                  <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
-                    <h3 className="text-xl font-semibold mb-2">Children Law</h3>
-                    <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
-                      <img
-                        src="/children-law.jpg"
-                        alt="Children Law"
-                        className="w-full h-full object-cover group-hover:scale-105 group-hover:border-2 group-hover:border-kmk-logoBlue transition-all duration-300"
-                      />
-                    </div>
-                    <p className="text-muted-foreground text-black group-hover:text-white">
-                      Expert representation in children law cases.
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </Link>
-            <Link href="/services/estate-planning" className="h-full">
-              <motion.div
-                className="rounded-xl h-full"
-                variants={cardVariants}
-                initial="initial"
-                whileHover="whileHover"
-                whileTap="whileTap"
-              >
-                <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
-                  <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
-                    <h3 className="text-xl font-semibold mb-2">
-                      Estate Planning
-                    </h3>
-                    <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
-                      <img
-                        src="/estate-planning.jpg"
-                        alt="Estate Planning"
-                        className="w-full h-full object-cover group-hover:scale-105 group-hover:border-2 group-hover:border-kmk-logoBlue transition-all duration-300"
-                      />
-                    </div>
-                    <p className="text-muted-foreground text-black group-hover:text-white">
-                      Professional will writing and estate planning services.
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </Link>
-            <Link href="/services/trusts" className="h-full">
-              <motion.div
-                className="rounded-xl h-full"
-                variants={cardVariants}
-                initial="initial"
-                whileHover="whileHover"
-                whileTap="whileTap"
-              >
-                <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
-                  <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
-                    <h3 className="text-xl font-semibold mb-2">Trusts</h3>
-                    <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
-                      <img
-                        src="/trust-law.jpg"
-                        alt="Trusts"
-                        className="w-full h-full object-cover group-hover:scale-105 group-hover:border-2 group-hover:border-kmk-logoBlue transition-all duration-300"
-                      />
-                    </div>
-                    <p className="text-muted-foreground text-black group-hover:text-white">
-                      Specialist advice on trust formation and management.
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </Link>
-          </div>
         </div>
       </section>
       <section className="py-12 relative">
@@ -261,23 +266,23 @@ const Page = () => {
             clipPath: "polygon(0 0, 100% 10%, 100% 100%, 0 100%)",
           }}
         />
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
+        <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
             <h2 className="text-3xl font-bold text-center mb-8">
               Accreditations & Awards
             </h2>
-          </ScrollMotionWrapper>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {[...Array(6)].map((_, i) => (
-              <div
-                key={i}
-                className="bg-background rounded-lg p-4 aspect-square flex items-center justify-center"
-              >
-                <div className="w-16 h-16 bg-muted rounded" />
-              </div>
-            ))}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              {[...Array(6)].map((_, i) => (
+                <div
+                  key={i}
+                  className="bg-background rounded-lg p-4 aspect-square flex items-center justify-center"
+                >
+                  <div className="w-16 h-16 bg-muted rounded" />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        </ScrollMotionWrapper>
       </section>
 
       <section className="py-12 relative">
@@ -286,27 +291,27 @@ const Page = () => {
             <h2 className="text-3xl font-bold text-center mb-8">
               Client Testimonials
             </h2>
+            <SmartCarousel
+              items={[...Array(6)].map((_, i) => (
+                <Card key={i} className="mx-2">
+                  <CardContent className="p-6">
+                    <p className="mb-4">
+                      &quot;Excellent service and professional advice throughout
+                      the whole process.&quot;
+                    </p>
+                    <p className="font-semibold">Client Name</p>
+                    <p className="text-sm text-muted-foreground">
+                      Service Used: Conveyancing
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+              slidesToShow={3}
+              autoplay={true}
+              autoplayInterval={5000}
+              boxShadowColor="dental-teal"
+            />
           </ScrollMotionWrapper>
-          <SmartCarousel
-            items={[...Array(6)].map((_, i) => (
-              <Card key={i} className="mx-2">
-                <CardContent className="p-6">
-                  <p className="mb-4">
-                    &quot;Excellent service and professional advice throughout
-                    the whole process.&quot;
-                  </p>
-                  <p className="font-semibold">Client Name</p>
-                  <p className="text-sm text-muted-foreground">
-                    Service Used: Conveyancing
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-            slidesToShow={3}
-            autoplay={true}
-            autoplayInterval={5000}
-            boxShadowColor="dental-teal"
-          />
         </div>
       </section>
 
@@ -320,149 +325,153 @@ const Page = () => {
             clipPath: "polygon(0 6%, 100% 0, 100% 100%, 0 100%)",
           }}
         />
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Contact Info Column */}
-            <div className="lg:col-span-1 space-y-6">
-              <h2 className="text-3xl font-bold text-kmk-logoBlue">
-                Contact Us
-              </h2>
-              <div className="space-y-4">
-                <div>
-                  <h3 className="font-semibold text-xl mb-2">Our Office</h3>
-                  <address className="not-italic text-muted-foreground">
-                    KMK Legal
-                    <br />
-                    123 Law Street
-                    <br />
-                    Cityville, CV1 2AB
-                    <br />
-                    United Kingdom
-                  </address>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-xl mb-2">Get in Touch</h3>
-                  <div className="space-y-2 text-muted-foreground">
-                    <p>Phone: 01234 567890</p>
-                    <p>Email: info@kmklegal.com</p>
+        <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div className="grid lg:grid-cols-3 gap-8">
+              {/* Contact Info Column */}
+              <div className="lg:col-span-1 space-y-6">
+                <h2 className="text-3xl font-bold text-kmk-logoBlue">
+                  Contact Us
+                </h2>
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="font-semibold text-xl mb-2">Our Office</h3>
+                    <address className="not-italic text-muted-foreground">
+                      KMK Legal
+                      <br />
+                      123 Law Street
+                      <br />
+                      Cityville, CV1 2AB
+                      <br />
+                      United Kingdom
+                    </address>
                   </div>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-xl mb-2">Opening Hours</h3>
-                  <div className="space-y-1 text-muted-foreground">
-                    <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
-                    <p>Saturday - Sunday: Closed</p>
+                  <div>
+                    <h3 className="font-semibold text-xl mb-2">Get in Touch</h3>
+                    <div className="space-y-2 text-muted-foreground">
+                      <p>Phone: 01234 567890</p>
+                      <p>Email: info@kmklegal.com</p>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-xl mb-2">
+                      Opening Hours
+                    </h3>
+                    <div className="space-y-1 text-muted-foreground">
+                      <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
+                      <p>Saturday - Sunday: Closed</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Form Column */}
-            <div className="lg:col-span-2">
-              <form className="grid gap-4 bg-white p-6 rounded-lg shadow-sm">
-                <div className="grid sm:grid-cols-2 gap-4">
+              {/* Form Column */}
+              <div className="lg:col-span-2">
+                <form className="grid gap-4 bg-white p-6 rounded-lg shadow-sm">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <motion.div
+                      className="space-y-2"
+                      variants={buttonVariants}
+                      whileHover="whileHover"
+                      whileTap="whileTap"
+                    >
+                      <label htmlFor="name" className="text-sm font-medium">
+                        Name
+                      </label>
+                      <Input
+                        id="name"
+                        required
+                        className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
+                      />
+                    </motion.div>
+                    <motion.div
+                      className="space-y-2"
+                      variants={buttonVariants}
+                      whileHover="whileHover"
+                      whileTap="whileTap"
+                    >
+                      <label htmlFor="email" className="text-sm font-medium">
+                        Email
+                      </label>
+                      <Input
+                        id="email"
+                        type="email"
+                        required
+                        className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
+                      />
+                    </motion.div>
+                  </div>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <motion.div
+                      className="space-y-2"
+                      variants={buttonVariants}
+                      whileHover="whileHover"
+                      whileTap="whileTap"
+                    >
+                      <label htmlFor="phone" className="text-sm font-medium">
+                        Phone Number
+                      </label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
+                      />
+                    </motion.div>
+                    <motion.div
+                      className="space-y-2"
+                      variants={buttonVariants}
+                      whileHover="whileHover"
+                      whileTap="whileTap"
+                    >
+                      <label htmlFor="area" className="text-sm font-medium">
+                        Area of Law
+                      </label>
+                      <Input
+                        id="area"
+                        className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
+                      />
+                    </motion.div>
+                  </div>
                   <motion.div
                     className="space-y-2"
                     variants={buttonVariants}
                     whileHover="whileHover"
                     whileTap="whileTap"
                   >
-                    <label htmlFor="name" className="text-sm font-medium">
-                      Name
+                    <label htmlFor="message" className="text-sm font-medium">
+                      Message
                     </label>
-                    <Input
-                      id="name"
+                    <Textarea
+                      id="message"
                       required
                       className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
                     />
                   </motion.div>
                   <motion.div
-                    className="space-y-2"
+                    className="flex items-center gap-2"
                     variants={buttonVariants}
                     whileHover="whileHover"
                     whileTap="whileTap"
                   >
-                    <label htmlFor="email" className="text-sm font-medium">
-                      Email
+                    <Checkbox id="subscribe" />
+                    <label htmlFor="subscribe" className="text-sm">
+                      Subscribe to our updates
                     </label>
-                    <Input
-                      id="email"
-                      type="email"
-                      required
-                      className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
-                    />
-                  </motion.div>
-                </div>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <motion.div
-                    className="space-y-2"
-                    variants={buttonVariants}
-                    whileHover="whileHover"
-                    whileTap="whileTap"
-                  >
-                    <label htmlFor="phone" className="text-sm font-medium">
-                      Phone Number
-                    </label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
-                    />
                   </motion.div>
                   <motion.div
-                    className="space-y-2"
                     variants={buttonVariants}
                     whileHover="whileHover"
                     whileTap="whileTap"
                   >
-                    <label htmlFor="area" className="text-sm font-medium">
-                      Area of Law
-                    </label>
-                    <Input
-                      id="area"
-                      className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
-                    />
+                    <Button type="submit" className="w-full">
+                      Send Enquiry
+                    </Button>
                   </motion.div>
-                </div>
-                <motion.div
-                  className="space-y-2"
-                  variants={buttonVariants}
-                  whileHover="whileHover"
-                  whileTap="whileTap"
-                >
-                  <label htmlFor="message" className="text-sm font-medium">
-                    Message
-                  </label>
-                  <Textarea
-                    id="message"
-                    required
-                    className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
-                  />
-                </motion.div>
-                <motion.div
-                  className="flex items-center gap-2"
-                  variants={buttonVariants}
-                  whileHover="whileHover"
-                  whileTap="whileTap"
-                >
-                  <Checkbox id="subscribe" />
-                  <label htmlFor="subscribe" className="text-sm">
-                    Subscribe to our updates
-                  </label>
-                </motion.div>
-                <motion.div
-                  variants={buttonVariants}
-                  whileHover="whileHover"
-                  whileTap="whileTap"
-                >
-                  <Button type="submit" className="w-full">
-                    Send Enquiry
-                  </Button>
-                </motion.div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
+        </ScrollMotionWrapper>
       </section>
     </div>
   );

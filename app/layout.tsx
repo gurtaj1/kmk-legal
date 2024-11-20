@@ -1,3 +1,5 @@
+import { ReactLenis } from "lenis/dist/lenis-react";
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 
@@ -31,9 +33,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
-        <main className="flex-grow pt-[80px] md:pt-[100px]">{children}</main>
-        <Footer />
+        <ReactLenis root>
+          <Navbar />
+          <main className="flex-grow pt-[80px] md:pt-[100px]">{children}</main>
+          <Footer />
+        </ReactLenis>
       </body>
     </html>
   );
