@@ -15,9 +15,28 @@ type ScrollMotionWrapperProps = {
   transitionOpacity?: boolean;
   transitionScale?: boolean;
   transitionY?: boolean;
+  transitionX?: boolean;
   customOpacity?: ParallaxParameters;
   customScale?: ParallaxParameters;
   customY?: ParallaxParameters;
+  customX?: ParallaxParameters;
+  customOffset?: [
+    (
+      | "start end"
+      | "end start"
+      | "center center"
+      | `${number}px ${number}px`
+      | number
+    ),
+    (
+      | "start end"
+      | "end start"
+      | "center center"
+      | `${number}px ${number}px`
+      | number
+    )
+  ];
+  className?: string;
   children: React.ReactNode;
 };
 
@@ -25,15 +44,19 @@ const ScrollMotionWrapper = ({
   transitionOpacity = false,
   transitionScale = false,
   transitionY = false,
+  transitionX = false,
   customOpacity,
   customScale,
   customY,
+  customX,
+  customOffset,
+  className,
   children,
 }: ScrollMotionWrapperProps) => {
   const parallaxWrapper = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: parallaxWrapper,
-    offset: ["start end", "end start"],
+    offset: customOffset ?? ["start end", "end start"],
   });
 
   const opacity = useTransform(
@@ -52,20 +75,34 @@ const ScrollMotionWrapper = ({
     customY?.values ?? [15, -15]
   );
 
+  const x = useTransform(
+    scrollYProgress,
+    customX?.scrollProgress ?? [0, 0.2, 0.8, 1],
+    customX?.values ?? [50, 0, 0, 50]
+  );
+
   const style = {
     opacity: transitionOpacity ? opacity : undefined,
     transform:
-      transitionY && transitionScale
+      transitionX && transitionY && transitionScale
+        ? useMotionTemplate`translateX(${x}px) translateY(${y}px) scale(${scale})`
+        : transitionX && transitionY
+        ? useMotionTemplate`translateX(${x}px) translateY(${y}px)`
+        : transitionX && transitionScale
+        ? useMotionTemplate`translateX(${x}px) scale(${scale})`
+        : transitionY && transitionScale
         ? useMotionTemplate`translateY(${y}px) scale(${scale})`
         : transitionY
         ? useMotionTemplate`translateY(${y}px)`
+        : transitionX
+        ? useMotionTemplate`translateX(${x}px)`
         : transitionScale
         ? useMotionTemplate`scale(${scale})`
         : undefined,
   };
 
   return (
-    <motion.div ref={parallaxWrapper} style={style}>
+    <motion.div ref={parallaxWrapper} style={style} className={className}>
       {children}
     </motion.div>
   );

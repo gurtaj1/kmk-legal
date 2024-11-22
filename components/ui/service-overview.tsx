@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ScrollMotionWrapper from "@/components/ui/scroll-motion-wrapper";
 
 type ServiceOverviewProps = {
   title: string;
@@ -70,13 +71,23 @@ const ServiceOverview = ({
           </div>
 
           {/* Right column - Image */}
-          <div className="relative h-[400px] rounded-lg overflow-hidden">
-            <Image
-              src={imageSrc}
-              alt={imageAlt}
-              fill
-              className="object-cover"
-            />
+          <div className="relative h-[400px]">
+            <ScrollMotionWrapper
+              transitionX
+              transitionOpacity
+              customOpacity={{
+                scrollProgress: [0, 0.15, 0.85, 1],
+                values: [0, 1, 1, 0],
+              }}
+              className="relative h-full w-full rounded-lg overflow-hidden"
+            >
+              <Image
+                src={imageSrc}
+                alt={imageAlt}
+                fill
+                className="object-cover"
+              />
+            </ScrollMotionWrapper>
           </div>
         </div>
       </div>
