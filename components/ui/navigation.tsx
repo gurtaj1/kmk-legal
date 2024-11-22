@@ -159,14 +159,14 @@ const Navbar = () => {
                   </Link>
                   <div className="flex flex-col space-y-2 text-sm">
                     <a
-                      href="mailto:info@example.com"
+                      href="mailto:info@kmklegal.co.uk"
                       className="hover:text-kmk-blueberry flex items-center gap-2"
                     >
                       <Mail className="h-4 w-4" />
-                      info@example.com
+                      info@kmklegal.co.uk
                     </a>
                     <a
-                      href="tel:+441234567890"
+                      href="tel:+447389109307"
                       className="hover:text-kmk-blueberry flex items-center gap-2"
                     >
                       <Phone className="h-4 w-4" />
@@ -327,14 +327,14 @@ const Navbar = () => {
           <div className="flex flex-col space-y-1">
             <div className="flex space-x-4">
               <a
-                href="mailto:info@example.com"
+                href="mailto:info@kmklegal.co.uk"
                 className="hover:text-kmk-blueberry flex items-center gap-2"
               >
                 <Mail className="h-4 w-4" />
-                info@example.com
+                info@kmklegal.co.uk
               </a>
               <a
-                href="tel:+441234567890"
+                href="tel:+447389109307"
                 className="hover:text-kmk-blueberry flex items-center gap-2"
               >
                 <Phone className="h-4 w-4" />
