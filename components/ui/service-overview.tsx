@@ -42,7 +42,7 @@ const ServiceOverview = ({
             </div>
 
             {/* Navigation thumbnails */}
-            <div className="grid grid-cols-3 gap-4 mt-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 mt-8">
               <a
                 href="#expertise"
                 className="w-full border border-gray-300 text-center py-2 px-4 rounded hover:bg-gray-200"

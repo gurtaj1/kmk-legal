@@ -39,18 +39,20 @@ const ExpertiseAndTeamSection = ({
       id="expertise"
     >
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 max-w-full">
           {/* Left Column - Expertise and Testimonials */}
-          <div className="space-y-8">
-            <div className="prose max-w-none">
+          <div className="space-y-8 min-w-0">
+            <div className="prose prose-lg max-w-full min-w-0">
               <h2 className="text-3xl font-bold text-kmk-logoBlue mb-6">
                 {title}
               </h2>
-              <p className="text-lg mb-4">{description}</p>
+              <p className="text-lg mb-4 break-words">{description}</p>
               <p className="text-lg mb-4">Our dedicated team specialises in:</p>
               <ul className="list-disc pl-6 space-y-2">
                 {specialties.map((specialty, index) => (
-                  <li key={index}>{specialty}</li>
+                  <li key={index} className="break-words">
+                    {specialty}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -62,11 +64,13 @@ const ExpertiseAndTeamSection = ({
               <SmartCarousel
                 items={testimonials.map((testimonial, index) => (
                   <div
-                    className="p-6 bg-white rounded-lg shadow"
+                    className="p-4 sm:p-6 bg-white rounded-lg shadow"
                     key={`testimonial-slide-${index}`}
                   >
-                    <p className="mb-4">{testimonial.text}</p>
-                    <p className="font-semibold">{testimonial.author}</p>
+                    <p className="mb-4 break-words">{testimonial.text}</p>
+                    <p className="font-semibold break-words">
+                      {testimonial.author}
+                    </p>
                   </div>
                 ))}
                 slidesToShow={1}

@@ -103,7 +103,7 @@ const newsData = {
 
 const ConveyancingPage = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-kmk-blueberry/20 text-[#333333]">
+    <div className="min-h-screen flex flex-col bg-kmk-blueberry/20 text-[#333333] overflow-x-hidden">
       {/* Hero Section */}
       <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
         <ServiceOverview {...serviceOverviewProps} />
