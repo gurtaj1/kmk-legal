@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, FormikHelpers } from "formik";
 import * as Yup from "yup";
 
 import { Button } from "@/components/ui/button";
@@ -45,7 +45,7 @@ const initialValues = {
 const Page = () => {
   const handleSubmit = (
     values: typeof initialValues,
-    { setSubmitting, resetForm }: any
+    { setSubmitting, resetForm }: FormikHelpers<typeof initialValues>
   ) => {
     setSubmitting(true);
     console.log("Form submitted:", values);
