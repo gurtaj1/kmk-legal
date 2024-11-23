@@ -19,7 +19,7 @@ const ServiceOverview = ({
   imageAlt,
 }: ServiceOverviewProps) => {
   const [isImageVisible, setIsImageVisible] = useState(false);
-  const imageRef = useRef(null);
+  const [isLineVisible, setIsLineVisible] = useState(false);
 
   return (
     <section className="py-16">
@@ -32,13 +32,15 @@ const ServiceOverview = ({
               <motion.div
                 initial={{ scaleX: 0 }}
                 animate={{
-                  scaleX: isImageVisible ? 1 : 0,
+                  scaleX: isLineVisible ? 1 : 0,
                   height: 2,
                   transition: {
                     duration: 0.7,
                     ease: "easeOut",
                   },
                 }}
+                onViewportEnter={() => setIsLineVisible(true)}
+                onViewportLeave={() => setIsLineVisible(false)}
                 className="w-1/4 border-b-2 border-kmk-emeraldGreen mt-2 origin-left"
               />
             </div>
@@ -108,7 +110,6 @@ const ServiceOverview = ({
           {/* Right column - Image */}
           <div className="relative h-[400px]">
             <motion.div
-              ref={imageRef}
               initial={{ opacity: 0, x: 16 }}
               animate={{
                 opacity: isImageVisible ? 1 : 0.25,
