@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -30,6 +32,28 @@ const teamMembers = [
     description: "Conveyancing Lead - Over 20 years in residential property",
   },
 ];
+
+const validationSchema = Yup.object({
+  name: Yup.string()
+    .required("Name is required")
+    .min(2, "Name must be at least 2 characters"),
+  email: Yup.string()
+    .required("Email is required")
+    .email("Invalid email address"),
+  phone: Yup.string(),
+  area: Yup.string(),
+  message: Yup.string()
+    .required("Please enter a message")
+    .min(5, "Message needs to be longer"),
+});
+
+const initialValues = {
+  name: "",
+  email: "",
+  phone: "",
+  area: "",
+  message: "",
+};
 
 const AboutPage = () => {
   return (
@@ -225,96 +249,147 @@ const AboutPage = () => {
               to hear from you.
             </p>
             <div className="text-left">
-              <form className="grid gap-4 bg-white p-6 rounded-lg shadow-sm">
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <motion.div
-                    className="space-y-2"
-                    variants={buttonVariants}
-                    whileHover="whileHover"
-                    whileTap="whileTap"
-                  >
-                    <label htmlFor="name" className="text-sm font-medium">
-                      Name
-                    </label>
-                    <Input
-                      id="name"
-                      required
-                      className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
-                    />
-                  </motion.div>
-                  <motion.div
-                    className="space-y-2"
-                    variants={buttonVariants}
-                    whileHover="whileHover"
-                    whileTap="whileTap"
-                  >
-                    <label htmlFor="email" className="text-sm font-medium">
-                      Email
-                    </label>
-                    <Input
-                      id="email"
-                      type="email"
-                      required
-                      className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
-                    />
-                  </motion.div>
-                </div>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <motion.div
-                    className="space-y-2"
-                    variants={buttonVariants}
-                    whileHover="whileHover"
-                    whileTap="whileTap"
-                  >
-                    <label htmlFor="phone" className="text-sm font-medium">
-                      Phone Number
-                    </label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
-                    />
-                  </motion.div>
-                  <motion.div
-                    className="space-y-2"
-                    variants={buttonVariants}
-                    whileHover="whileHover"
-                    whileTap="whileTap"
-                  >
-                    <label htmlFor="area" className="text-sm font-medium">
-                      Area of Law
-                    </label>
-                    <Input
-                      id="area"
-                      className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
-                    />
-                  </motion.div>
-                </div>
-                <motion.div
-                  className="space-y-2"
-                  variants={buttonVariants}
-                  whileHover="whileHover"
-                  whileTap="whileTap"
-                >
-                  <label htmlFor="message" className="text-sm font-medium">
-                    Message
-                  </label>
-                  <Textarea
-                    id="message"
-                    required
-                    className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
-                  />
-                </motion.div>
-                <motion.div
-                  variants={buttonVariants}
-                  whileHover="whileHover"
-                  whileTap="whileTap"
-                >
-                  <Button type="submit" className="w-full">
-                    Send Message
-                  </Button>
-                </motion.div>
-              </form>
+              <Formik
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={(values, { setSubmitting, resetForm }) => {
+                  setSubmitting(true);
+                  console.log("Form submitted:", values);
+                  resetForm();
+                  setSubmitting(false);
+                }}
+              >
+                {({ errors, touched, isSubmitting }) => (
+                  <Form className="grid gap-4 bg-white p-6 rounded-lg shadow-sm">
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <motion.div
+                        className="space-y-2"
+                        variants={buttonVariants}
+                        whileHover="whileHover"
+                        whileTap="whileTap"
+                      >
+                        <label htmlFor="name" className="text-sm font-medium">
+                          Name*
+                        </label>
+                        <Field
+                          as={Input}
+                          id="name"
+                          name="name"
+                          className={`transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue ${
+                            errors.name && touched.name ? "border-red-500" : ""
+                          }`}
+                        />
+                        {errors.name && touched.name && (
+                          <p className="text-red-500 text-sm mt-1">
+                            {errors.name}
+                          </p>
+                        )}
+                      </motion.div>
+                      <motion.div
+                        className="space-y-2"
+                        variants={buttonVariants}
+                        whileHover="whileHover"
+                        whileTap="whileTap"
+                      >
+                        <label htmlFor="email" className="text-sm font-medium">
+                          Email*
+                        </label>
+                        <Field
+                          as={Input}
+                          id="email"
+                          name="email"
+                          type="email"
+                          className={`transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue ${
+                            errors.email && touched.email
+                              ? "border-red-500"
+                              : ""
+                          }`}
+                        />
+                        {errors.email && touched.email && (
+                          <p className="text-red-500 text-sm mt-1">
+                            {errors.email}
+                          </p>
+                        )}
+                      </motion.div>
+                    </div>
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <motion.div
+                        className="space-y-2"
+                        variants={buttonVariants}
+                        whileHover="whileHover"
+                        whileTap="whileTap"
+                      >
+                        <label htmlFor="phone" className="text-sm font-medium">
+                          Phone Number
+                        </label>
+                        <Field
+                          as={Input}
+                          id="phone"
+                          name="phone"
+                          type="tel"
+                          className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
+                        />
+                      </motion.div>
+                      <motion.div
+                        className="space-y-2"
+                        variants={buttonVariants}
+                        whileHover="whileHover"
+                        whileTap="whileTap"
+                      >
+                        <label htmlFor="area" className="text-sm font-medium">
+                          Area of Law
+                        </label>
+                        <Field
+                          as={Input}
+                          id="area"
+                          name="area"
+                          className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
+                        />
+                      </motion.div>
+                    </div>
+                    <motion.div
+                      className="space-y-2"
+                      variants={buttonVariants}
+                      whileHover="whileHover"
+                      whileTap="whileTap"
+                    >
+                      <label htmlFor="message" className="text-sm font-medium">
+                        Message*
+                      </label>
+                      <Field
+                        as={Textarea}
+                        id="message"
+                        name="message"
+                        className={`transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue ${
+                          errors.message && touched.message
+                            ? "border-red-500"
+                            : ""
+                        }`}
+                      />
+                      {errors.message && touched.message && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.message}
+                        </p>
+                      )}
+                    </motion.div>
+                    <motion.div
+                      variants={buttonVariants}
+                      whileHover="whileHover"
+                      whileTap="whileTap"
+                    >
+                      <Button
+                        type="submit"
+                        className="w-full"
+                        disabled={
+                          isSubmitting || Object.keys(errors).length > 0
+                        }
+                      >
+                        {isSubmitting ? "Sending..." : "Send Message"}
+                      </Button>
+                    </motion.div>
+                  </Form>
+                )}
+              </Formik>
             </div>
           </div>
         </div>
