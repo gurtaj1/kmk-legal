@@ -4,6 +4,41 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { buttonVariants } from "@/app/globals/framer-variants";
+import { Formik, Form, Field, FormikHelpers } from "formik";
+import * as Yup from "yup";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+
+const validationSchema = Yup.object({
+  area: Yup.string().required("Please select an area of law"),
+  firstName: Yup.string()
+    .required("First name is required")
+    .min(2, "First name must be at least 2 characters"),
+  surname: Yup.string()
+    .required("Surname is required")
+    .min(2, "Surname must be at least 2 characters"),
+  phone: Yup.string().required("Contact number is required"),
+  email: Yup.string()
+    .required("Email is required")
+    .email("Invalid email address"),
+  enquiry: Yup.string()
+    .required("Please enter your enquiry")
+    .min(10, "Please provide more detail"),
+  contactPreference: Yup.string(),
+  source: Yup.string(),
+});
+
+const initialValues = {
+  area: "",
+  firstName: "",
+  surname: "",
+  phone: "",
+  email: "",
+  enquiry: "",
+  contactPreference: "",
+  source: "",
+};
 
 const ContactPage = () => {
   return (
@@ -133,179 +168,233 @@ const ContactPage = () => {
           <h2 className="text-3xl font-bold text-kmk-logoBlue mb-8 text-center">
             Get in touch with us
           </h2>
-          <form className="max-w-2xl mx-auto space-y-6">
-            {/* Area of Law Select */}
-            <motion.div
-              className="space-y-2"
-              variants={buttonVariants}
-              whileHover="whileHover"
-              whileTap="whileTap"
-            >
-              <label htmlFor="area" className="text-sm font-medium">
-                What is the nature of your enquiry?*
-              </label>
-              <select
-                id="area"
-                required
-                className="w-full p-2 border border-gray-300 rounded-md focus:border-kmk-logoBlue focus:ring-1 focus:ring-kmk-logoBlue transition-colors hover:border-kmk-logoBlue"
-              >
-                <option value="">-- Select an area of law --</option>
-                <option value="conveyancing">Conveyancing</option>
-                <option value="family">Family Law</option>
-                <option value="commercial">Commercial Property</option>
-                <option value="children">Children Law</option>
-                <option value="estate">Estate Planning</option>
-                <option value="trusts">Trusts</option>
-              </select>
-            </motion.div>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={(values, { setSubmitting, resetForm }) => {
+              setSubmitting(true);
+              // Handle form submission here
+              console.log("Form submitted:", values);
+              resetForm();
+              setSubmitting(false);
+            }}
+          >
+            {({ errors, touched, isSubmitting }) => (
+              <Form className="max-w-2xl mx-auto space-y-6">
+                {/* Area of Law Select */}
+                <motion.div
+                  className="space-y-2"
+                  variants={buttonVariants}
+                  whileHover="whileHover"
+                  whileTap="whileTap"
+                >
+                  <label htmlFor="area" className="text-sm font-medium">
+                    What is the nature of your enquiry?*
+                  </label>
+                  <Field
+                    as="select"
+                    id="area"
+                    name="area"
+                    className={`w-full p-2 border border-gray-300 rounded-md bg-white focus:border-kmk-logoBlue focus:ring-1 focus:ring-kmk-logoBlue transition-colors hover:border-kmk-logoBlue ${
+                      errors.area && touched.area ? "border-red-500" : ""
+                    }`}
+                  >
+                    <option value="">-- Select an area of law --</option>
+                    <option value="conveyancing">Conveyancing</option>
+                    <option value="family">Family Law</option>
+                    <option value="commercial">Commercial Property</option>
+                    <option value="children">Children Law</option>
+                    <option value="estate">Estate Planning</option>
+                    <option value="trusts">Trusts</option>
+                  </Field>
+                  {errors.area && touched.area && (
+                    <p className="text-red-500 text-sm">{errors.area}</p>
+                  )}
+                </motion.div>
 
-            {/* Name Fields */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <motion.div
-                className="space-y-2"
-                variants={buttonVariants}
-                whileHover="whileHover"
-                whileTap="whileTap"
-              >
-                <label htmlFor="firstName" className="text-sm font-medium">
-                  First Name*
-                </label>
-                <input
-                  type="text"
-                  id="firstName"
-                  required
-                  className="w-full p-2 border border-gray-300 rounded-md focus:border-kmk-logoBlue focus:ring-1 focus:ring-kmk-logoBlue"
-                />
-              </motion.div>
-              <motion.div
-                className="space-y-2"
-                variants={buttonVariants}
-                whileHover="whileHover"
-                whileTap="whileTap"
-              >
-                <label htmlFor="surname" className="text-sm font-medium">
-                  Surname*
-                </label>
-                <input
-                  type="text"
-                  id="surname"
-                  required
-                  className="w-full p-2 border border-gray-300 rounded-md focus:border-kmk-logoBlue focus:ring-1 focus:ring-kmk-logoBlue"
-                />
-              </motion.div>
-            </div>
+                {/* Name Fields */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <motion.div
+                    className="space-y-2"
+                    variants={buttonVariants}
+                    whileHover="whileHover"
+                    whileTap="whileTap"
+                  >
+                    <label htmlFor="firstName" className="text-sm font-medium">
+                      First Name*
+                    </label>
+                    <Field
+                      as={Input}
+                      id="firstName"
+                      name="firstName"
+                      className={`${
+                        errors.firstName && touched.firstName
+                          ? "border-red-500"
+                          : ""
+                      }`}
+                    />
+                    {errors.firstName && touched.firstName && (
+                      <p className="text-red-500 text-sm">{errors.firstName}</p>
+                    )}
+                  </motion.div>
 
-            {/* Contact Details */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <motion.div
-                className="space-y-2"
-                variants={buttonVariants}
-                whileHover="whileHover"
-                whileTap="whileTap"
-              >
-                <label htmlFor="phone" className="text-sm font-medium">
-                  Contact Number*
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  required
-                  className="w-full p-2 border border-gray-300 rounded-md focus:border-kmk-logoBlue focus:ring-1 focus:ring-kmk-logoBlue"
-                />
-              </motion.div>
-              <motion.div
-                className="space-y-2"
-                variants={buttonVariants}
-                whileHover="whileHover"
-                whileTap="whileTap"
-              >
-                <label htmlFor="email" className="text-sm font-medium">
-                  Email Address*
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  required
-                  className="w-full p-2 border border-gray-300 rounded-md focus:border-kmk-logoBlue focus:ring-1 focus:ring-kmk-logoBlue"
-                />
-              </motion.div>
-            </div>
+                  <motion.div
+                    className="space-y-2"
+                    variants={buttonVariants}
+                    whileHover="whileHover"
+                    whileTap="whileTap"
+                  >
+                    <label htmlFor="surname" className="text-sm font-medium">
+                      Surname*
+                    </label>
+                    <Field
+                      as={Input}
+                      id="surname"
+                      name="surname"
+                      className={`${
+                        errors.surname && touched.surname
+                          ? "border-red-500"
+                          : ""
+                      }`}
+                    />
+                    {errors.surname && touched.surname && (
+                      <p className="text-red-500 text-sm">{errors.surname}</p>
+                    )}
+                  </motion.div>
+                </div>
 
-            {/* Enquiry Details */}
-            <motion.div
-              className="space-y-2"
-              variants={buttonVariants}
-              whileHover="whileHover"
-              whileTap="whileTap"
-            >
-              <label htmlFor="enquiry" className="text-sm font-medium">
-                What is your enquiry?*
-              </label>
-              <textarea
-                id="enquiry"
-                required
-                rows={4}
-                className="w-full p-2 border border-gray-300 rounded-md focus:border-kmk-logoBlue focus:ring-1 focus:ring-kmk-logoBlue"
-              ></textarea>
-            </motion.div>
+                {/* Contact Details */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <motion.div
+                    className="space-y-2"
+                    variants={buttonVariants}
+                    whileHover="whileHover"
+                    whileTap="whileTap"
+                  >
+                    <label htmlFor="phone" className="text-sm font-medium">
+                      Contact Number*
+                    </label>
+                    <Field
+                      as={Input}
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      className={`${
+                        errors.phone && touched.phone ? "border-red-500" : ""
+                      }`}
+                    />
+                    {errors.phone && touched.phone && (
+                      <p className="text-red-500 text-sm">{errors.phone}</p>
+                    )}
+                  </motion.div>
 
-            {/* Contact Preference */}
-            <motion.div
-              className="space-y-2"
-              variants={buttonVariants}
-              whileHover="whileHover"
-              whileTap="whileTap"
-            >
-              <label
-                htmlFor="contactPreference"
-                className="text-sm font-medium"
-              >
-                Preferred method of contact?
-              </label>
-              <select
-                id="contactPreference"
-                className="w-full p-2 border border-gray-300 rounded-md focus:border-kmk-logoBlue focus:ring-1 focus:ring-kmk-logoBlue"
-              >
-                <option value="">-- Please choose an option --</option>
-                <option value="email">Email</option>
-                <option value="phone">Phone</option>
-              </select>
-            </motion.div>
+                  <motion.div
+                    className="space-y-2"
+                    variants={buttonVariants}
+                    whileHover="whileHover"
+                    whileTap="whileTap"
+                  >
+                    <label htmlFor="email" className="text-sm font-medium">
+                      Email Address*
+                    </label>
+                    <Field
+                      as={Input}
+                      id="email"
+                      name="email"
+                      type="email"
+                      className={`${
+                        errors.email && touched.email ? "border-red-500" : ""
+                      }`}
+                    />
+                    {errors.email && touched.email && (
+                      <p className="text-red-500 text-sm">{errors.email}</p>
+                    )}
+                  </motion.div>
+                </div>
 
-            {/* How did you hear about us */}
-            <motion.div
-              className="space-y-2"
-              variants={buttonVariants}
-              whileHover="whileHover"
-              whileTap="whileTap"
-            >
-              <label htmlFor="source" className="text-sm font-medium">
-                How did you hear about us?
-              </label>
-              <select
-                id="source"
-                className="w-full p-2 border border-gray-300 rounded-md focus:border-kmk-logoBlue focus:ring-1 focus:ring-kmk-logoBlue"
-              >
-                <option value="">-- Please choose an option --</option>
-                <option value="google">Google</option>
-                <option value="referral">Referral</option>
-                <option value="social">Social Media</option>
-                <option value="other">Other</option>
-              </select>
-            </motion.div>
+                {/* Enquiry Details */}
+                <motion.div
+                  className="space-y-2"
+                  variants={buttonVariants}
+                  whileHover="whileHover"
+                  whileTap="whileTap"
+                >
+                  <label htmlFor="enquiry" className="text-sm font-medium">
+                    What is your enquiry?*
+                  </label>
+                  <Field
+                    as={Textarea}
+                    id="enquiry"
+                    name="enquiry"
+                    rows={4}
+                    className={`${
+                      errors.enquiry && touched.enquiry ? "border-red-500" : ""
+                    }`}
+                  />
+                  {errors.enquiry && touched.enquiry && (
+                    <p className="text-red-500 text-sm">{errors.enquiry}</p>
+                  )}
+                </motion.div>
 
-            <button
-              type="submit"
-              className="w-full bg-kmk-logoBlue text-white py-3 px-6 rounded-md hover:bg-kmk-blueberry transition-colors duration-200"
-            >
-              Submit Enquiry
-            </button>
+                {/* Contact Preference */}
+                <motion.div
+                  className="space-y-2"
+                  variants={buttonVariants}
+                  whileHover="whileHover"
+                  whileTap="whileTap"
+                >
+                  <label
+                    htmlFor="contactPreference"
+                    className="text-sm font-medium"
+                  >
+                    Preferred method of contact?
+                  </label>
+                  <Field
+                    as="select"
+                    id="contactPreference"
+                    name="contactPreference"
+                    className="w-full p-2 border border-gray-300 rounded-md bg-white focus:border-kmk-logoBlue focus:ring-1 focus:ring-kmk-logoBlue"
+                  >
+                    <option value="">-- Please choose an option --</option>
+                    <option value="email">Email</option>
+                    <option value="phone">Phone</option>
+                  </Field>
+                </motion.div>
 
-            <p className="text-sm text-gray-500 mt-4">
-              * Boxes marked with an asterisk: form cannot be submitted without
-              this info
-            </p>
-          </form>
+                {/* How did you hear about us */}
+                <motion.div
+                  className="space-y-2"
+                  variants={buttonVariants}
+                  whileHover="whileHover"
+                  whileTap="whileTap"
+                >
+                  <label htmlFor="source" className="text-sm font-medium">
+                    How did you hear about us?
+                  </label>
+                  <Field
+                    as="select"
+                    id="source"
+                    name="source"
+                    className="w-full p-2 border border-gray-300 rounded-md bg-white focus:border-kmk-logoBlue focus:ring-1 focus:ring-kmk-logoBlue"
+                  >
+                    <option value="">-- Please choose an option --</option>
+                    <option value="google">Google</option>
+                    <option value="referral">Referral</option>
+                    <option value="social">Social Media</option>
+                    <option value="other">Other</option>
+                  </Field>
+                </motion.div>
+
+                <Button
+                  type="submit"
+                  disabled={isSubmitting || Object.keys(errors).length > 0}
+                  className="w-full bg-kmk-logoBlue text-white hover:bg-kmk-blueberry"
+                >
+                  {isSubmitting ? "Submitting..." : "Submit Enquiry"}
+                </Button>
+              </Form>
+            )}
+          </Formik>
         </div>
       </section>
     </div>
