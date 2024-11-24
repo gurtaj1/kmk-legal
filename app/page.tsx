@@ -54,7 +54,7 @@ const Page = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-kmk-blueberry/20 text-[#333333] overflow-x-hidden">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-kmk-blueberry/10 to-kmk-blueberry/30 text-[#333333] overflow-x-hidden">
       {/* Hero Section */}
       <section
         className="py-12 bg-muted relative"
@@ -297,7 +297,7 @@ const Page = () => {
         {/* <div className="absolute inset-0 bg-muted transform skew-y-2" />
          */}
         <div
-          className="absolute inset-0 bg-muted"
+          className="absolute inset-0 bg-gradient-to-tr from-muted/60 to-muted"
           style={{
             clipPath: "polygon(0 0, 100% 10%, 100% 100%, 0 100%)",
           }}
@@ -356,7 +356,7 @@ const Page = () => {
         id="contact"
       >
         <div
-          className="absolute inset-0 bg-muted"
+          className="absolute inset-0 bg-gradient-to-tr from-kmk-emeraldGreen/60 to-muted"
           style={{
             clipPath: "polygon(0 6%, 100% 0, 100% 100%, 0 100%)",
           }}
