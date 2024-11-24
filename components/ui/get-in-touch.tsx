@@ -110,7 +110,7 @@ const GetInTouch = () => {
                   Request a Callback
                 </h3>
                 <p className="text-sm text-gray-600 group-hover:text-white/90">
-                  We'll call you back at a time that suits you
+                  We&apos;ll call you back at a time that suits you
                 </p>
               </div>
             </motion.div>
