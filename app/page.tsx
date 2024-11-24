@@ -42,6 +42,46 @@ const initialValues = {
   subscribe: false,
 };
 
+const serviceLinks = [
+  {
+    href: "/services/conveyancing",
+    title: "Conveyancing",
+    image: "/residential-conveyancing.jpg",
+    description:
+      "Expert property law services for buying and selling properties.",
+  },
+  {
+    href: "/services/commercial-property",
+    title: "Commercial Property",
+    image: "/commercial-conveyancing.jpg",
+    description: "Comprehensive legal support for business property matters.",
+  },
+  {
+    href: "/services/family-law",
+    title: "Family Law",
+    image: "/family-law.jpg",
+    description: "Sensitive handling of family legal matters and disputes.",
+  },
+  {
+    href: "/services/children-law",
+    title: "Children Law",
+    image: "/children-law.jpg",
+    description: "Expert representation in children law cases.",
+  },
+  {
+    href: "/services/estate-planning",
+    title: "Estate Planning",
+    image: "/estate-planning.jpg",
+    description: "Professional will writing and estate planning services.",
+  },
+  {
+    href: "/services/trusts",
+    title: "Trusts",
+    image: "/trust-law.jpg",
+    description: "Specialist advice on trust formation and management.",
+  },
+];
+
 const Page = () => {
   const handleSubmit = (
     values: typeof initialValues,
@@ -125,170 +165,52 @@ const Page = () => {
       <section className="py-12 relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
-            <h2 className="text-3xl font-bold text-center mb-8 text-kmk-logoBlue">
+            <h2 className="text-4xl font-bold text-center mb-8 text-kmk-logoBlue">
               Our Services
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              <Link href="/services/conveyancing" className="h-full">
-                <motion.div
-                  className="rounded-xl h-full"
-                  variants={cardVariants}
-                  initial="initial"
-                  whileHover="whileHover"
-                  whileTap="whileTap"
-                >
-                  <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
-                    <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
-                      <h3 className="text-xl font-semibold mb-2">
-                        Conveyancing
-                      </h3>
-                      <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
-                        <img
-                          src="/residential-conveyancing.jpg"
-                          alt="Conveyancing"
-                          className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
+              {serviceLinks.map((service) => (
+                <Link key={service.href} href={service.href} className="h-full">
+                  <motion.div
+                    className="rounded-xl h-full"
+                    variants={cardVariants}
+                    initial="initial"
+                    whileHover="whileHover"
+                    whileTap="whileTap"
+                  >
+                    <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2 hover:border-white">
+                      <CardContent className="p-6 flex flex-col h-full">
+                        <h3 className="text-xl font-semibold mb-2 text-kmk-logoBlue">
+                          {service.title}
+                        </h3>
+                        <motion.div
+                          initial={{ scaleX: 0, originX: 0 }}
+                          whileInView={{
+                            scaleX: 1,
+                            transition: {
+                              duration: 0.7,
+                              ease: "easeOut",
+                              delay: 0.2,
+                            },
+                          }}
+                          viewport={{ once: false }}
+                          className="w-full h-0.5 bg-kmk-forestGreen group-hover:bg-kmk-blueberry origin-left mb-4"
                         />
-                      </div>
-                      <p className="text-muted-foreground text-black group-hover:text-white">
-                        Expert property law services for buying and selling
-                        properties.
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </Link>
-              <Link href="/services/commercial-property" className="h-full">
-                <motion.div
-                  className="rounded-xl h-full"
-                  variants={cardVariants}
-                  initial="initial"
-                  whileHover="whileHover"
-                  whileTap="whileTap"
-                >
-                  <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
-                    <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
-                      <h3 className="text-xl font-semibold mb-2">
-                        Commercial Property
-                      </h3>
-                      <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
-                        <img
-                          src="/commercial-conveyancing.jpg"
-                          alt="Commercial Property"
-                          className="w-full h-full object-cover group-hover:scale-105 group-hover:border-2 group-hover:border-kmk-logoBlue transition-all duration-300 group-hover:border-2 group-hover:border-white"
-                        />
-                      </div>
-                      <p className="text-muted-foreground text-black group-hover:text-white">
-                        Comprehensive legal support for business property
-                        matters.
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </Link>
-              <Link href="/services/family-law" className="h-full">
-                <motion.div
-                  className="rounded-xl h-full"
-                  variants={cardVariants}
-                  initial="initial"
-                  whileHover="whileHover"
-                  whileTap="whileTap"
-                >
-                  <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
-                    <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
-                      <h3 className="text-xl font-semibold mb-2">Family Law</h3>
-                      <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
-                        <img
-                          src="/family-law.jpg"
-                          alt="Family Law"
-                          className="w-full h-full object-cover group-hover:scale-105 group-hover:border-2 group-hover:border-kmk-logoBlue transition-all duration-300"
-                        />
-                      </div>
-                      <p className="text-muted-foreground text-black group-hover:text-white">
-                        Sensitive handling of family legal matters and disputes.
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </Link>
-              <Link href="/services/children-law" className="h-full">
-                <motion.div
-                  className="rounded-xl h-full"
-                  variants={cardVariants}
-                  initial="initial"
-                  whileHover="whileHover"
-                  whileTap="whileTap"
-                >
-                  <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
-                    <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
-                      <h3 className="text-xl font-semibold mb-2">
-                        Children Law
-                      </h3>
-                      <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
-                        <img
-                          src="/children-law.jpg"
-                          alt="Children Law"
-                          className="w-full h-full object-cover group-hover:scale-105 group-hover:border-2 group-hover:border-kmk-logoBlue transition-all duration-300"
-                        />
-                      </div>
-                      <p className="text-muted-foreground text-black group-hover:text-white">
-                        Expert representation in children law cases.
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </Link>
-              <Link href="/services/estate-planning" className="h-full">
-                <motion.div
-                  className="rounded-xl h-full"
-                  variants={cardVariants}
-                  initial="initial"
-                  whileHover="whileHover"
-                  whileTap="whileTap"
-                >
-                  <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
-                    <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
-                      <h3 className="text-xl font-semibold mb-2">
-                        Estate Planning
-                      </h3>
-                      <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
-                        <img
-                          src="/estate-planning.jpg"
-                          alt="Estate Planning"
-                          className="w-full h-full object-cover group-hover:scale-105 group-hover:border-2 group-hover:border-kmk-logoBlue transition-all duration-300"
-                        />
-                      </div>
-                      <p className="text-muted-foreground text-black group-hover:text-white">
-                        Professional will writing and estate planning services.
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </Link>
-              <Link href="/services/trusts" className="h-full">
-                <motion.div
-                  className="rounded-xl h-full"
-                  variants={cardVariants}
-                  initial="initial"
-                  whileHover="whileHover"
-                  whileTap="whileTap"
-                >
-                  <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2">
-                    <CardContent className="p-6 flex flex-col h-full text-kmk-logoBlue">
-                      <h3 className="text-xl font-semibold mb-2">Trusts</h3>
-                      <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
-                        <img
-                          src="/trust-law.jpg"
-                          alt="Trusts"
-                          className="w-full h-full object-cover group-hover:scale-105 group-hover:border-2 group-hover:border-kmk-logoBlue transition-all duration-300"
-                        />
-                      </div>
-                      <p className="text-muted-foreground text-black group-hover:text-white">
-                        Specialist advice on trust formation and management.
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </Link>
+                        <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
+                          <img
+                            src={service.image}
+                            alt={service.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
+                          />
+                        </div>
+                        <p className="text-muted-foreground text-black group-hover:text-white">
+                          {service.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </Link>
+              ))}
             </div>
           </ScrollMotionWrapper>
         </div>
@@ -304,7 +226,7 @@ const Page = () => {
         />
         <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <h2 className="text-3xl font-bold text-center mb-8">
+            <h2 className="text-4xl font-bold text-center mb-8">
               Accreditations & Awards
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -324,7 +246,7 @@ const Page = () => {
       <section className="py-12 relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
-            <h2 className="text-3xl font-bold text-center mb-8">
+            <h2 className="text-4xl font-bold text-center mb-8">
               Client Testimonials
             </h2>
             <SmartCarousel
