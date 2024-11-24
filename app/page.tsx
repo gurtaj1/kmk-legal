@@ -146,7 +146,9 @@ const Page = () => {
                 whileHover="whileHover"
                 whileTap="whileTap"
               >
-                <Button className="w-full">Arrange a Callback</Button>
+                <a href="#contact">
+                  <Button className="w-full">Arrange a Callback</Button>
+                </a>
               </motion.div>
               <motion.div
                 variants={buttonVariants}
