@@ -88,8 +88,8 @@ const PricingPage = () => {
                       backgroundPosition: "center",
                     }}
                   >
-                    <div className="absolute inset-0 bg-kmk-antiqueBronze/50 hover:bg-kmk-antiqueBronze/10 transition-all duration-300 flex items-center justify-center group">
-                      <h2 className="text-4xl font-bold text-kmk-black group-hover:text-white">
+                    <div className="absolute inset-0 bg-kmk-logoBlue/50 hover:bg-kmk-logoBlue/30 transition-all duration-300 flex items-center justify-center group">
+                      <h2 className="text-4xl font-bold text-white group-hover:text-white">
                         Request a Quote
                       </h2>
                     </div>
