@@ -47,6 +47,55 @@ const servicePaths = [
   },
 ];
 
+const pricingLinks = [
+  {
+    serviceId: "conveyancing",
+    href: "/fees/pricing/conveyancing",
+    title: "Price & Service Information for Conveyancing",
+    image: "/residential-conveyancing.jpg",
+    description:
+      "View our transparent pricing for residential property transactions and remortgages",
+  },
+  {
+    serviceId: "commercial-property",
+    href: "/fees/pricing/commercial-property",
+    title: "Price & Service Information for Commercial Property",
+    image: "/commercial-conveyancing.jpg",
+    description: "Commercial property transaction fees and pricing structure",
+  },
+  {
+    serviceId: "children",
+    href: "/fees/pricing/children",
+    title: "Price & Service Information for Children Law",
+    image: "/children-law.jpg",
+    description:
+      "Transparent pricing for children law proceedings and representation",
+  },
+  {
+    serviceId: "family",
+    href: "/fees/pricing/family",
+    title: "Price & Service Information for Matrimonial & Family Law",
+    image: "/family-law.jpg",
+    description:
+      "Clear fee structure for divorce, separation and other family matters",
+  },
+  {
+    serviceId: "estate-planning",
+    href: "/fees/pricing/estate-planning",
+    title: "Price & Service Information for Estate Planning, Wills & Probate",
+    image: "/estate-planning.jpg",
+    description:
+      "Pricing for wills, probate and estate administration services",
+  },
+  {
+    serviceId: "trusts",
+    href: "/fees/pricing/trusts",
+    title: "Price & Service Information for Trusts",
+    image: "/trust-law.jpg",
+    description: "Fee information for trust creation and management services",
+  },
+];
+
 type ServicePathsGridProps = {
   serviceId: string;
   pricingTitle?: string;
@@ -126,17 +175,47 @@ const ServicePathsGrid = ({
           </div>
 
           {(pricingTitle || pricingContent) && (
-            <motion.div
-              className="mt-8 border-t pt-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              {pricingTitle && (
-                <h3 className="text-xl font-semibold mb-4">{pricingTitle}</h3>
-              )}
-              {pricingContent}
-            </motion.div>
+            <>
+              <div className="w-full h-px bg-gradient-to-r from-transparent via-kmk-logoBlue/30 to-transparent my-8" />
+              <div className="mt-8">
+                {pricingLinks.map((link) => {
+                  if (link.serviceId === serviceId) {
+                    return (
+                      <Link href={link.href} key={link.serviceId}>
+                        <motion.div
+                          className="relative"
+                          variants={buttonVariants}
+                          initial="initial"
+                          whileHover="whileHover"
+                          whileTap="whileTap"
+                        >
+                          <div className="border-2 border-kmk-logoBlue p-6 rounded-lg bg-white hover:bg-kmk-logoBlue group transition-all duration-300">
+                            <div className="flex items-center gap-4">
+                              <div className="relative w-16 h-16 rounded-lg overflow-hidden">
+                                <img
+                                  src={link.image}
+                                  alt=""
+                                  className="object-cover w-full h-full"
+                                />
+                              </div>
+                              <div>
+                                <h3 className="font-semibold text-kmk-logoBlue group-hover:text-white transition-colors">
+                                  {link.title}
+                                </h3>
+                                <p className="text-sm text-gray-600 group-hover:text-white/90 transition-colors">
+                                  {link.description}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      </Link>
+                    );
+                  }
+                  return null;
+                })}
+              </div>
+            </>
           )}
         </div>
       </div>
