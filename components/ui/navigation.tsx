@@ -100,7 +100,7 @@ const Navbar = () => {
       title: "Our Fees",
       items: [
         { label: "Fees & Pricing", href: "/fees/pricing" },
-        { label: "Request a Quote", href: "/fees/quote" },
+        { label: "Request a Quote", href: "/quote-calculator" },
       ],
     },
   };
