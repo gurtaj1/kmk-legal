@@ -28,7 +28,7 @@ const ServiceOverview = ({
           {/* Left column - Text content */}
           <div className="space-y-6">
             <div className="relative">
-              <h1 className="text-5xl font-bold text-kmk-logoBlue">{title}</h1>
+              <h1 className="text-6xl font-bold text-kmk-logoBlue">{title}</h1>
               <motion.div
                 initial={{ scaleX: 0 }}
                 animate={{
@@ -66,7 +66,7 @@ const ServiceOverview = ({
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 mt-8">
               <motion.a
                 href="#expertise"
-                className="w-full border border-gray-300 text-center py-2 px-4 bg-kmk-gold rounded bg-kmk-blueberry text-white hover:bg-kmk-emeraldGreen/80 hover:text-black"
+                className="w-full border border-gray-300 text-center py-2 px-4 bg-kmk-blueberry rounded bg-kmk-blueberry text-white hover:bg-kmk-emeraldGreen/80 hover:text-black"
                 variants={buttonVariants}
                 initial="initial"
                 whileHover="whileHover"
@@ -76,6 +76,7 @@ const ServiceOverview = ({
               </motion.a>
               <motion.a
                 href="#how-we-can-help"
+                text-6xl
                 className="w-full border border-gray-300 text-center py-2 px-4 rounded bg-kmk-blueberry text-white hover:bg-kmk-emeraldGreen/80 hover:text-black"
                 variants={buttonVariants}
                 initial="initial"

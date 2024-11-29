@@ -70,7 +70,7 @@ const AboutPage = () => {
           <div className="absolute inset-0 bg-black/10" />
         </div>
         <div className="relative container mx-auto h-full flex flex-col items-center justify-center">
-          <h1 className="text-5xl font-bold text-white mb-4">About Us</h1>
+          <h1 className="text-7xl font-bold text-white mb-4">About Us</h1>
           <p className="text-lg leading-relaxed mb-6 text-white text-center max-w-2xl">
             At KMK Legal, we pride ourselves on delivering exceptional legal
             services with a personal touch. Our team of experienced
@@ -105,7 +105,7 @@ const AboutPage = () => {
           }}
         />
         <div className="container mx-auto relative">
-          <h2 className="text-3xl font-bold text-center mb-8 text-kmk-logoBlue">
+          <h2 className="text-6xl font-bold text-center mb-8 text-kmk-logoBlue">
             Our Ethos
           </h2>
           <div className="prose max-w-3xl mx-auto">
@@ -140,7 +140,7 @@ const AboutPage = () => {
             />
           </div>
           <div>
-            <h2 className="text-3xl font-bold mb-8 text-kmk-logoBlue">
+            <h2 className="text-6xl font-bold mb-8 text-kmk-logoBlue">
               Commitment to Excellence
             </h2>
             <div className="prose max-w-none">
@@ -172,7 +172,7 @@ const AboutPage = () => {
           }}
         />
         <div className="container mx-auto relative">
-          <h2 className="text-3xl font-bold text-center mb-12 text-kmk-logoBlue">
+          <h2 className="text-6xl font-bold text-center mb-12 text-kmk-logoBlue">
             Leave us a Review
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
@@ -239,7 +239,7 @@ const AboutPage = () => {
         id="complaints"
       >
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-8 text-kmk-logoBlue">
+          <h2 className="text-6xl font-bold text-center mb-8 text-kmk-logoBlue">
             Not Happy with Something?
           </h2>
           <div className="prose max-w-3xl mx-auto text-center">

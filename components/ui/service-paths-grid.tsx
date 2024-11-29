@@ -25,8 +25,8 @@ const ServicePathsGrid = ({
     >
       <div className="container mx-auto px-4">
         <div className="bg-white p-8 rounded-xl shadow">
-          <h2 className="text-2xl font-bold text-kmk-logoBlue mb-6 text-center">
-            What we can help you with
+          <h2 className="text-6xl font-bold text-kmk-logoBlue mb-6 text-center">
+            What we can help you with?
           </h2>
 
           <div className="grid grid-cols-2 gap-8 mb-8">

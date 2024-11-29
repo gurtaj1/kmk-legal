@@ -43,7 +43,7 @@ const ExpertiseAndTeamSection = ({
           {/* Left Column - Expertise and Testimonials */}
           <div className="space-y-8 min-w-0">
             <div className="prose prose-lg max-w-full min-w-0">
-              <h2 className="text-3xl font-bold text-kmk-logoBlue mb-6">
+              <h2 className="text-6xl font-bold text-kmk-logoBlue mb-6">
                 {title}
               </h2>
               <p className="text-lg mb-4 break-words">{description}</p>

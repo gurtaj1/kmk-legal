@@ -108,8 +108,8 @@ const Page = () => {
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="flex items-center justify-start align-middle">
-            <LogoColor className="w-20 h-10" mFill="#fff" />
-            <h1 className="text-4xl font-bold mb-2 text-white">KMK LEGAL</h1>
+            <LogoColor className="w-60 h-30 pt-3" mFill="#fff" />
+            <h1 className="text-8xl font-bold mb-2 text-white">KMK LEGAL</h1>
           </div>
           <p className="text-xl text-white/80 mb-8">
             Providing expert legal services for over 25 years
@@ -167,7 +167,7 @@ const Page = () => {
       <section className="py-12 relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
-            <h2 className="text-4xl font-bold text-center mb-8 text-kmk-logoBlue">
+            <h2 className="text-6xl font-bold text-center mb-8 text-kmk-logoBlue">
               Our Services
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -228,7 +228,7 @@ const Page = () => {
         />
         <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <h2 className="text-4xl font-bold text-center mb-8">
+            <h2 className="text-6xl font-bold text-center mb-8">
               Accreditations & Awards
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -248,7 +248,7 @@ const Page = () => {
       <section className="py-12 relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
-            <h2 className="text-4xl font-bold text-center mb-8">
+            <h2 className="text-6xl font-bold text-center mb-8">
               Client Testimonials
             </h2>
             <SmartCarousel

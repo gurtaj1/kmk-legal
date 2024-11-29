@@ -55,7 +55,7 @@ const ContactPage = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {/* Left column - Text content */}
             <div className="space-y-6">
-              <h1 className="text-4xl font-bold text-kmk-logoBlue">
+              <h1 className="text-6xl font-bold text-kmk-logoBlue">
                 Contact Us
               </h1>
               <div className="prose max-w-none">
