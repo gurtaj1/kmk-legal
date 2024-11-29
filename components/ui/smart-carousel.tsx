@@ -88,7 +88,7 @@ export default function SmartCarousel({
   const options: CarouselOptions = {
     align: "start",
     containScroll: "trimSnaps",
-    dragFree: true,
+    dragFree: false,
     loop: true,
     slidesToScroll: 1,
   };
