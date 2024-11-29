@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Fuse from "fuse.js";
 import { searchData, SearchItem } from "@/lib/searchData";
@@ -12,10 +12,14 @@ export default function Search() {
   const [showResults, setShowResults] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
 
-  const fuse = new Fuse(searchData, {
-    keys: ["title", "description"],
-    threshold: 0.3,
-  });
+  const fuse = useMemo(
+    () =>
+      new Fuse(searchData, {
+        keys: ["title", "description", "category", "url"],
+        threshold: 0.3,
+      }),
+    []
+  );
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -35,7 +39,14 @@ export default function Search() {
     setQuery(value);
     if (value.length > 1) {
       const searchResults = fuse.search(value);
-      setResults(searchResults.map((result) => result.item));
+      console.log("Raw search results:", searchResults.length, "items found");
+      console.log("Search results:", searchResults);
+
+      const mappedResults = searchResults.map((result) => result.item);
+      console.log("Mapped results:", mappedResults.length, "items mapped");
+      console.log("Mapped results data:", mappedResults);
+
+      setResults(mappedResults);
       setShowResults(true);
     } else {
       setResults([]);
@@ -60,18 +71,40 @@ export default function Search() {
       />
 
       {showResults && results.length > 0 && (
-        <div className="fixed bottom-[60px] sm:bottom-auto sm:absolute sm:top-full left-0 right-0 mx-auto w-[calc(100%-2rem)] sm:w-full bg-white rounded-md shadow-lg border border-gray-200 max-h-96 overflow-y-auto z-[100]">
-          {results.map((result, index) => (
-            <button
-              key={index}
-              onClick={() => handleResultClick(result.url)}
-              className="w-full text-left px-4 py-2 hover:bg-gray-100 block"
-            >
-              <div className="text-gray-900 font-medium">{result.title}</div>
-              <div className="text-gray-600 text-sm">{result.description}</div>
-              <div className="text-gray-400 text-xs">{result.category}</div>
-            </button>
-          ))}
+        <div
+          className="fixed bottom-[60px] sm:bottom-auto sm:absolute sm:top-full left-0 right-0 mx-auto w-[calc(100%-2rem)] sm:w-full bg-white rounded-md shadow-lg border border-gray-200 max-h-[80vh] sm:max-h-96 z-[100]"
+          onWheel={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            const container =
+              e.currentTarget.querySelector(".results-container");
+            if (container) {
+              container.scrollTop += e.deltaY;
+            }
+          }}
+        >
+          <div
+            className="results-container overflow-y-auto"
+            style={{ maxHeight: "calc(80vh - 40px)" }}
+          >
+            {results.map((result, index) => (
+              <button
+                key={index}
+                onClick={() => handleResultClick(result.url)}
+                className="w-full text-left px-4 py-2 hover:bg-gray-100 block overflow-hidden"
+              >
+                <div className="text-gray-900 font-medium truncate">
+                  {result.title}
+                </div>
+                <div className="text-gray-600 text-sm truncate">
+                  {result.description}
+                </div>
+                <div className="text-gray-400 text-xs truncate">
+                  {result.category}
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
       )}
     </div>
