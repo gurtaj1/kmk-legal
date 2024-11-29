@@ -29,7 +29,7 @@ const ThreeStepGrid = ({ title, features }: ThreeStepGridProps) => {
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              className="rounded-xl bg-white border border-kmk-logoBlue overflow-hidden h-full"
+              className="rounded-xl bg-white border border-kmk-logoBlue overflow-hidden h-full relative group"
               variants={cardVariants}
               initial="initial"
               whileHover="whileHover"
@@ -45,7 +45,7 @@ const ThreeStepGrid = ({ title, features }: ThreeStepGridProps) => {
                     className="w-full h-48 object-cover"
                   />
                 </CardHeader>
-                <CardContent className="p-6 flex-grow">
+                <CardContent className="p-6 flex-grow md:absolute md:inset-0 md:bg-white md:bg-opacity-95 md:translate-y-full md:group-hover:translate-y-0 md:transition-transform md:duration-300 md:flex md:flex-col md:justify-center">
                   <CardTitle className="text-lg font-bold mb-4 text-kmk-logoBlue">
                     {feature.title}
                   </CardTitle>
