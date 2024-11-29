@@ -73,6 +73,10 @@ const config: Config = {
         navbar: navbarHeight,
         navbarMobile: navbarMobileHeight,
       },
+      fontFamily: {
+        newsreader: ["Newsreader", "serif"],
+        castoro: ["Castoro Titling", "serif"],
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

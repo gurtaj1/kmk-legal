@@ -96,16 +96,6 @@ const Navbar = () => {
         { label: "Trusts", href: "/services/trusts" },
       ],
     },
-    resources: {
-      title: "Resources",
-      headerText: "Free Legal Resources:",
-      items: [
-        { label: "Factsheets", href: "/resources/factsheets" },
-        { label: "Publications", href: "/resources/publications" },
-        { label: "Case Law Updates", href: "/resources/case-law" },
-        { label: "News", href: "/resources/news" },
-      ],
-    },
     fees: {
       title: "Our Fees",
       items: [
@@ -116,7 +106,7 @@ const Navbar = () => {
   };
 
   const firstRowMenus = ["about", "services"];
-  const secondRowMenus = ["resources", "fees"];
+  const secondRowMenus = ["fees"];
 
   // Add useEffect to handle body scrolling
   useEffect(() => {
@@ -194,6 +184,13 @@ const Navbar = () => {
                   </div>
                 ))}
                 <div className="space-y-2">
+                  <Link
+                    href="/resources"
+                    className="hover:text-kmk-blueberry block font-semibold text-kmk-blueberry"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Resources
+                  </Link>
                   <Link
                     href="/contact"
                     className="hover:text-kmk-blueberry block"
@@ -358,6 +355,12 @@ const Navbar = () => {
                     </AnimatePresence>
                   </div>
                 ))}
+                <Link
+                  href="/resources"
+                  className="py-1 hover:text-kmk-blueberry block"
+                >
+                  Resources
+                </Link>
                 <Link
                   href="/contact"
                   className="py-1 hover:text-kmk-blueberry block"

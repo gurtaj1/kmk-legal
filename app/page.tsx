@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { Formik, Form, Field, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import emailjs from "@emailjs/browser";
@@ -17,11 +16,12 @@ import LogoColor from "@/components/svg/logo-color";
 import SmartCarousel from "@/components/ui/smart-carousel";
 import PageLoadTransitionWrapper from "@/components/ui/page-load-transition-wrapper";
 
-import { cardVariants, buttonVariants } from "@/app/globals/framer-variants";
+import { buttonVariants } from "@/app/globals/framer-variants";
 
 import ScrollMotionWrapper from "@/components/ui/scroll-motion-wrapper";
 import { EMAILJS_CONFIG } from "@/lib/emailjs-config";
 import { showToast } from "@/lib/toast-utils";
+import ServiceCard from "@/components/ui/service-card";
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -144,7 +144,9 @@ const Page = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div className="flex items-center justify-start align-middle">
               <LogoColor className="w-60 h-30 pt-3" mFill="#fff" />
-              <h1 className="text-8xl font-bold mb-2 text-white">KMK LEGAL</h1>
+              <h1 className="text-8xl font-bold mb-2 text-white font-castoro">
+                KMK LEGAL
+              </h1>
             </div>
             <p className="text-xl text-white/80 mb-8">
               Providing expert legal services for over 25 years
@@ -207,50 +209,13 @@ const Page = () => {
               </h2>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {serviceLinks.map((service) => (
-                  <Link
+                  <ServiceCard
                     key={service.href}
                     href={service.href}
-                    className="h-full"
-                  >
-                    <motion.div
-                      className="rounded-xl h-full"
-                      variants={cardVariants}
-                      initial="initial"
-                      whileHover="whileHover"
-                      whileTap="whileTap"
-                    >
-                      <Card className="h-full bg-muted/80 hover:bg-kmk-blueberry/20 group border-2 hover:border-white">
-                        <CardContent className="p-6 flex flex-col h-full">
-                          <h3 className="text-xl font-semibold mb-2 text-kmk-logoBlue">
-                            {service.title}
-                          </h3>
-                          <motion.div
-                            initial={{ scaleX: 0, originX: 0 }}
-                            whileInView={{
-                              scaleX: 1,
-                              transition: {
-                                duration: 0.7,
-                                ease: "easeOut",
-                                delay: 0.2,
-                              },
-                            }}
-                            viewport={{ once: false }}
-                            className="w-full h-0.5 bg-kmk-forestGreen group-hover:bg-kmk-blueberry origin-left mb-4"
-                          />
-                          <div className="rounded-xl overflow-hidden h-48 mb-4 group-hover:border-2 group-hover:border-white">
-                            <img
-                              src={service.image}
-                              alt={service.title}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
-                            />
-                          </div>
-                          <p className="text-muted-foreground text-black group-hover:text-white">
-                            {service.description}
-                          </p>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                  </Link>
+                    title={service.title}
+                    image={service.image}
+                    description={service.description}
+                  />
                 ))}
               </div>
             </ScrollMotionWrapper>
