@@ -167,7 +167,7 @@ const ContactPage = () => {
             }}
           />
           <div className="container mx-auto px-4 relative">
-            <h2 className="text-3xl font-bold text-kmk-logoBlue mb-8 text-center">
+            <h2 className="text-6xl font-bold text-kmk-logoBlue mb-8 text-center">
               Get in touch with us
             </h2>
             <Formik

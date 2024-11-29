@@ -10,18 +10,16 @@ import { buttonVariants } from "@/app/globals/framer-variants";
 const ResourcesPage = () => {
   return (
     <PageLoadTransitionWrapper>
-      <div className="min-h-screen flex flex-col bg-white text-[#333333] bg-gradient-to-br from-kmk-blueberry/10 to-kmk-blueberry/30">
+      <div className="min-h-screen flex flex-col bg-white text-[#333333]">
         {/* Hero Image Section */}
-        <section className="container mx-auto px-4 mt-8">
-          <div className="relative h-[300px] w-full rounded-lg overflow-hidden">
-            <Image
-              src="/legal-resources-hero.jpg"
-              alt="Legal Resources"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-black/40" />
-          </div>
+        <section className="relative h-[300px] w-full">
+          <Image
+            src="/resources-hero.jpg"
+            alt="Legal Resources"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-black/40" />
         </section>
 
         {/* Main Content Section */}
