@@ -184,7 +184,9 @@ const Page = () => {
                   whileTap="whileTap"
                 >
                   <a href="#contact">
-                    <Button className="w-full">Arrange a Callback</Button>
+                    <Button className="w-full bg-kmk-logoBlue text-white">
+                      Arrange a Callback
+                    </Button>
                   </a>
                 </motion.div>
                 <motion.div
