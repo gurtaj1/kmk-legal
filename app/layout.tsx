@@ -9,6 +9,7 @@ import Navbar from "@/components/ui/navigation";
 import Footer from "@/components/ui/footer";
 import InitialRenderAnimationWrapper from "@/components/ui/initial-render-animation-wrapper";
 import Loading from "@/app/loading";
+import { ToastProvider } from "@/components/ui/toast-provider";
 
 import "./globals.css";
 
@@ -41,6 +42,7 @@ export default function RootLayout({
         <ReactLenis root>
           <InitialRenderAnimationWrapper>
             <Navbar />
+            <ToastProvider />
             <main className="flex-grow pt-[80px] md:pt-[100px]">
               <Suspense fallback={<Loading showText />}>
                 <AnimatePresence mode="wait">{children}</AnimatePresence>

@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Formik, Form, Field, FormikHelpers } from "formik";
 import * as Yup from "yup";
+import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -18,6 +20,8 @@ import PageLoadTransitionWrapper from "@/components/ui/page-load-transition-wrap
 import { cardVariants, buttonVariants } from "@/app/globals/framer-variants";
 
 import ScrollMotionWrapper from "@/components/ui/scroll-motion-wrapper";
+import { EMAILJS_CONFIG } from "@/lib/emailjs-config";
+import { showToast } from "@/lib/toast-utils";
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -84,14 +88,43 @@ const serviceLinks = [
 ];
 
 const Page = () => {
-  const handleSubmit = (
+  const handleSubmit = async (
     values: typeof initialValues,
     { setSubmitting, resetForm }: FormikHelpers<typeof initialValues>
   ) => {
-    setSubmitting(true);
-    console.log("Form submitted:", values);
-    resetForm();
-    setSubmitting(false);
+    const loadingToastId = toast.loading("Sending your enquiry...");
+
+    try {
+      setSubmitting(true);
+
+      const templateParams = {
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+        area: values.area,
+        message: values.message,
+        subscribe: values.subscribe ? "Yes" : "No",
+      };
+
+      await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
+        templateParams,
+        EMAILJS_CONFIG.PUBLIC_KEY
+      );
+      toast.dismiss(loadingToastId);
+
+      showToast.success("Your enquiry has been sent successfully!");
+      resetForm();
+    } catch (error) {
+      console.error("Failed to send email:", error);
+      toast.dismiss(loadingToastId);
+      showToast.error(
+        "Sorry, there was a problem sending your enquiry. Please try again later."
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
