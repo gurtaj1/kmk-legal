@@ -66,25 +66,6 @@ const expertiseProps = {
   ],
 };
 
-const servicePaths = [
-  {
-    title: "Selling your property",
-    path: "/services/conveyancing/selling",
-  },
-  {
-    title: "Service Path 2",
-    path: "/services/conveyancing/path2",
-  },
-  {
-    title: "Service Path 3",
-    path: "/services/conveyancing/path3",
-  },
-  {
-    title: "Service Path 4",
-    path: "/services/conveyancing/path4",
-  },
-];
-
 const newsData = {
   latestNews: [
     "New regulations affecting property transactions in 2024",
@@ -120,7 +101,7 @@ const ConveyancingPage = () => {
         {/* Price & Service Information Section */}
         <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
           <ServicePathsGrid
-            servicePaths={servicePaths}
+            serviceId="conveyancing"
             pricingTitle="Price & Service Information for Conveyancing"
             pricingContent={"Add your pricing content here."}
           />
