@@ -98,15 +98,9 @@ const pricingLinks = [
 
 type ServicePathsGridProps = {
   serviceId: string;
-  pricingTitle?: string;
-  pricingContent?: React.ReactNode;
 };
 
-const ServicePathsGrid = ({
-  serviceId,
-  pricingTitle,
-  pricingContent,
-}: ServicePathsGridProps) => {
+const ServicePathsGrid = ({ serviceId }: ServicePathsGridProps) => {
   return (
     <section
       className="py-16 scroll-mt-navbarMobile md:scroll-mt-navbar relative overflow-hidden"
@@ -174,49 +168,47 @@ const ServicePathsGrid = ({
             })}
           </div>
 
-          {(pricingTitle || pricingContent) && (
-            <>
-              <div className="w-full h-px bg-gradient-to-r from-transparent via-kmk-logoBlue/30 to-transparent my-8" />
-              <div className="mt-8">
-                {pricingLinks.map((link) => {
-                  if (link.serviceId === serviceId) {
-                    return (
-                      <Link href={link.href} key={link.serviceId}>
-                        <motion.div
-                          className="relative"
-                          variants={buttonVariants}
-                          initial="initial"
-                          whileHover="whileHover"
-                          whileTap="whileTap"
-                        >
-                          <div className="border-2 border-kmk-logoBlue p-6 rounded-lg bg-white hover:bg-kmk-logoBlue group transition-all duration-300">
-                            <div className="flex items-center gap-4">
-                              <div className="relative w-16 h-16 rounded-lg overflow-hidden">
-                                <img
-                                  src={link.image}
-                                  alt=""
-                                  className="object-cover w-full h-full"
-                                />
-                              </div>
-                              <div>
-                                <h3 className="font-semibold text-kmk-logoBlue group-hover:text-white transition-colors">
-                                  {link.title}
-                                </h3>
-                                <p className="text-sm text-gray-600 group-hover:text-white/90 transition-colors">
-                                  {link.description}
-                                </p>
-                              </div>
+          <>
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-kmk-logoBlue/30 to-transparent my-8" />
+            <div className="mt-8">
+              {pricingLinks.map((link) => {
+                if (link.serviceId === serviceId) {
+                  return (
+                    <Link href={link.href} key={link.serviceId}>
+                      <motion.div
+                        className="relative"
+                        variants={buttonVariants}
+                        initial="initial"
+                        whileHover="whileHover"
+                        whileTap="whileTap"
+                      >
+                        <div className="border-2 border-kmk-logoBlue p-6 rounded-lg bg-white hover:bg-kmk-logoBlue group transition-all duration-300">
+                          <div className="flex items-center gap-4">
+                            <div className="relative w-16 h-16 rounded-lg overflow-hidden">
+                              <img
+                                src={link.image}
+                                alt=""
+                                className="object-cover w-full h-full"
+                              />
+                            </div>
+                            <div>
+                              <h3 className="font-semibold text-kmk-logoBlue group-hover:text-white transition-colors">
+                                {link.title}
+                              </h3>
+                              <p className="text-sm text-gray-600 group-hover:text-white/90 transition-colors">
+                                {link.description}
+                              </p>
                             </div>
                           </div>
-                        </motion.div>
-                      </Link>
-                    );
-                  }
-                  return null;
-                })}
-              </div>
-            </>
-          )}
+                        </div>
+                      </motion.div>
+                    </Link>
+                  );
+                }
+                return null;
+              })}
+            </div>
+          </>
         </div>
       </div>
     </section>

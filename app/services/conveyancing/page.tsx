@@ -100,11 +100,7 @@ const ConveyancingPage = () => {
 
         {/* Price & Service Information Section */}
         <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
-          <ServicePathsGrid
-            serviceId="conveyancing"
-            pricingTitle="Price & Service Information for Conveyancing"
-            pricingContent={"Add your pricing content here."}
-          />
+          <ServicePathsGrid serviceId="conveyancing" />
         </ScrollMotionWrapper>
 
         {/* Get in Touch Section */}
