@@ -2,6 +2,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { buttonVariants } from "@/app/globals/framer-variants";
+import { useScrollToSection } from "@/app/globals/hooks/use-scroll-to-section";
+import Link from "next/link";
 
 type ServiceOverviewProps = {
   title: string;
@@ -9,6 +11,7 @@ type ServiceOverviewProps = {
   bulletPoints: string[];
   imageSrc: string;
   imageAlt: string;
+  currentPath: string;
 };
 
 const ServiceOverview = ({
@@ -17,7 +20,9 @@ const ServiceOverview = ({
   bulletPoints,
   imageSrc,
   imageAlt,
+  currentPath,
 }: ServiceOverviewProps) => {
+  const scrollToSection = useScrollToSection();
   const [isImageVisible, setIsImageVisible] = useState(false);
   const [isLineVisible, setIsLineVisible] = useState(false);
 
@@ -64,47 +69,86 @@ const ServiceOverview = ({
 
             {/* Navigation thumbnails */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 mt-8">
-              <motion.a
-                href="#expertise"
-                className="w-full border border-gray-300 text-center py-2 px-4 bg-kmk-blueberry rounded bg-kmk-blueberry text-white hover:bg-kmk-emeraldGreen/80 hover:text-black"
+              <motion.div
+                className="w-full border border-gray-300 rounded bg-kmk-blueberry text-white hover:bg-kmk-emeraldGreen/80 hover:text-black"
                 variants={buttonVariants}
                 initial="initial"
                 whileHover="whileHover"
                 whileTap="whileTap"
               >
-                Our Expertise
-              </motion.a>
-              <motion.a
-                href="#how-we-can-help"
-                text-6xl
-                className="w-full border border-gray-300 text-center py-2 px-4 rounded bg-kmk-blueberry text-white hover:bg-kmk-emeraldGreen/80 hover:text-black"
+                <Link
+                  href="#expertise"
+                  onClick={(e) =>
+                    scrollToSection({
+                      sectionId: "expertise",
+                      targetPath: currentPath,
+                    })(e)
+                  }
+                  className="block w-full h-full py-2 px-4 text-center"
+                >
+                  Our Expertise
+                </Link>
+              </motion.div>
+              <motion.div
+                className="w-full border border-gray-300 rounded bg-kmk-blueberry text-white hover:bg-kmk-emeraldGreen/80 hover:text-black"
                 variants={buttonVariants}
                 initial="initial"
                 whileHover="whileHover"
                 whileTap="whileTap"
               >
-                How we can Help
-              </motion.a>
-              <motion.a
-                href="#get-in-touch"
-                className="w-full border border-gray-300 text-center py-2 px-4 rounded bg-kmk-blueberry text-white hover:bg-kmk-emeraldGreen/80 hover:text-black"
+                <Link
+                  href="#how-we-can-help"
+                  onClick={(e) =>
+                    scrollToSection({
+                      sectionId: "how-we-can-help",
+                      targetPath: currentPath,
+                    })(e)
+                  }
+                  className="block w-full h-full py-2 px-4 text-center"
+                >
+                  How we can Help
+                </Link>
+              </motion.div>
+              <motion.div
+                className="w-full border border-gray-300 rounded bg-kmk-blueberry text-white hover:bg-kmk-emeraldGreen/80 hover:text-black"
                 variants={buttonVariants}
                 initial="initial"
                 whileHover="whileHover"
                 whileTap="whileTap"
               >
-                Get in Touch
-              </motion.a>
-              <motion.a
-                href="#latest-news"
-                className="w-full border border-gray-300 text-center py-2 px-4 rounded bg-kmk-blueberry text-white hover:bg-kmk-emeraldGreen/80 hover:text-black"
+                <Link
+                  href="#get-in-touch"
+                  onClick={(e) =>
+                    scrollToSection({
+                      sectionId: "get-in-touch",
+                      targetPath: currentPath,
+                    })(e)
+                  }
+                  className="block w-full h-full py-2 px-4 text-center"
+                >
+                  Get in Touch
+                </Link>
+              </motion.div>
+              <motion.div
+                className="w-full border border-gray-300 rounded bg-kmk-blueberry text-white hover:bg-kmk-emeraldGreen/80 hover:text-black"
                 variants={buttonVariants}
                 initial="initial"
                 whileHover="whileHover"
                 whileTap="whileTap"
               >
-                Latest News
-              </motion.a>
+                <Link
+                  href="#latest-news"
+                  onClick={(e) =>
+                    scrollToSection({
+                      sectionId: "latest-news",
+                      targetPath: currentPath,
+                    })(e)
+                  }
+                  className="block w-full h-full py-2 px-4 text-center"
+                >
+                  Latest News
+                </Link>
+              </motion.div>
             </div>
           </div>
 

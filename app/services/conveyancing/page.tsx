@@ -7,6 +7,7 @@ import ServicePathsGrid from "@/components/ui/service-paths-grid";
 import GetInTouch from "@/components/ui/get-in-touch";
 import ServiceNews from "@/components/ui/service-news";
 import ScrollMotionWrapper from "@/components/ui/scroll-motion-wrapper";
+import PageLoadTransitionWrapper from "@/components/ui/page-load-transition-wrapper";
 
 const testimonials = [
   {
@@ -39,6 +40,7 @@ const serviceOverviewProps = {
   ],
   imageSrc: "/residential-conveyancing.jpg",
   imageAlt: "Conveyancing Services",
+  currentPath: "/services/conveyancing",
 };
 
 const expertiseProps = {
@@ -103,41 +105,43 @@ const newsData = {
 
 const ConveyancingPage = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-kmk-blueberry/20 text-[#333333]">
-      {/* Hero Section */}
-      <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
-        <ServiceOverview {...serviceOverviewProps} />
-      </ScrollMotionWrapper>
+    <PageLoadTransitionWrapper>
+      <div className="min-h-screen flex flex-col bg-kmk-blueberry/20 text-[#333333]">
+        {/* Hero Section */}
+        <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
+          <ServiceOverview {...serviceOverviewProps} />
+        </ScrollMotionWrapper>
 
-      {/* Expertise and Team Section */}
-      <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
-        <ExpertiseAndTeamSection {...expertiseProps} />
-      </ScrollMotionWrapper>
+        {/* Expertise and Team Section */}
+        <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
+          <ExpertiseAndTeamSection {...expertiseProps} />
+        </ScrollMotionWrapper>
 
-      {/* Price & Service Information Section */}
-      <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
-        <ServicePathsGrid
-          servicePaths={servicePaths}
-          pricingTitle="Price & Service Information for Conveyancing"
-          pricingContent={"Add your pricing content here."}
-        />
-      </ScrollMotionWrapper>
+        {/* Price & Service Information Section */}
+        <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
+          <ServicePathsGrid
+            servicePaths={servicePaths}
+            pricingTitle="Price & Service Information for Conveyancing"
+            pricingContent={"Add your pricing content here."}
+          />
+        </ScrollMotionWrapper>
 
-      {/* Get in Touch Section */}
-      <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
-        <GetInTouch />
-      </ScrollMotionWrapper>
+        {/* Get in Touch Section */}
+        <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
+          <GetInTouch />
+        </ScrollMotionWrapper>
 
-      {/* Sector Specific News */}
-      <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
-        <ServiceNews
-          title="Conveyancing News"
-          latestNews={newsData.latestNews}
-          upcomingEvents={newsData.upcomingEvents}
-          additionalInformation={newsData.additionalInformation}
-        />
-      </ScrollMotionWrapper>
-    </div>
+        {/* Sector Specific News */}
+        <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
+          <ServiceNews
+            title="Conveyancing News"
+            latestNews={newsData.latestNews}
+            upcomingEvents={newsData.upcomingEvents}
+            additionalInformation={newsData.additionalInformation}
+          />
+        </ScrollMotionWrapper>
+      </div>
+    </PageLoadTransitionWrapper>
   );
 };
 

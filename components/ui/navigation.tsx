@@ -4,6 +4,8 @@ import { Menu, ChevronDown, Phone, Mail, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
+import { useScrollToSection } from "@/app/globals/hooks/use-scroll-to-section";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import LogoWithTextColor from "@/components/svg/logo-with-text-color";
@@ -14,6 +16,7 @@ import { buttonVariants } from "@/app/globals/framer-variants";
 type LinkItem = {
   label: string;
   href: string;
+  onClick?: (e: React.MouseEvent) => void;
 };
 
 type MenuItem = {
@@ -28,6 +31,7 @@ type MenuItems = {
 };
 
 const Navbar = () => {
+  const scrollToSection = useScrollToSection();
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -36,11 +40,46 @@ const Navbar = () => {
       title: "About",
       titleLink: "/about",
       items: [
-        { label: "Meet our Team", href: "/about#meet-our-team" },
-        { label: "Our Ethos", href: "/about#ethos" },
-        { label: "Commitment to Excellence", href: "/about#excellence" },
-        { label: "Leave us a Review", href: "/about#review" },
-        { label: "Complaints Procedure", href: "/about#complaints" },
+        {
+          label: "Meet our Team",
+          href: "/about#meet-our-team",
+          onClick: scrollToSection({
+            sectionId: "meet-our-team",
+            targetPath: "/about",
+          }),
+        },
+        {
+          label: "Our Ethos",
+          href: "/about#ethos",
+          onClick: scrollToSection({
+            sectionId: "ethos",
+            targetPath: "/about",
+          }),
+        },
+        {
+          label: "Commitment to Excellence",
+          href: "/about#excellence",
+          onClick: scrollToSection({
+            sectionId: "excellence",
+            targetPath: "/about",
+          }),
+        },
+        {
+          label: "Leave us a Review",
+          href: "/about#review",
+          onClick: scrollToSection({
+            sectionId: "review",
+            targetPath: "/about",
+          }),
+        },
+        {
+          label: "Complaints Procedure",
+          href: "/about#complaints",
+          onClick: scrollToSection({
+            sectionId: "complaints",
+            targetPath: "/about",
+          }),
+        },
       ],
     },
     services: {
@@ -141,7 +180,12 @@ const Navbar = () => {
                           key={item.href}
                           href={item.href}
                           className="hover:text-kmk-blueberry"
-                          onClick={() => setIsMobileMenuOpen(false)}
+                          onClick={(e) => {
+                            if (item.onClick) {
+                              item.onClick(e);
+                            }
+                            setIsMobileMenuOpen(false);
+                          }}
                         >
                           {item.label}
                         </Link>
@@ -249,6 +293,7 @@ const Navbar = () => {
                             >
                               <Link
                                 href={item.href}
+                                onClick={item.onClick}
                                 className="block w-full px-4 py-2 hover:bg-kmk-emeraldGreen hover:text-white"
                               >
                                 {item.label}

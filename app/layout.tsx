@@ -1,10 +1,15 @@
 import { ReactLenis } from "lenis/dist/lenis-react";
+import { Suspense } from "react";
+import { AnimatePresence } from "framer-motion";
 
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 
 import Navbar from "@/components/ui/navigation";
 import Footer from "@/components/ui/footer";
+import InitialRenderAnimationWrapper from "@/components/ui/initial-render-animation-wrapper";
+import Loading from "@/app/loading";
+
 import "./globals.css";
 
 const geistSans = localFont({
@@ -34,9 +39,15 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReactLenis root>
-          <Navbar />
-          <main className="flex-grow pt-[80px] md:pt-[100px]">{children}</main>
-          <Footer />
+          <InitialRenderAnimationWrapper>
+            <Navbar />
+            <main className="flex-grow pt-[80px] md:pt-[100px]">
+              <Suspense fallback={<Loading showText />}>
+                <AnimatePresence mode="wait">{children}</AnimatePresence>
+              </Suspense>
+            </main>
+            <Footer />
+          </InitialRenderAnimationWrapper>
         </ReactLenis>
       </body>
     </html>

@@ -39,3 +39,16 @@ export const buttonVariants = {
     },
   },
 };
+
+export const pulsingIconVariants = {
+  initial: { opacity: 0 },
+  animate: {
+    opacity: [0, 1, 0], // Pulsing effect
+    transition: {
+      duration: 2, // Total duration for one pulse
+      ease: "easeInOut",
+      repeat: Infinity, // Indefinite looping
+      repeatType: "loop" as const, // Ensures it loops continuously
+    },
+  },
+};

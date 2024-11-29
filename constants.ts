@@ -12,3 +12,5 @@ export const kmkColors = {
 
 export const navbarHeight = "100px";
 export const navbarMobileHeight = "80px";
+export const navbarHeightNumber = 100;
+export const navbarMobileHeightNumber = 80;
