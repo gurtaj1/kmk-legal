@@ -142,10 +142,10 @@ const Page = () => {
           <div className="absolute inset-0 bg-black/10" />
 
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div className="flex items-center justify-start align-middle">
-              <LogoColor className="w-60 h-30 pt-3" mFill="#fff" />
-              <h1 className="text-8xl font-bold mb-2 text-white font-castoro">
-                KMK LEGAL
+            <div className="flex items-center justify-start align-middle space-x-0">
+              <LogoColor className="w-60 h-30 pt-3" mFill="#fff" kFill="#fff" />
+              <h1 className="text-8xl font-bold mb-2 text-white font-castoro -translate-x-8">
+                LEGAL
               </h1>
             </div>
             <p className="text-xl text-white/80 mb-8">
