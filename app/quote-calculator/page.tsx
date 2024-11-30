@@ -40,7 +40,12 @@ const validationSchema = Yup.object()
 
     // Step 2
     name: Yup.string().required("Name is required"),
-    email: Yup.string().email("Invalid email").required("Email is required"),
+    email: Yup.string()
+      .required("Email is required")
+      .matches(
+        /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+        "Please enter a valid email address"
+      ),
     phone: Yup.string()
       .required("Phone number is required")
       .matches(

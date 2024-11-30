@@ -32,7 +32,10 @@ const validationSchema = Yup.object({
     ),
   email: Yup.string()
     .required("Email is required")
-    .email("Invalid email address"),
+    .matches(
+      /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+      "Please enter a valid email address"
+    ),
   enquiry: Yup.string()
     .required("Please enter your enquiry")
     .min(10, "Please provide more detail"),
