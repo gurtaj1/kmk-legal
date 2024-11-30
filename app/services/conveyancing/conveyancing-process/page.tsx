@@ -145,8 +145,20 @@ const ConveyancingProcessPage = () => {
                               ? "left-2 sm:left-2 md:left-auto md:right-1"
                               : "left-2 md:left-1"
                           } top-1/2 -translate-y-1/2 h-14 md:h-[calc(105%-16px)] aspect-square bg-white text-kmk-logoBlue rounded-full flex items-center justify-center font-bold text-xl border-2 border-kmk-logoBlue z-10 group-hover:bg-kmk-logoBlue group-hover:text-white transition-all duration-300`}
+                          style={{
+                            boxShadow: "inset 0 2px 4px rgba(0,0,0,0.2)",
+                          }}
                         >
-                          {step.number}
+                          <div
+                            className="h-8 md:h-[calc(60%)] aspect-square bg-white rounded-full flex items-center justify-center transition-all duration-300"
+                            style={{
+                              boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+                            }}
+                          >
+                            <span className="text-kmk-logoBlue group-hover:text-kmk-logoBlue transition-all duration-300">
+                              {step.number}
+                            </span>
+                          </div>
                         </div>
 
                         {/* Animated Line */}
