@@ -1,7 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Formik, Form, Field, FormikHelpers } from "formik";
+import {
+  Formik,
+  Form,
+  Field,
+  FormikHelpers,
+  FieldInputProps,
+  FormikProps,
+} from "formik";
 import * as Yup from "yup";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
@@ -428,7 +435,13 @@ const Page = () => {
                               Phone Number
                             </label>
                             <Field name="phone">
-                              {({ field, form }: any) => (
+                              {({
+                                field,
+                                form,
+                              }: {
+                                field: FieldInputProps<string>;
+                                form: FormikProps<typeof initialValues>;
+                              }) => (
                                 <Input
                                   {...field}
                                   id="phone"

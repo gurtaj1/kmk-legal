@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, FieldInputProps, FormikProps } from "formik";
 import * as Yup from "yup";
 
 import Image from "next/image";
@@ -377,7 +377,13 @@ const AboutPage = () => {
                             Phone Number
                           </label>
                           <Field name="phone">
-                            {({ field, form }: any) => (
+                            {({
+                              field,
+                              form,
+                            }: {
+                              field: FieldInputProps<string>;
+                              form: FormikProps<typeof initialValues>;
+                            }) => (
                               <Input
                                 {...field}
                                 id="phone"

@@ -1,6 +1,6 @@
 "use client";
 
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, FieldInputProps, FormikProps } from "formik";
 import * as Yup from "yup";
 import emailjs from "@emailjs/browser";
 import ScrollMotionWrapper from "@/components/ui/scroll-motion-wrapper";
@@ -433,7 +433,13 @@ const ConveyancingPricingPage = () => {
                                 Phone Number
                               </label>
                               <Field name="phone">
-                                {({ field, form }: any) => (
+                                {({
+                                  field,
+                                  form,
+                                }: {
+                                  field: FieldInputProps<string>;
+                                  form: FormikProps<typeof initialValues>;
+                                }) => (
                                   <input
                                     {...field}
                                     type="tel"
