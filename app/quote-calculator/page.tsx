@@ -8,94 +8,150 @@ import PageLoadTransitionWrapper from "@/components/ui/page-load-transition-wrap
 import { EMAILJS_CONFIG } from "@/lib/emailjs-config";
 import { showToast } from "@/lib/toast-utils";
 import { toast } from "sonner";
+import { FormikHelpers } from "formik";
 
-const validationSchema = Yup.object().shape({
-  transactionType: Yup.string().required("Please select a transaction type"),
-  currentPropertyValue: Yup.number()
-    .min(1, "Property value must be greater than 0")
-    .required("Property value is required"),
-  currentPropertyType: Yup.string().required("Please select a property type"),
-  leaseholdManagementPackCost: Yup.number().when("currentPropertyType", {
-    is: "leasehold",
-    then: () => Yup.number().required("Management pack cost is required"),
-    otherwise: () => Yup.number().nullable(),
-  }),
-  newPropertyValue: Yup.number()
-    .min(1, "Property value must be greater than 0")
-    .required("Property value is required"),
-  newPropertyType: Yup.string().required("Please select a property type"),
-  services: Yup.array().min(1, "Please select at least one service"),
-  email: Yup.string().email("Invalid email").required("Email is required"),
-  name: Yup.string().required("Name is required"),
-  phone: Yup.string().required("Phone number is required"),
-});
+const validationSchema = Yup.object()
+  .shape({
+    // Step 1
+    quoteType: Yup.string().required("Please select a quote type"),
+    purchaseType: Yup.string().when("quoteType", {
+      is: "purchase",
+      then: () => Yup.string().required("Please select a purchase type"),
+    }),
+
+    // Step 2
+    name: Yup.string().required("Name is required"),
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    phone: Yup.string().required("Phone number is required"),
+    numberOfBuyers: Yup.number().when("quoteType", {
+      is: (val: string) => ["purchase", "transfer-of-equity"].includes(val),
+      then: () => Yup.number().min(1).required("Number of buyers is required"),
+    }),
+
+    // Step 3
+    address: Yup.string().required("Address is required"),
+    propertyValue: Yup.number()
+      .min(1, "Property value must be greater than 0")
+      .required("Property value is required"),
+    propertyType: Yup.string().required("Please select a property type"),
+
+    // Step 4 - Purchase specific
+    isBuyingAsCompany: Yup.boolean().when("quoteType", {
+      is: "purchase",
+      then: () => Yup.boolean().required(),
+    }),
+    buyersOutsideUK: Yup.boolean().when("quoteType", {
+      is: "purchase",
+      then: () => Yup.boolean().required(),
+    }),
+    multipleProperties: Yup.boolean().when("quoteType", {
+      is: "purchase",
+      then: () => Yup.boolean().required(),
+    }),
+    previouslyOwned: Yup.boolean().when("quoteType", {
+      is: "purchase",
+      then: () => Yup.boolean().required(),
+    }),
+    mainResidence: Yup.boolean().when("quoteType", {
+      is: "purchase",
+      then: () => Yup.boolean().required(),
+    }),
+    usingMortgage: Yup.boolean().when("quoteType", {
+      is: "purchase",
+      then: () => Yup.boolean().required(),
+    }),
+    giftedDeposit: Yup.boolean().when("quoteType", {
+      is: "purchase",
+      then: () => Yup.boolean().required(),
+    }),
+
+    // Step 4 - Sale specific
+    hasCurrentMortgage: Yup.boolean().when("quoteType", {
+      is: "sale",
+      then: () => Yup.boolean().required(),
+    }),
+
+    // Step 4 - Remortgage specific
+    remortgageValue: Yup.number().when(["quoteType", "hasCurrentMortgage"], {
+      is: (quoteType: string, hasCurrentMortgage: boolean) =>
+        quoteType === "remortgage" && hasCurrentMortgage === true,
+      then: () =>
+        Yup.number()
+          .required("Remortgage value is required")
+          .min(1, "Remortgage value must be greater than 0"),
+      otherwise: () => Yup.number().notRequired(),
+    }),
+
+    // Step 4 - Transfer of Equity specific
+    transferRole: Yup.string().when("quoteType", {
+      is: "transfer-of-equity",
+      then: () =>
+        Yup.string().required("Please select your role in the transfer"),
+    }),
+    considerationValue: Yup.number().when("quoteType", {
+      is: "transfer-of-equity",
+      then: () =>
+        Yup.number()
+          .required("Consideration value is required")
+          .min(0, "Consideration value must be 0 or greater"),
+    }),
+  })
+  .defined();
 
 const initialValues = {
-  transactionType: "buying-selling",
-  currentPropertyValue: "",
-  currentPropertyType: "freehold",
-  leaseholdManagementPackCost: 300,
-  newPropertyValue: "",
-  newPropertyType: "freehold",
-  services: [],
-  email: "",
-  name: "",
-  phone: "",
-};
+  // Step 1
+  quoteType: "",
+  purchaseType: "",
 
-const getSchemeDescription = (scheme: string): string => {
-  const descriptions: Record<string, string> = {
-    new_build:
-      "New build conveyancing requires further steps and an extra legal fee.",
-    right_to_buy:
-      "Buying a home through the Right to Buy Scheme will cost extra in legal fees.",
-    shared_ownership:
-      "Buying a home through the Shared Ownership Scheme means your solicitor will charge extra in legal fees.",
-    stamp_duty_return:
-      "Even if you're below the Stamp Duty threshold, you'll need to inform HMRC about the property purchase within 14 days of completion day.",
-    transfer_of_equity:
-      "If you are adding or removing a person from the title, you'll have to pay an extra fee.",
-  };
-  return descriptions[scheme] || "";
+  // Step 2
+  name: "",
+  email: "",
+  phone: "",
+  numberOfBuyers: 1,
+
+  // Step 3
+  address: "",
+  propertyValue: "",
+  propertyType: "freehold",
+
+  // Step 4 - Purchase specific
+  isBuyingAsCompany: false,
+  buyersOutsideUK: false,
+  multipleProperties: false,
+  previouslyOwned: false,
+  mainResidence: true,
+  usingMortgage: false,
+  giftedDeposit: false,
+
+  // Step 4 - Sale specific
+  hasCurrentMortgage: false,
+
+  // Step 4 - Remortgage specific
+  remortgageValue: "",
+
+  // Transfer of Equity specific
+  transferRole: "",
+  considerationValue: "",
 };
 
 const ConveyancingPricingPage = () => {
   const handleSubmit = async (
     values: typeof initialValues,
-    {
-      setSubmitting,
-      resetForm,
-    }: { setSubmitting: (isSubmitting: boolean) => void; resetForm: () => void }
+    { setSubmitting, resetForm }: FormikHelpers<typeof initialValues>
   ) => {
     const loadingToastId = toast.loading("Calculating your quote...");
 
     try {
       setSubmitting(true);
-
-      const templateParams = {
-        currentPage: "quote calculator page",
-        transactionType: values.transactionType,
-        currentPropertyValue: values.currentPropertyValue,
-        currentPropertyType: values.currentPropertyType,
-        leaseholdManagementPackCost:
-          values.leaseholdManagementPackCost || "N/A",
-        newPropertyValue: values.newPropertyValue,
-        newPropertyType: values.newPropertyType,
-        services: values.services.join(", "),
-        email: values.email,
-        name: values.name,
-        phone: values.phone,
-      };
-
       await emailjs.send(
         EMAILJS_CONFIG.SERVICE_ID,
         EMAILJS_CONFIG.QUOTE_TEMPLATE_ID,
-        templateParams,
+        values,
         EMAILJS_CONFIG.PUBLIC_KEY
       );
 
       toast.dismiss(loadingToastId);
-      showToast.success("Your quote request has been sent successfully!");
+      showToast.success("We will contact you shortly with a quote");
       resetForm();
     } catch (error) {
       console.error("Failed to send quote request:", error);
@@ -116,13 +172,12 @@ const ConveyancingPricingPage = () => {
             <div className="bg-white rounded-lg shadow-xl overflow-hidden">
               <div className="bg-kmk-blueberry p-8 text-white text-center">
                 <h1 className="text-3xl font-bold mb-4">
-                  Conveyancing Fees Calculator
+                  Conveyancing Quote Calculator
                 </h1>
                 <p className="text-white/80">
-                  If you are buying, selling, or remortgaging a property, you
-                  will have to pay conveyancing fees. Use our conveyancing fees
-                  calculator to be provided with an estimated cost depending on
-                  your circumstances.
+                  Get an instant quote for your conveyancing needs. We&apos;ll
+                  provide you with a detailed breakdown of costs based on your
+                  specific requirements.
                 </p>
               </div>
 
@@ -131,42 +186,46 @@ const ConveyancingPricingPage = () => {
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
               >
-                {({ values, isSubmitting }) => (
+                {({
+                  values,
+                  errors,
+                  touched,
+                  isSubmitting,
+                  isValid,
+                  dirty,
+                }) => (
                   <Form className="p-8 space-y-8">
-                    {/* Transaction Type Section */}
-                    <div className="space-y-4">
-                      <h2 className="text-xl font-semibold text-gray-800 text-center">
-                        Are you buying, selling or both?
+                    {/* Step 1: Quote Type */}
+                    <div className="space-y-6">
+                      <h2 className="text-xl font-semibold text-gray-800">
+                        Step 1: What is the quote for?
                       </h2>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         {[
+                          { value: "purchase", label: "Purchase", icon: "🏠" },
+                          { value: "sale", label: "Sale", icon: "🏷️" },
                           {
-                            value: "buying-selling",
-                            label: "Buying and Selling",
-                            icon: "↔️",
+                            value: "remortgage",
+                            label: "Remortgage",
+                            icon: "💰",
                           },
                           {
-                            value: "buying",
-                            label: "Buying Only",
-                            icon: "🏠",
-                          },
-                          {
-                            value: "selling",
-                            label: "Sale Only",
-                            icon: "🏷️",
+                            value: "transfer-of-equity",
+                            label: "Transfer of Equity",
+                            icon: "📝",
                           },
                         ].map((option) => (
                           <label
                             key={option.value}
                             className={`relative flex flex-col items-center p-6 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors ${
-                              values.transactionType === option.value
+                              values.quoteType === option.value
                                 ? "border-kmk-blueberry bg-kmk-blueberry/5"
                                 : "border-gray-200"
                             }`}
                           >
                             <Field
                               type="radio"
-                              name="transactionType"
+                              name="quoteType"
                               value={option.value}
                               className="sr-only"
                             />
@@ -177,423 +236,540 @@ const ConveyancingPricingPage = () => {
                           </label>
                         ))}
                       </div>
-                    </div>
 
-                    {/* Current Property Section */}
-                    {(values.transactionType === "buying-selling" ||
-                      values.transactionType === "selling") && (
-                      <div className="space-y-6 border-t pt-6">
-                        <h2 className="text-xl font-semibold text-gray-800">
-                          Your current property
-                        </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                              How much is the property worth?
-                            </label>
-                            <Field
-                              name="currentPropertyValue"
-                              type="number"
-                              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-kmk-blueberry focus:ring-kmk-blueberry"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                              Is the property leasehold or freehold?
-                            </label>
-                            <Field
-                              as="select"
-                              name="currentPropertyType"
-                              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-kmk-blueberry focus:ring-kmk-blueberry"
-                            >
-                              <option value="freehold">Freehold</option>
-                              <option value="leasehold">Leasehold</option>
-                            </Field>
+                      {/* Purchase Type Sub-selection */}
+                      {values.quoteType === "purchase" && (
+                        <div className="mt-6 space-y-4">
+                          <h3 className="text-lg font-medium text-gray-700">
+                            Select purchase type:
+                          </h3>
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            {[
+                              { value: "standard", label: "Standard Purchase" },
+                              {
+                                value: "shared-ownership",
+                                label: "Shared Ownership",
+                              },
+                              { value: "new-build", label: "New Build" },
+                            ].map((option) => (
+                              <label
+                                key={option.value}
+                                className={`relative flex items-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors ${
+                                  values.purchaseType === option.value
+                                    ? "border-kmk-blueberry bg-kmk-blueberry/5"
+                                    : "border-gray-200"
+                                }`}
+                              >
+                                <Field
+                                  type="radio"
+                                  name="purchaseType"
+                                  value={option.value}
+                                  className="sr-only"
+                                />
+                                <span className="text-center font-medium">
+                                  {option.label}
+                                </span>
+                              </label>
+                            ))}
                           </div>
                         </div>
+                      )}
+                    </div>
 
-                        {values.currentPropertyType === "leasehold" && (
+                    {/* Step 2: Client Details */}
+                    {values.quoteType && (
+                      <div className="space-y-6 border-t pt-6">
+                        <h2 className="text-xl font-semibold text-gray-800">
+                          Step 2: Client Details
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          {/* Name Field */}
                           <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                              Leasehold management information pack cost
+                            <label
+                              htmlFor="name"
+                              className="block text-sm font-medium text-gray-700 mb-1"
+                            >
+                              Name / Company Name
                             </label>
-                            <p className="text-sm text-gray-500 mb-2">
-                              A vital pack for selling a leasehold, it provides
-                              important information on ground rent and service
-                              charges.
-                            </p>
                             <Field
-                              name="leaseholdManagementPackCost"
-                              type="number"
+                              id="name"
+                              name="name"
+                              type="text"
                               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-kmk-blueberry focus:ring-kmk-blueberry"
                             />
+                            {errors.name && touched.name && (
+                              <p className="mt-1 text-sm text-red-600">
+                                {errors.name}
+                              </p>
+                            )}
+                          </div>
+
+                          {/* Email Field */}
+                          <div>
+                            <label
+                              htmlFor="email"
+                              className="block text-sm font-medium text-gray-700 mb-1"
+                            >
+                              Email Address
+                            </label>
+                            <Field
+                              id="email"
+                              name="email"
+                              type="email"
+                              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-kmk-blueberry focus:ring-kmk-blueberry"
+                            />
+                            {errors.email && touched.email && (
+                              <p className="mt-1 text-sm text-red-600">
+                                {errors.email}
+                              </p>
+                            )}
+                          </div>
+
+                          {/* Phone Field */}
+                          <div>
+                            <label
+                              htmlFor="phone"
+                              className="block text-sm font-medium text-gray-700 mb-1"
+                            >
+                              Phone Number
+                            </label>
+                            <Field
+                              id="phone"
+                              name="phone"
+                              type="tel"
+                              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-kmk-blueberry focus:ring-kmk-blueberry"
+                            />
+                            {errors.phone && touched.phone && (
+                              <p className="mt-1 text-sm text-red-600">
+                                {errors.phone}
+                              </p>
+                            )}
+                          </div>
+
+                          {/* Number of Buyers Field - Only show for purchase or transfer of equity */}
+                          {(values.quoteType === "purchase" ||
+                            values.quoteType === "transfer-of-equity") && (
+                            <div>
+                              <label
+                                htmlFor="numberOfBuyers"
+                                className="block text-sm font-medium text-gray-700 mb-1"
+                              >
+                                Number of Buyers
+                              </label>
+                              <Field
+                                id="numberOfBuyers"
+                                name="numberOfBuyers"
+                                type="number"
+                                min="1"
+                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-kmk-blueberry focus:ring-kmk-blueberry"
+                              />
+                              {errors.numberOfBuyers &&
+                                touched.numberOfBuyers && (
+                                  <p className="mt-1 text-sm text-red-600">
+                                    {errors.numberOfBuyers}
+                                  </p>
+                                )}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Step 3: Property Details */}
+                    {values.quoteType && (
+                      <div className="space-y-6 border-t pt-6">
+                        <h2 className="text-xl font-semibold text-gray-800">
+                          Step 3: Property Details
+                        </h2>
+                        <div className="space-y-6">
+                          {/* Address Field */}
+                          <div>
+                            <label
+                              htmlFor="address"
+                              className="block text-sm font-medium text-gray-700 mb-1"
+                            >
+                              Property Address
+                            </label>
+                            <Field
+                              as="textarea"
+                              id="address"
+                              name="address"
+                              rows={3}
+                              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-kmk-blueberry focus:ring-kmk-blueberry"
+                            />
+                            {errors.address && touched.address && (
+                              <p className="mt-1 text-sm text-red-600">
+                                {errors.address}
+                              </p>
+                            )}
+                          </div>
+
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {/* Property Value Field */}
+                            <div>
+                              <label
+                                htmlFor="propertyValue"
+                                className="block text-sm font-medium text-gray-700 mb-1"
+                              >
+                                {values.quoteType === "sale"
+                                  ? "Sale Price"
+                                  : values.quoteType === "purchase"
+                                  ? "Purchase Price"
+                                  : "Property Value"}
+                              </label>
+                              <div className="relative mt-1 rounded-md shadow-sm">
+                                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                  <span className="text-gray-500 sm:text-sm">
+                                    £
+                                  </span>
+                                </div>
+                                <Field
+                                  id="propertyValue"
+                                  name="propertyValue"
+                                  type="number"
+                                  min="0"
+                                  step="1"
+                                  className="block w-full rounded-md border-gray-300 pl-7 focus:border-kmk-blueberry focus:ring-kmk-blueberry"
+                                />
+                              </div>
+                              {errors.propertyValue &&
+                                touched.propertyValue && (
+                                  <p className="mt-1 text-sm text-red-600">
+                                    {errors.propertyValue}
+                                  </p>
+                                )}
+                            </div>
+
+                            {/* Property Type Field */}
+                            <div>
+                              <label
+                                htmlFor="propertyType"
+                                className="block text-sm font-medium text-gray-700 mb-1"
+                              >
+                                Property Type
+                              </label>
+                              <div className="mt-1">
+                                <div className="space-y-2">
+                                  {[
+                                    { value: "freehold", label: "Freehold" },
+                                    { value: "leasehold", label: "Leasehold" },
+                                  ].map((option) => (
+                                    <label
+                                      key={option.value}
+                                      className={`relative flex items-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors ${
+                                        values.propertyType === option.value
+                                          ? "border-kmk-blueberry bg-kmk-blueberry/5"
+                                          : "border-gray-200"
+                                      }`}
+                                    >
+                                      <Field
+                                        type="radio"
+                                        name="propertyType"
+                                        value={option.value}
+                                        className="sr-only"
+                                      />
+                                      <span className="flex items-center">
+                                        <span className="text-sm font-medium text-gray-900">
+                                          {option.label}
+                                        </span>
+                                      </span>
+                                    </label>
+                                  ))}
+                                </div>
+                              </div>
+                              {errors.propertyType && touched.propertyType && (
+                                <p className="mt-1 text-sm text-red-600">
+                                  {errors.propertyType}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Step 4: Additional Questions */}
+                    {values.quoteType && (
+                      <div className="space-y-6 border-t pt-6">
+                        <h2 className="text-xl font-semibold text-gray-800">
+                          Step 4: Additional Questions
+                        </h2>
+
+                        {/* Purchase Questions */}
+                        {values.quoteType === "purchase" && (
+                          <div className="space-y-4">
+                            {[
+                              {
+                                name: "isBuyingAsCompany",
+                                label: "Are you buying as a company?",
+                              },
+                              {
+                                name: "buyersOutsideUK",
+                                label:
+                                  "Do any of the purchasers reside outside the UK?",
+                              },
+                              {
+                                name: "multipleProperties",
+                                label:
+                                  "Will the purchase of the property result in owning two or more properties?",
+                              },
+                              {
+                                name: "previouslyOwned",
+                                label:
+                                  "Have you ever owned or part owned another property?",
+                              },
+                              {
+                                name: "mainResidence",
+                                label:
+                                  "Will this property be your main residence?",
+                              },
+                              {
+                                name: "usingMortgage",
+                                label: "Are you buying using a mortgage?",
+                              },
+                              {
+                                name: "giftedDeposit",
+                                label: "Is any part of your deposit gifted?",
+                              },
+                            ].map((question) => (
+                              <label
+                                key={question.name}
+                                className={`relative flex items-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors ${
+                                  values[question.name as keyof typeof values]
+                                    ? "border-kmk-blueberry bg-kmk-blueberry/5"
+                                    : "border-gray-200"
+                                }`}
+                              >
+                                <Field
+                                  type="checkbox"
+                                  name={question.name}
+                                  className="h-4 w-4 text-kmk-blueberry border-gray-300 rounded focus:ring-kmk-blueberry mr-3"
+                                />
+                                <span className="text-sm font-medium text-gray-900">
+                                  {question.label}
+                                </span>
+                              </label>
+                            ))}
+                          </div>
+                        )}
+
+                        {/* Sale Questions */}
+                        {values.quoteType === "sale" && (
+                          <div className="space-y-4">
+                            <label
+                              className={`relative flex items-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors ${
+                                values.hasCurrentMortgage
+                                  ? "border-kmk-blueberry bg-kmk-blueberry/5"
+                                  : "border-gray-200"
+                              }`}
+                            >
+                              <Field
+                                type="checkbox"
+                                name="hasCurrentMortgage"
+                                className="h-4 w-4 text-kmk-blueberry border-gray-300 rounded focus:ring-kmk-blueberry mr-3"
+                              />
+                              <span className="text-sm font-medium text-gray-900">
+                                Do you have a current mortgage?
+                              </span>
+                            </label>
+                          </div>
+                        )}
+
+                        {/* Remortgage Questions */}
+                        {values.quoteType === "remortgage" && (
+                          <div className="space-y-6">
+                            {/* Current Mortgage Question */}
+                            <label
+                              className={`relative flex items-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors ${
+                                values.hasCurrentMortgage
+                                  ? "border-kmk-blueberry bg-kmk-blueberry/5"
+                                  : "border-gray-200"
+                              }`}
+                            >
+                              <Field
+                                type="checkbox"
+                                name="hasCurrentMortgage"
+                                className="h-4 w-4 text-kmk-blueberry border-gray-300 rounded focus:ring-kmk-blueberry mr-3"
+                              />
+                              <span className="text-sm font-medium text-gray-900">
+                                Do you have a current mortgage?
+                              </span>
+                            </label>
+
+                            {/* Remortgage Value */}
+                            <div>
+                              <label
+                                htmlFor="remortgageValue"
+                                className="block text-sm font-medium text-gray-700 mb-1"
+                              >
+                                How much is the remortgage value?
+                              </label>
+                              <div className="relative mt-1 rounded-md shadow-sm">
+                                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                  <span className="text-gray-500 sm:text-sm">
+                                    £
+                                  </span>
+                                </div>
+                                <Field
+                                  id="remortgageValue"
+                                  name="remortgageValue"
+                                  type="number"
+                                  min="0"
+                                  step="1"
+                                  className="block w-full rounded-md border-gray-300 pl-7 focus:border-kmk-blueberry focus:ring-kmk-blueberry"
+                                />
+                              </div>
+                              {errors.remortgageValue &&
+                                touched.remortgageValue && (
+                                  <p className="mt-1 text-sm text-red-600">
+                                    {errors.remortgageValue}
+                                  </p>
+                                )}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Transfer of Equity Questions */}
+                        {values.quoteType === "transfer-of-equity" && (
+                          <div className="space-y-6">
+                            {/* Current Mortgage Question */}
+                            <label
+                              className={`relative flex items-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors ${
+                                values.hasCurrentMortgage
+                                  ? "border-kmk-blueberry bg-kmk-blueberry/5"
+                                  : "border-gray-200"
+                              }`}
+                            >
+                              <Field
+                                type="checkbox"
+                                name="hasCurrentMortgage"
+                                className="h-4 w-4 text-kmk-blueberry border-gray-300 rounded focus:ring-kmk-blueberry mr-3"
+                              />
+                              <span className="text-sm font-medium text-gray-900">
+                                Do you have a current mortgage?
+                              </span>
+                            </label>
+
+                            {/* Transfer Role Selection */}
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Are you the transferor or transferee?
+                              </label>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {[
+                                  {
+                                    value: "transferor",
+                                    label: "Transferor (giving away share)",
+                                  },
+                                  {
+                                    value: "transferee",
+                                    label: "Transferee (receiving share)",
+                                  },
+                                ].map((option) => (
+                                  <label
+                                    key={option.value}
+                                    className={`relative flex items-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors ${
+                                      values.transferRole === option.value
+                                        ? "border-kmk-blueberry bg-kmk-blueberry/5"
+                                        : "border-gray-200"
+                                    }`}
+                                  >
+                                    <Field
+                                      type="radio"
+                                      name="transferRole"
+                                      value={option.value}
+                                      className="sr-only"
+                                    />
+                                    <span className="text-sm font-medium text-gray-900">
+                                      {option.label}
+                                    </span>
+                                  </label>
+                                ))}
+                              </div>
+                              {errors.transferRole && touched.transferRole && (
+                                <p className="mt-1 text-sm text-red-600">
+                                  {errors.transferRole}
+                                </p>
+                              )}
+                            </div>
+
+                            {/* Property Value */}
+                            <div>
+                              <label
+                                htmlFor="propertyValue"
+                                className="block text-sm font-medium text-gray-700 mb-1"
+                              >
+                                What is the property value?
+                              </label>
+                              <div className="relative mt-1 rounded-md shadow-sm">
+                                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                  <span className="text-gray-500 sm:text-sm">
+                                    £
+                                  </span>
+                                </div>
+                                <Field
+                                  id="propertyValue"
+                                  name="propertyValue"
+                                  type="number"
+                                  min="0"
+                                  step="1"
+                                  className="block w-full rounded-md border-gray-300 pl-7 focus:border-kmk-blueberry focus:ring-kmk-blueberry"
+                                />
+                              </div>
+                              {errors.propertyValue &&
+                                touched.propertyValue && (
+                                  <p className="mt-1 text-sm text-red-600">
+                                    {errors.propertyValue}
+                                  </p>
+                                )}
+                            </div>
+
+                            {/* Consideration Value */}
+                            <div>
+                              <label
+                                htmlFor="considerationValue"
+                                className="block text-sm font-medium text-gray-700 mb-1"
+                              >
+                                What is the consideration value?
+                              </label>
+                              <div className="relative mt-1 rounded-md shadow-sm">
+                                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                  <span className="text-gray-500 sm:text-sm">
+                                    £
+                                  </span>
+                                </div>
+                                <Field
+                                  id="considerationValue"
+                                  name="considerationValue"
+                                  type="number"
+                                  min="0"
+                                  step="1"
+                                  className="block w-full rounded-md border-gray-300 pl-7 focus:border-kmk-blueberry focus:ring-kmk-blueberry"
+                                />
+                              </div>
+                              {errors.considerationValue &&
+                                touched.considerationValue && (
+                                  <p className="mt-1 text-sm text-red-600">
+                                    {errors.considerationValue}
+                                  </p>
+                                )}
+                            </div>
                           </div>
                         )}
                       </div>
                     )}
 
-                    {/* New Property Section */}
-                    {(values.transactionType === "buying-selling" ||
-                      values.transactionType === "buying") && (
-                      <div className="space-y-6 border-t pt-6">
-                        <h2 className="text-xl font-semibold text-gray-800">
-                          Your new property
-                        </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                              How much is the new property worth?
-                            </label>
-                            <Field
-                              name="newPropertyValue"
-                              type="number"
-                              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-kmk-blueberry focus:ring-kmk-blueberry"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                              Is the new property leasehold or freehold?
-                            </label>
-                            <Field
-                              as="select"
-                              name="newPropertyType"
-                              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-kmk-blueberry focus:ring-kmk-blueberry"
-                            >
-                              <option value="freehold">Freehold</option>
-                              <option value="leasehold">Leasehold</option>
-                            </Field>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Services Section */}
-                    <div className="space-y-6 border-t pt-6 bg-gray-50">
-                      <div className="container mx-auto px-4">
-                        <h2 className="text-xl font-semibold text-gray-800 mb-4">
-                          What conveyancing services will you need?
-                        </h2>
-                        <p className="text-sm text-gray-600 mb-6">
-                          We have preselected services we think you will need
-                          based on your property information.
-                        </p>
-
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                          {/* Searches Column */}
-                          <div className="space-y-4">
-                            <h3 className="font-semibold text-gray-700">
-                              Searches
-                            </h3>
-                            {values.transactionType !== "selling" && (
-                              <label className="block">
-                                <Field
-                                  type="checkbox"
-                                  name="services"
-                                  value="full_searches"
-                                  className="sr-only peer"
-                                />
-                                <div className="flex items-start p-4 border rounded-lg cursor-pointer hover:bg-white transition-colors peer-checked:border-kmk-blueberry peer-checked:bg-kmk-blueberry/5">
-                                  <div className="flex-1">
-                                    <span className="block font-medium text-gray-700">
-                                      Full searches
-                                    </span>
-                                    <span className="block text-sm text-gray-500">
-                                      These are enquiries carried out by your
-                                      solicitor and are vital in finding out
-                                      more on the property.
-                                    </span>
-                                  </div>
-                                </div>
-                              </label>
-                            )}
-
-                            {values.transactionType !== "selling" && (
-                              <label className="block">
-                                <Field
-                                  type="checkbox"
-                                  name="services"
-                                  value="bankruptcy_search"
-                                  className="sr-only peer"
-                                />
-                                <div className="flex items-start p-4 border rounded-lg cursor-pointer hover:bg-white transition-colors peer-checked:border-kmk-blueberry peer-checked:bg-kmk-blueberry/5">
-                                  <div className="flex-1">
-                                    <span className="block font-medium text-gray-700">
-                                      Bankruptcy search
-                                    </span>
-                                    <span className="block text-sm text-gray-500">
-                                      A common search to prove you are not
-                                      bankrupt. Your solicitor will order this
-                                      and provide your mortgage lender with the
-                                      results.
-                                    </span>
-                                  </div>
-                                </div>
-                              </label>
-                            )}
-
-                            {values.transactionType === "selling" && (
-                              <label className="block">
-                                <Field
-                                  type="checkbox"
-                                  name="services"
-                                  value="land_registry_title_deeds"
-                                  className="sr-only peer"
-                                />
-                                <div className="flex items-start p-4 border rounded-lg cursor-pointer hover:bg-white transition-colors peer-checked:border-kmk-blueberry peer-checked:bg-kmk-blueberry/5">
-                                  <div className="flex-1">
-                                    <span className="block font-medium text-gray-700">
-                                      Land Registry title deeds copy
-                                    </span>
-                                    <span className="block text-sm text-gray-500">
-                                      Your solicitor will need to get these to
-                                      prove you own the property.
-                                    </span>
-                                  </div>
-                                </div>
-                              </label>
-                            )}
-
-                            <label className="block">
-                              <Field
-                                type="checkbox"
-                                name="services"
-                                value="anti_money_laundering_checks"
-                                className="sr-only peer"
-                              />
-                              <div className="flex items-start p-4 border rounded-lg cursor-pointer hover:bg-white transition-colors peer-checked:border-kmk-blueberry peer-checked:bg-kmk-blueberry/5">
-                                <div className="flex-1">
-                                  <span className="block font-medium text-gray-700">
-                                    Anti-money laundering checks
-                                  </span>
-                                  <span className="block text-sm text-gray-500">
-                                    Another common search. This will show your
-                                    solicitor where your deposit came from.
-                                  </span>
-                                </div>
-                              </div>
-                            </label>
-                          </div>
-
-                          {/* Fees Column */}
-                          <div className="space-y-4">
-                            <h3 className="font-semibold text-gray-700">
-                              Fees
-                            </h3>
-                            <label className="block">
-                              <Field
-                                type="checkbox"
-                                name="services"
-                                value="electronic_money_transfer"
-                                className="sr-only peer"
-                              />
-                              <div className="flex items-start p-4 border rounded-lg cursor-pointer hover:bg-white transition-colors peer-checked:border-kmk-blueberry peer-checked:bg-kmk-blueberry/5">
-                                <div className="flex-1">
-                                  <span className="block font-medium text-gray-700">
-                                    Electronic money transfer
-                                  </span>
-                                  <span className="block text-sm text-gray-500">
-                                    A bank transfer fee will be charged by the
-                                    bank to transfer sums of money over £60,000.
-                                  </span>
-                                </div>
-                              </div>
-                            </label>
-
-                            {values.transactionType !== "selling" && (
-                              <label className="block">
-                                <Field
-                                  type="checkbox"
-                                  name="services"
-                                  value="land_registry_registration_services_fees"
-                                  className="sr-only peer"
-                                />
-                                <div className="flex items-start p-4 border rounded-lg cursor-pointer hover:bg-white transition-colors peer-checked:border-kmk-blueberry peer-checked:bg-kmk-blueberry/5">
-                                  <div className="flex-1">
-                                    <span className="block font-medium text-gray-700">
-                                      Land Registry registration services fees
-                                    </span>
-                                    <span className="block text-sm text-gray-500">
-                                      If the property isn&apos;t registered with
-                                      the Land Registry, you will have to pay a
-                                      fee to register it.
-                                    </span>
-                                  </div>
-                                </div>
-                              </label>
-                            )}
-
-                            {/* Leasehold-specific fees for buying */}
-                            {values.transactionType !== "selling" &&
-                              values.newPropertyType === "leasehold" && (
-                                <>
-                                  <label className="block">
-                                    <Field
-                                      type="checkbox"
-                                      name="services"
-                                      value="notice_of_charge_fee"
-                                      className="sr-only peer"
-                                    />
-                                    <div className="flex items-start p-4 border rounded-lg cursor-pointer hover:bg-white transition-colors peer-checked:border-kmk-blueberry peer-checked:bg-kmk-blueberry/5">
-                                      <div className="flex-1">
-                                        <span className="block font-medium text-gray-700">
-                                          Notice of charge fee
-                                        </span>
-                                        <span className="block text-sm text-gray-500">
-                                          If you are using a mortgage to buy the
-                                          leasehold, you&apos;ll need to notify
-                                          the landlord of a change in lender.
-                                        </span>
-                                      </div>
-                                    </div>
-                                  </label>
-
-                                  <label className="block">
-                                    <Field
-                                      type="checkbox"
-                                      name="services"
-                                      value="notice_of_transfer_fee"
-                                      className="sr-only peer"
-                                    />
-                                    <div className="flex items-start p-4 border rounded-lg cursor-pointer hover:bg-white transition-colors peer-checked:border-kmk-blueberry peer-checked:bg-kmk-blueberry/5">
-                                      <div className="flex-1">
-                                        <span className="block font-medium text-gray-700">
-                                          Notice of transfer fee
-                                        </span>
-                                        <span className="block text-sm text-gray-500">
-                                          A notice must be sent to the landlord
-                                          of the leasehold property informing
-                                          them of the change of ownership.
-                                        </span>
-                                      </div>
-                                    </div>
-                                  </label>
-                                </>
-                              )}
-
-                            {/* Leasehold-specific fees for selling */}
-                            {(values.transactionType === "selling" ||
-                              values.transactionType === "buying-selling") &&
-                              values.currentPropertyType === "leasehold" && (
-                                <label className="block">
-                                  <Field
-                                    type="checkbox"
-                                    name="services"
-                                    value="leasehold_property_supplement_fee"
-                                    className="sr-only peer"
-                                  />
-                                  <div className="flex items-start p-4 border rounded-lg cursor-pointer hover:bg-white transition-colors peer-checked:border-kmk-blueberry peer-checked:bg-kmk-blueberry/5">
-                                    <div className="flex-1">
-                                      <span className="block font-medium text-gray-700">
-                                        Leasehold property supplement fee
-                                      </span>
-                                      <span className="block text-sm text-gray-500">
-                                        If you&apos;re selling a leasehold, your
-                                        solicitor will charge extra as this
-                                        involves more work.
-                                      </span>
-                                    </div>
-                                  </div>
-                                </label>
-                              )}
-
-                            <label className="block">
-                              <Field
-                                type="checkbox"
-                                name="services"
-                                value="mortgaged_property_supplement_fee"
-                                className="sr-only peer"
-                              />
-                              <div className="flex items-start p-4 border rounded-lg cursor-pointer hover:bg-white transition-colors peer-checked:border-kmk-blueberry peer-checked:bg-kmk-blueberry/5">
-                                <div className="flex-1">
-                                  <span className="block font-medium text-gray-700">
-                                    Mortgaged property supplement fee
-                                  </span>
-                                  <span className="block text-sm text-gray-500">
-                                    If you&apos;re buying or selling with a
-                                    mortgage, your solicitor will charge a fee
-                                    for this to cover the extra work involved.
-                                  </span>
-                                </div>
-                              </div>
-                            </label>
-                          </div>
-
-                          {/* Schemes Column */}
-                          {values.transactionType !== "selling" && (
-                            <div className="space-y-4">
-                              <h3 className="font-semibold text-gray-700">
-                                Schemes
-                              </h3>
-                              <label className="block">
-                                <Field
-                                  type="checkbox"
-                                  name="services"
-                                  value="help_to_buy_isa"
-                                  className="sr-only peer"
-                                />
-                                <div className="flex items-start p-4 border rounded-lg cursor-pointer hover:bg-white transition-colors peer-checked:border-kmk-blueberry peer-checked:bg-kmk-blueberry/5">
-                                  <div className="flex-1">
-                                    <span className="block font-medium text-gray-700">
-                                      Help to Buy ISA
-                                    </span>
-                                    <span className="block text-sm text-gray-500">
-                                      Your solicitor will have extra work if
-                                      you&apos;re buying a home using the Help
-                                      to Buy ISA, therefore charging a
-                                      supplement fee.
-                                    </span>
-                                  </div>
-                                </div>
-                              </label>
-
-                              {/* Add other scheme options */}
-                              {[
-                                "new_build",
-                                "right_to_buy",
-                                "shared_ownership",
-                                "stamp_duty_return",
-                                "transfer_of_equity",
-                              ].map((scheme) => (
-                                <label key={scheme} className="block">
-                                  <Field
-                                    type="checkbox"
-                                    name="services"
-                                    value={scheme}
-                                    className="sr-only peer"
-                                  />
-                                  <div className="flex items-start p-4 border rounded-lg cursor-pointer hover:bg-white transition-colors peer-checked:border-kmk-blueberry peer-checked:bg-kmk-blueberry/5">
-                                    <div className="flex-1">
-                                      <span className="block font-medium text-gray-700">
-                                        {scheme
-                                          .split("_")
-                                          .map(
-                                            (word) =>
-                                              word.charAt(0).toUpperCase() +
-                                              word.slice(1)
-                                          )
-                                          .join(" ")}
-                                      </span>
-                                      <span className="block text-sm text-gray-500">
-                                        {getSchemeDescription(scheme)}
-                                      </span>
-                                    </div>
-                                  </div>
-                                </label>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Calculate Button */}
-                    <div className="text-center pt-8">
+                    <div className="pt-6 border-t">
                       <button
                         type="submit"
-                        disabled={isSubmitting}
-                        className="px-8 py-3 bg-gradient-to-r from-kmk-blueberry to-kmk-purple text-white rounded-full font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
+                        disabled={isSubmitting || !(isValid && dirty)}
+                        className="w-full py-3 bg-kmk-blueberry text-white rounded-lg hover:bg-kmk-blueberry/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        Calculate Costs
+                        {isSubmitting
+                          ? "Submitting..."
+                          : !(isValid && dirty)
+                          ? "Please fill in all required fields"
+                          : "Get Quote"}
                       </button>
                     </div>
                   </Form>
