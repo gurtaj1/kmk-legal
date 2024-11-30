@@ -35,20 +35,24 @@ const ExpertiseAndTeamSection = ({
 }: ExpertiseAndTeamSectionProps) => {
   return (
     <section
-      className="py-16 bg-gray-50 scroll-mt-navbarMobile md:scroll-mt-navbar"
+      className="py-8 sm:py-16 bg-gray-50 scroll-mt-navbarMobile md:scroll-mt-navbar"
       id="expertise"
     >
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-8 max-w-full">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8">
           {/* Left Column - Expertise and Testimonials */}
-          <div className="space-y-8 min-w-0">
-            <div className="prose prose-lg max-w-full min-w-0">
-              <h2 className="text-6xl font-bold text-kmk-logoBlue mb-6">
+          <div className="space-y-6 sm:space-y-8 min-w-0">
+            <div className="prose prose-sm sm:prose-lg max-w-full min-w-0">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-kmk-logoBlue mb-4 sm:mb-6">
                 {title}
               </h2>
-              <p className="text-lg mb-4 break-words">{description}</p>
-              <p className="text-lg mb-4">Our dedicated team specialises in:</p>
-              <ul className="list-disc pl-6 space-y-2">
+              <p className="text-base sm:text-lg mb-4 break-words">
+                {description}
+              </p>
+              <p className="text-base sm:text-lg mb-4">
+                Our dedicated team specialises in:
+              </p>
+              <ul className="list-disc pl-4 sm:pl-6 space-y-2">
                 {specialties.map((specialty, index) => (
                   <li key={index} className="break-words">
                     {specialty}
@@ -57,8 +61,8 @@ const ExpertiseAndTeamSection = ({
               </ul>
             </div>
 
-            <div className="mt-8">
-              <h3 className="text-2xl font-bold text-kmk-logoBlue mb-6">
+            <div className="mt-6 sm:mt-8">
+              <h3 className="text-xl sm:text-2xl font-bold text-kmk-logoBlue mb-4 sm:mb-6">
                 What Our Clients Say
               </h3>
               <SmartCarousel
@@ -81,14 +85,14 @@ const ExpertiseAndTeamSection = ({
 
           {/* Right Column - Team Members */}
           <div>
-            <h2 className="text-3xl font-bold text-kmk-logoBlue mb-6">
+            <h2 className="text-2xl sm:text-3xl font-bold text-kmk-logoBlue mb-4 sm:mb-6">
               Our Team
             </h2>
-            <div className="grid gap-4">
+            <div className="grid gap-3 sm:gap-4">
               {teamMembers.map((member, index) => (
                 <motion.div
                   key={index}
-                  className="flex items-center gap-4 w-full rounded-lg"
+                  className="flex items-center gap-3 sm:gap-4 w-full rounded-lg"
                   variants={cardVariants}
                   initial="initial"
                   whileHover="whileHover"
@@ -96,9 +100,9 @@ const ExpertiseAndTeamSection = ({
                 >
                   <Link href={member.profileUrl} className="w-full">
                     <Card className="hover:shadow-lg transition-shadow w-full">
-                      <CardContent className="p-6 flex justify-between items-center">
-                        <div className="flex items-center gap-4">
-                          <div className="relative w-16 h-16 rounded-full overflow-hidden">
+                      <CardContent className="p-4 sm:p-6 flex justify-between items-center">
+                        <div className="flex items-center gap-3 sm:gap-4">
+                          <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden">
                             <Image
                               src={member.imageSrc}
                               alt={member.name}
@@ -107,10 +111,10 @@ const ExpertiseAndTeamSection = ({
                             />
                           </div>
                           <div>
-                            <h3 className="font-semibold text-lg">
+                            <h3 className="font-semibold text-base sm:text-lg">
                               {member.name}
                             </h3>
-                            <p className="text-sm text-gray-600">
+                            <p className="text-xs sm:text-sm text-gray-600">
                               {member.role}
                             </p>
                           </div>

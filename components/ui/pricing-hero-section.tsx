@@ -18,7 +18,7 @@ const PricingHeroSection = ({
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-8">
           {/* Left column - Image */}
-          <div className="relative h-[400px] rounded-lg overflow-hidden">
+          <div className="relative h-[300px] md:h-[400px] rounded-lg overflow-hidden">
             <Image
               src={imageSrc}
               alt={imageAlt}
@@ -29,9 +29,11 @@ const PricingHeroSection = ({
 
           {/* Right column - Content */}
           <div className="space-y-6">
-            <h1 className="text-6xl font-bold text-kmk-logoBlue">{title}</h1>
+            <h1 className="text-4xl md:text-6xl font-bold text-kmk-logoBlue">
+              {title}
+            </h1>
             <div className="prose max-w-none">
-              <p className="text-lg">{description}</p>
+              <p className="text-base md:text-lg">{description}</p>
             </div>
           </div>
         </div>

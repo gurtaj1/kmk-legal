@@ -27,13 +27,15 @@ const ServiceOverview = ({
   const [isLineVisible, setIsLineVisible] = useState(false);
 
   return (
-    <section className="py-16">
+    <section className="py-8 sm:py-16">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-8">
           {/* Left column - Text content */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <div className="relative">
-              <h1 className="text-6xl font-bold text-kmk-logoBlue">{title}</h1>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-kmk-logoBlue">
+                {title}
+              </h1>
               <motion.div
                 initial={{ scaleX: 0 }}
                 animate={{
@@ -49,7 +51,7 @@ const ServiceOverview = ({
                 className="w-1/4 border-b-2 border-kmk-emeraldGreen mt-2 origin-left"
               />
             </div>
-            <div className="prose max-w-none">
+            <div className="prose prose-sm sm:prose max-w-none">
               <p>{description}</p>
               <ul className="space-y-2">
                 {bulletPoints.map((point, index) => (
@@ -58,17 +60,17 @@ const ServiceOverview = ({
               </ul>
             </div>
 
-            <div className="mt-8">
-              <p className="text-xl text-kmk-logoBlue font-semibold mb-4">
+            <div className="mt-6 sm:mt-8">
+              <p className="text-lg sm:text-xl text-kmk-logoBlue font-semibold mb-2 sm:mb-4">
                 Talk to our friendly team:
               </p>
-              <p className="text-2xl font-bold text-kmk-emeraldGreen">
+              <p className="text-xl sm:text-2xl font-bold text-kmk-emeraldGreen">
                 01582 123456
               </p>
             </div>
 
             {/* Navigation thumbnails */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 mt-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 mt-6 sm:mt-8">
               <motion.div
                 className="w-full border border-gray-300 rounded bg-kmk-blueberry text-white hover:bg-kmk-emeraldGreen/80 hover:text-black"
                 variants={buttonVariants}
@@ -153,7 +155,7 @@ const ServiceOverview = ({
           </div>
 
           {/* Right column - Image */}
-          <div className="relative h-[400px]">
+          <div className="relative h-[300px] sm:h-[400px]">
             <motion.div
               initial={{ opacity: 0, x: 16 }}
               animate={{
