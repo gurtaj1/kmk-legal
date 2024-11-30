@@ -104,20 +104,25 @@ const ConveyancingPage = () => {
 
         {/* Price & Service Information Section */}
         <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
-          <ServicePathsGrid serviceId="conveyancing" />
-          <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-4xl mx-auto px-4 py-8">
+          <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-24 max-w-4xl mx-auto px-4 py-8">
             <motion.div
               variants={buttonVariants}
               initial="initial"
               whileHover="whileHover"
               whileTap="whileTap"
-              className="flex-1 max-w-md"
+              className="flex-1 max-w-md h-[100px] sm:h-auto"
             >
               <Link
                 href="/services/conveyancing/conveyancing-process"
-                className="bg-kmk-emeraldGreen hover:bg-kmk-emeraldGreen/90 text-white px-8 py-6 rounded-full text-center text-lg font-medium transition-colors duration-200 flex items-center justify-center h-full"
+                className="overflow-hidden group relative bg-kmk-emeraldGreen hover:bg-kmk-emeraldGreen/90 text-white px-6 sm:px-8 py-4 sm:py-6 rounded-full text-center text-base sm:text-lg font-medium transition-all duration-200 flex items-center justify-center h-full"
               >
-                <span>Learn About Our Conveyancing Process</span>
+                {/* Outer border effect */}
+                <span className="absolute inset-0 rounded-full border-2 border-kmk-emeraldGreen group-hover:scale-105 transition-transform duration-200"></span>
+                {/* Inner border effect */}
+                <span className="absolute inset-[3px] rounded-full border border-white/30"></span>
+                <span className="relative">
+                  Learn About Our Conveyancing Process
+                </span>
               </Link>
             </motion.div>
 
@@ -126,16 +131,21 @@ const ConveyancingPage = () => {
               initial="initial"
               whileHover="whileHover"
               whileTap="whileTap"
-              className="flex-1 max-w-md"
+              className="flex-1 max-w-md h-[100px] sm:h-auto"
             >
               <Link
                 href="/services/conveyancing/source-of-funds"
-                className="bg-kmk-emeraldGreen hover:bg-kmk-emeraldGreen/90 text-white px-8 py-6 rounded-full text-center text-lg font-medium transition-colors duration-200 flex items-center justify-center h-full"
+                className="overflow-hidden group relative bg-kmk-emeraldGreen hover:bg-kmk-emeraldGreen/90 text-white px-6 sm:px-8 py-4 sm:py-6 rounded-full text-center text-base sm:text-lg font-medium transition-all duration-200 flex items-center justify-center h-full"
               >
-                <span>Source of Funds Information</span>
+                {/* Outer border effect */}
+                <span className="absolute inset-0 rounded-full border-2 border-kmk-emeraldGreen group-hover:scale-105 transition-transform duration-200"></span>
+                {/* Inner border effect */}
+                <span className="absolute inset-[3px] rounded-full border border-white/30"></span>
+                <span className="relative">Source of Funds Information</span>
               </Link>
             </motion.div>
           </div>
+          <ServicePathsGrid serviceId="conveyancing" />
         </ScrollMotionWrapper>
 
         {/* Get in Touch Section */}
