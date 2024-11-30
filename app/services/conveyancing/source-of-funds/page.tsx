@@ -46,7 +46,7 @@ const sourcesOfFunds = [
     sideB: {
       title: "What we need from you:",
       content:
-        "• 6 months of bank statements showing regular income\n• Statements from any savings accounts used",
+        "• 6 months of bank statements showing regular income\n• Explanation of your income in an email\n• 6 months statements from all your active savings accounts",
     },
   },
   {
@@ -57,7 +57,8 @@ const sourcesOfFunds = [
     },
     sideB: {
       title: "What we need from you:",
-      content: "Recent investment portfolio statements required",
+      content:
+        "• The most up to date statement for any and all investments you intend to withdraw from.\n• If any of these investments are not listed in GBP please let us know the value of them in GBP.",
     },
   },
   {
@@ -69,7 +70,7 @@ const sourcesOfFunds = [
     sideB: {
       title: "What we need from you:",
       content:
-        "Required documents:\n• Completion statement from your solicitor\n• Bank statement showing receipt of funds",
+        "• A completion statement from your solicitors\n• A bank statement showing the funds being received from the solicitors on completion",
     },
   },
   {
@@ -80,7 +81,8 @@ const sourcesOfFunds = [
     },
     sideB: {
       title: "What we need from you:",
-      content: "Bill of sale or sales tax form needed",
+      content:
+        "• A document showing the sale\n• A bank statement showing the funds being received from the sale",
     },
   },
   {
@@ -91,7 +93,8 @@ const sourcesOfFunds = [
     },
     sideB: {
       title: "What we need from you:",
-      content: "Completion statement from your solicitor needed",
+      content:
+        "• A letter from the executors stating the amount being paid\n• A bank statement showing the funds being received from the solicitors/executor's bank account.",
     },
   },
   {
@@ -102,7 +105,8 @@ const sourcesOfFunds = [
     },
     sideB: {
       title: "What we need from you:",
-      content: "SA302 showing income from company",
+      content:
+        "• SA302\n• Board resolution (if using company funds)\n• Further requirements will be specified by us depending on company structure",
     },
   },
   {
@@ -114,7 +118,7 @@ const sourcesOfFunds = [
     sideB: {
       title: "What we need from you:",
       content:
-        "Required documents:\n• List of properties with rental value per month\n• Last annual tax return",
+        "• List of property portfolio with rental incomes for each property.\n• Latest tax return.",
     },
   },
   {
@@ -126,7 +130,7 @@ const sourcesOfFunds = [
     sideB: {
       title: "What we need from you:",
       content:
-        "Required documents:\n• Letter from solicitor or court confirming compensation\n• Bank statement showing funds received",
+        "• Letter confirming settlement amount\n• Bank statement showing the transfer of the award",
     },
   },
   {
@@ -138,7 +142,7 @@ const sourcesOfFunds = [
     sideB: {
       title: "What we need from you:",
       content:
-        "Required documents:\n• Pension manager contact details\n• Bank statement showing funds received",
+        "• Contact details of pension provider\n• Bank statement showing receipt of funds",
     },
   },
 ];
@@ -147,8 +151,9 @@ const getCardStyles = (title: string, index: number) => {
   const baseStyles = "border-l-4 hover:shadow-lg transition-all duration-300";
 
   const styleMap: { [key: string]: string } = {
-    Gift: "border-l-pink-500 bg-pink-50/50 rounded-tr-3xl",
-    "Savings from earnings": "border-l-green-500 bg-green-50/50 rounded-bl-3xl",
+    Gift: "border-l-pink-500 hover:bg-pink-50 bg-pink-50/50 rounded-tr-3xl",
+    "Savings from earnings":
+      "border-l-green-500 hover:bg-green-50 bg-green-50/50 rounded-bl-3xl",
     Investments:
       "border-l-blue-500 bg-blue-50/50 rounded-tl-3xl rounded-br-3xl",
     "Sale of Another Property":
@@ -185,7 +190,7 @@ const SourceOfFundsCard = ({
   source: SourceOfFunds;
   index: number;
 }) => {
-  const [showSideB, setShowSideB] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <motion.div
@@ -196,15 +201,37 @@ const SourceOfFundsCard = ({
       transition={{ duration: 0.5 }}
     >
       <Card
-        className={`${getCardStyles(
-          source.sideA.title,
-          index
-        )} relative overflow-hidden`}
-        onMouseEnter={() => setShowSideB(true)}
-        onMouseLeave={() => setShowSideB(false)}
+        className={`${getCardStyles(source.sideA.title, index)} 
+          relative overflow-hidden cursor-pointer
+          transition-all duration-300 ease-in-out
+          ${
+            isExpanded
+              ? "md:absolute md:z-50 md:w-[200%] md:scale-100 !bg-white shadow-xl"
+              : "scale-100"
+          }`}
+        style={{
+          transformOrigin: index % 2 === 0 ? "top left" : "top right",
+          left: index % 2 === 0 ? "0" : "auto",
+          right: index % 2 === 1 ? "0" : "auto",
+        }}
+        onMouseEnter={() => setIsExpanded(true)}
+        onMouseLeave={() => setIsExpanded(false)}
       >
+        {isExpanded && (
+          <div
+            className="absolute inset-0 opacity-95"
+            style={{
+              backgroundColor:
+                source.sideA.title === "Gift"
+                  ? "rgb(253 242 248)"
+                  : source.sideA.title === "Savings from earnings"
+                  ? "rgb(240 253 244)"
+                  : "white",
+            }}
+          />
+        )}
         <CardContent
-          className={`p-6 ${
+          className={`relative z-10 p-6 ${
             index % 4 === 0
               ? "pr-12"
               : index % 4 === 1
@@ -219,50 +246,39 @@ const SourceOfFundsCard = ({
               index % 2 === 0 ? "translate-x-0" : "translate-x-4"
             }`}
           >
-            {showSideB ? source.sideB.title : source.sideA.title}
+            {source.sideA.title}
           </h3>
-          <div className="relative min-h-[100px]">
+          <div className="relative">
             <p
-              className={`absolute w-full transition-all duration-300 ease-in-out ${
-                showSideB
-                  ? "opacity-0 translate-y-4"
-                  : "opacity-100 translate-y-0"
-              } ${index % 3 === 0 ? "text-gray-700" : "text-gray-600"} ${
-                index % 2 === 0 ? "pl-0" : "pl-4"
-              }`}
+              className={`text-gray-700 transition-all duration-300
+              ${isExpanded ? "" : "line-clamp-4"}`}
             >
               {source.sideA.content}
             </p>
-            <p
-              className={`absolute w-full transition-all duration-300 ease-in-out ${
-                showSideB
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 -translate-y-4"
-              } font-medium text-gray-800 whitespace-pre-line`}
-            >
-              {source.sideB.content}
-            </p>
-          </div>
-          {/* {showSideB && source.sideB2 && (
-            <p className="absolute w-full transition-all duration-300 ease-in-out opacity-100 translate-y-0 font-medium text-gray-800 whitespace-pre-line">
-              <h3
-                className={`text-xl font-semibold mb-2 ${
-                  index % 2 === 0 ? "translate-x-0" : "translate-x-4"
-                }`}
+            {isExpanded && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.1 }}
+                className="mt-4 border-t pt-4"
               >
-                {source.sideB2.title}
-              </h3>
-              <div className="relative min-h-[100px]">
-                <p
-                  className={
-                    "absolute w-full transition-all duration-300 ease-in-out opacity-100 translate-y-0 font-medium text-gray-800 whitespace-pre-line"
-                  }
-                >
-                  {source.sideB2.content}
+                <h4 className="font-semibold mb-2">{source.sideB.title}</h4>
+                <p className="whitespace-pre-line text-gray-800">
+                  {source.sideB.content}
                 </p>
-              </div>
-            </p>
-          )} */}
+                {source.sideB2 && (
+                  <>
+                    <h4 className="font-semibold mb-2 mt-2">
+                      {source.sideB2.title}
+                    </h4>
+                    <p className="whitespace-pre-line text-gray-800">
+                      {source.sideB2.content}
+                    </p>
+                  </>
+                )}
+              </motion.div>
+            )}
+          </div>
         </CardContent>
       </Card>
     </motion.div>
