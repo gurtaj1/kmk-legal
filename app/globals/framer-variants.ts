@@ -68,7 +68,7 @@ export const floatingPillVariants = {
     },
   }),
   whileHover: () => ({
-    scale: 1.2,
+    scale: 1.08,
     transition: {
       type: "spring",
       stiffness: 300,
