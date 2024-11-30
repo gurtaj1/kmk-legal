@@ -67,8 +67,8 @@ export const floatingPillVariants = {
       delay: index * 0.4,
     },
   }),
-  whileHover: (index: number) => ({
-    scale: 1.02,
+  whileHover: () => ({
+    scale: 1.2,
     transition: {
       type: "spring",
       stiffness: 300,
