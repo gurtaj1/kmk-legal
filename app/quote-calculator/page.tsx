@@ -412,9 +412,9 @@ const ConveyancingPricingPage = () => {
                                       Land Registry registration services fees
                                     </span>
                                     <span className="block text-sm text-gray-500">
-                                      If the property isn't registered with the
-                                      Land Registry, you will have to pay a fee
-                                      to register it.
+                                      If the property isn&apos;t registered with
+                                      the Land Registry, you will have to pay a
+                                      fee to register it.
                                     </span>
                                   </div>
                                 </div>
@@ -439,8 +439,8 @@ const ConveyancingPricingPage = () => {
                                         </span>
                                         <span className="block text-sm text-gray-500">
                                           If you are using a mortgage to buy the
-                                          leasehold, you'll need to notify the
-                                          landlord of a change in lender.
+                                          leasehold, you&apos;ll need to notify
+                                          the landlord of a change in lender.
                                         </span>
                                       </div>
                                     </div>
@@ -486,7 +486,7 @@ const ConveyancingPricingPage = () => {
                                         Leasehold property supplement fee
                                       </span>
                                       <span className="block text-sm text-gray-500">
-                                        If you're selling a leasehold, your
+                                        If you&apos;re selling a leasehold, your
                                         solicitor will charge extra as this
                                         involves more work.
                                       </span>
@@ -508,9 +508,9 @@ const ConveyancingPricingPage = () => {
                                     Mortgaged property supplement fee
                                   </span>
                                   <span className="block text-sm text-gray-500">
-                                    If you're buying or selling with a mortgage,
-                                    your solicitor will charge a fee for this to
-                                    cover the extra work involved.
+                                    If you&apos;re buying or selling with a
+                                    mortgage, your solicitor will charge a fee
+                                    for this to cover the extra work involved.
                                   </span>
                                 </div>
                               </div>
@@ -537,8 +537,9 @@ const ConveyancingPricingPage = () => {
                                     </span>
                                     <span className="block text-sm text-gray-500">
                                       Your solicitor will have extra work if
-                                      you're buying a home using the Help to Buy
-                                      ISA, therefore charging a supplement fee.
+                                      you&apos;re buying a home using the Help
+                                      to Buy ISA, therefore charging a
+                                      supplement fee.
                                     </span>
                                   </div>
                                 </div>
