@@ -389,9 +389,28 @@ const SourceOfFundsPage = () => {
       {/* Main content with all sections preserved */}
       <div className="relative z-10 w-full">
         <div className="container mx-auto px-4 py-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-8">
+          <h1 className="text-6xl font-bold text-gray-900 mb-4">
             Source of Funds Explained
           </h1>
+
+          <div className="mb-8 text-gray-600 bg-white/80 backdrop-blur-sm inline-block px-4 py-2 rounded-lg shadow-sm border border-gray-100">
+            <span className="inline-flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 text-blue-500"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              Hover/Tap on the source of funds that relates to you and learn
+              what you will need to provide
+            </span>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {sourcesOfFunds.map((source, index) => (
@@ -406,16 +425,40 @@ const SourceOfFundsPage = () => {
           {/* Notes section */}
           <div className="mt-12 bg-yellow-50 p-6 rounded-lg space-y-4">
             <p className="text-sm">
-              * Please note that additional documentation may be required
-              depending on your specific circumstances.
+              • Conveyancing has been identified as a high risk area with
+              fraudulent behaviour and money laundering being at unnacceptable
+              levels throughout the industry. As such we have to follow strict
+              procedures as the front line against this criminal behaviour.
             </p>
             <p className="text-sm">
-              * All documents must be original or certified copies. We cannot
-              accept photocopies or scanned documents.
+              • Please make sure that documents you provide us are clear, easy
+              to read, and identify you on them. Electronic documents will
+              suffice.
             </p>
             <p className="text-sm">
-              * Bank statements should cover at least the last 3 months and show
-              the accumulation of funds.
+              • Please note that we need to satisfy our requirements as set out
+              by The Money Laundering, Terrorist Financing and Transfer of Funds
+              (Information on the Payer) Regulations 2017. As per these
+              guidelines we need to trace funds back to a specific source.
+              Unfortunately, due to the fact that this information must be
+              easily audited, we must carry out this process in writing by
+              email. Thank you for your co-operation in this regard. The
+              information provided will be held on file for 6 years
+            </p>
+            <p className="text-sm">
+              <span style={{ textDecoration: "underline" }}>
+                Source of Funds documents from outside England and Wales
+              </span>
+              <br />
+              If you are receiving money from abroad please note that we will
+              need documents as similar to those mentioned in the appropriate
+              section as possible. As we do not have knowledge of the regulatory
+              or official bodies of other countries we will need a Notary Public
+              to notarise these documents. Finally, if the documents are not in
+              English we will need to have them professionally translated. We
+              would suggest that the Notary Public notarises the translated
+              would suggest that the Notary Public notarises the translated
+              versions where possible.
             </p>
           </div>
         </div>
