@@ -10,6 +10,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import PageLoadTransitionWrapper from "@/components/ui/page-load-transition-wrapper";
+import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
+import { EMAILJS_CONFIG } from "@/lib/emailjs-config";
+import { showToast } from "@/lib/toast-utils";
 
 const validationSchema = Yup.object({
   area: Yup.string().required("Please select an area of law"),
@@ -173,12 +177,43 @@ const ContactPage = () => {
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
-              onSubmit={(values, { setSubmitting, resetForm }) => {
-                setSubmitting(true);
-                // Handle form submission here
-                console.log("Form submitted:", values);
-                resetForm();
-                setSubmitting(false);
+              onSubmit={async (values, { setSubmitting, resetForm }) => {
+                const loadingToastId = toast.loading("Sending your enquiry...");
+
+                try {
+                  setSubmitting(true);
+
+                  const templateParams = {
+                    area: values.area,
+                    firstName: values.firstName,
+                    surname: values.surname,
+                    phone: values.phone,
+                    email: values.email,
+                    enquiry: values.enquiry,
+                    contactPreference:
+                      values.contactPreference || "Not specified",
+                    source: values.source || "Not specified",
+                  };
+
+                  await emailjs.send(
+                    EMAILJS_CONFIG.SERVICE_ID,
+                    EMAILJS_CONFIG.CONTACT_TEMPLATE_ID,
+                    templateParams,
+                    EMAILJS_CONFIG.PUBLIC_KEY
+                  );
+
+                  toast.dismiss(loadingToastId);
+                  showToast.success("Your enquiry has been sent successfully!");
+                  resetForm();
+                } catch (error) {
+                  console.error("Failed to send email:", error);
+                  toast.dismiss(loadingToastId);
+                  showToast.error(
+                    "Sorry, there was a problem sending your enquiry. Please try again later."
+                  );
+                } finally {
+                  setSubmitting(false);
+                }
               }}
             >
               {({ errors, touched, isSubmitting }) => (

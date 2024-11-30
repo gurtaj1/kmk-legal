@@ -13,6 +13,10 @@ import { Textarea } from "@/components/ui/textarea";
 
 import { cardVariants, buttonVariants } from "@/app/globals/framer-variants";
 import PageLoadTransitionWrapper from "@/components/ui/page-load-transition-wrapper";
+import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
+import { EMAILJS_CONFIG } from "@/lib/emailjs-config";
+import { showToast } from "@/lib/toast-utils";
 
 const teamMembers = [
   {
@@ -254,11 +258,43 @@ const AboutPage = () => {
                 <Formik
                   initialValues={initialValues}
                   validationSchema={validationSchema}
-                  onSubmit={(values, { setSubmitting, resetForm }) => {
-                    setSubmitting(true);
-                    console.log("Form submitted:", values);
-                    resetForm();
-                    setSubmitting(false);
+                  onSubmit={async (values, { setSubmitting, resetForm }) => {
+                    const loadingToastId = toast.loading(
+                      "Sending your message..."
+                    );
+
+                    try {
+                      setSubmitting(true);
+
+                      const templateParams = {
+                        name: values.name,
+                        email: values.email,
+                        phone: values.phone || "Not provided",
+                        area: values.area || "Not specified",
+                        message: values.message,
+                      };
+
+                      await emailjs.send(
+                        EMAILJS_CONFIG.SERVICE_ID,
+                        EMAILJS_CONFIG.CONTACT_TEMPLATE_ID,
+                        templateParams,
+                        EMAILJS_CONFIG.PUBLIC_KEY
+                      );
+
+                      toast.dismiss(loadingToastId);
+                      showToast.success(
+                        "Your message has been sent successfully!"
+                      );
+                      resetForm();
+                    } catch (error) {
+                      console.error("Failed to send message:", error);
+                      toast.dismiss(loadingToastId);
+                      showToast.error(
+                        "Sorry, there was a problem sending your message. Please try again later."
+                      );
+                    } finally {
+                      setSubmitting(false);
+                    }
                   }}
                 >
                   {({ errors, touched, isSubmitting }) => (
