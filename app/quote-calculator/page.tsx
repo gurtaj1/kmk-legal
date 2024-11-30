@@ -43,8 +43,8 @@ const initialValues = {
   phone: "",
 };
 
-const getSchemeDescription = (scheme: keyof typeof descriptions): string => {
-  const descriptions = {
+const getSchemeDescription = (scheme: string): string => {
+  const descriptions: Record<string, string> = {
     new_build:
       "New build conveyancing requires further steps and an extra legal fee.",
     right_to_buy:
