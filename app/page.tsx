@@ -18,6 +18,7 @@ import SmartCarousel from "@/components/ui/smart-carousel";
 import PageLoadTransitionWrapper from "@/components/ui/page-load-transition-wrapper";
 
 import { buttonVariants } from "@/app/globals/framer-variants";
+import { formatPhoneNumber } from "@/lib/format-utils";
 
 import ScrollMotionWrapper from "@/components/ui/scroll-motion-wrapper";
 import { EMAILJS_CONFIG } from "@/lib/emailjs-config";
@@ -31,7 +32,10 @@ const validationSchema = Yup.object({
   email: Yup.string()
     .required("Email is required")
     .email("Invalid email address"),
-  phone: Yup.string(),
+  phone: Yup.string().matches(
+    /^(?:(?:\(?(?:0(?:0|11)\)?[\s-]?\(?|\+)44\)?[\s-]?(?:\(?0\)?[\s-]?)?)|(?:\(?0))(?:(?:\d{5}\)?[\s-]?\d{4,5})|(?:\d{4}\)?[\s-]?(?:\d{5}|\d{3}[\s-]?\d{3}))|(?:\d{3}\)?[\s-]?\d{3}[\s-]?\d{3,4})|(?:\d{2}\)?[\s-]?\d{4}[\s-]?\d{4}))(?:[\s-]?(?:x|ext\.?|\#)\d{3,4})?$/,
+    "Please enter a valid UK phone number"
+  ),
   area: Yup.string(),
   message: Yup.string()
     .required("Please enter a message")
@@ -420,13 +424,57 @@ const Page = () => {
                             >
                               Phone Number
                             </label>
-                            <Field
-                              as={Input}
-                              id="phone"
-                              name="phone"
-                              type="tel"
-                              className="transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue"
-                            />
+                            <Field name="phone">
+                              {({ field, form }: any) => (
+                                <Input
+                                  {...field}
+                                  id="phone"
+                                  type="tel"
+                                  placeholder=""
+                                  className={`transition-colors hover:border-kmk-logoBlue focus:border-kmk-logoBlue ${
+                                    errors.phone && touched.phone
+                                      ? "border-red-500"
+                                      : ""
+                                  }`}
+                                  value={field.value}
+                                  onChange={(e) => {
+                                    const input = e.target;
+                                    const selectionStart = input.selectionStart;
+                                    const rawValue = e.target.value;
+
+                                    // Allow the raw input first
+                                    form.setFieldValue("phone", rawValue);
+
+                                    // Then format it
+                                    const formattedNumber = formatPhoneNumber(
+                                      rawValue,
+                                      field.value
+                                    );
+                                    if (formattedNumber !== rawValue) {
+                                      form.setFieldValue(
+                                        "phone",
+                                        formattedNumber
+                                      );
+                                    }
+
+                                    // Restore cursor position
+                                    setTimeout(() => {
+                                      if (input.selectionStart) {
+                                        input.setSelectionRange(
+                                          selectionStart,
+                                          selectionStart
+                                        );
+                                      }
+                                    }, 0);
+                                  }}
+                                />
+                              )}
+                            </Field>
+                            {errors.phone && touched.phone && (
+                              <p className="text-red-500 text-sm mt-1">
+                                {errors.phone}
+                              </p>
+                            )}
                           </motion.div>
 
                           <motion.div

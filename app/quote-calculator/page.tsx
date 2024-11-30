@@ -433,7 +433,7 @@ const ConveyancingPricingPage = () => {
                                     {...field}
                                     type="tel"
                                     id="phone"
-                                    placeholder="07123 456789"
+                                    placeholder=""
                                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-kmk-blueberry focus:ring-kmk-blueberry"
                                     onChange={(e) => {
                                       const input = e.target;
