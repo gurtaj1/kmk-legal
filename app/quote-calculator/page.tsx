@@ -3,11 +3,11 @@
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import emailjs from "@emailjs/browser";
-import { useState } from "react";
 import ScrollMotionWrapper from "@/components/ui/scroll-motion-wrapper";
 import PageLoadTransitionWrapper from "@/components/ui/page-load-transition-wrapper";
 import { EMAILJS_CONFIG } from "@/lib/emailjs-config";
 import { showToast } from "@/lib/toast-utils";
+import { toast } from "sonner";
 
 const validationSchema = Yup.object().shape({
   transactionType: Yup.string().required("Please select a transaction type"),
@@ -43,7 +43,7 @@ const initialValues = {
   phone: "",
 };
 
-const getSchemeDescription = (scheme: string): string => {
+const getSchemeDescription = (scheme: keyof typeof descriptions): string => {
   const descriptions = {
     new_build:
       "New build conveyancing requires further steps and an extra legal fee.",
@@ -60,23 +60,51 @@ const getSchemeDescription = (scheme: string): string => {
 };
 
 const ConveyancingPricingPage = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const handleSubmit = async (
+    values: typeof initialValues,
+    {
+      setSubmitting,
+      resetForm,
+    }: { setSubmitting: (isSubmitting: boolean) => void; resetForm: () => void }
+  ) => {
+    const loadingToastId = toast.loading("Calculating your quote...");
 
-  const handleSubmit = async (values, { resetForm }) => {
-    setIsSubmitting(true);
     try {
+      setSubmitting(true);
+
+      const templateParams = {
+        transactionType: values.transactionType,
+        currentPropertyValue: values.currentPropertyValue,
+        currentPropertyType: values.currentPropertyType,
+        leaseholdManagementPackCost:
+          values.leaseholdManagementPackCost || "N/A",
+        newPropertyValue: values.newPropertyValue,
+        newPropertyType: values.newPropertyType,
+        services: values.services.join(", "),
+        email: values.email,
+        name: values.name,
+        phone: values.phone,
+      };
+
       await emailjs.send(
-        EMAILJS_CONFIG.serviceId,
-        EMAILJS_CONFIG.templateId,
-        values,
-        EMAILJS_CONFIG.publicKey
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.CONTACT_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_CONFIG.PUBLIC_KEY
       );
-      showToast("Quote request sent successfully!", "success");
+
+      toast.dismiss(loadingToastId);
+      showToast.success("Your quote request has been sent successfully!");
       resetForm();
     } catch (error) {
-      showToast("Failed to send quote request. Please try again.", "error");
+      console.error("Failed to send quote request:", error);
+      toast.dismiss(loadingToastId);
+      showToast.error(
+        "Sorry, there was a problem sending your quote request. Please try again later."
+      );
+    } finally {
+      setSubmitting(false);
     }
-    setIsSubmitting(false);
   };
 
   return (
@@ -102,7 +130,7 @@ const ConveyancingPricingPage = () => {
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
               >
-                {({ errors, touched, values }) => (
+                {({ values, isSubmitting }) => (
                   <Form className="p-8 space-y-8">
                     {/* Transaction Type Section */}
                     <div className="space-y-4">
