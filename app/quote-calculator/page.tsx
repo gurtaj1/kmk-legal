@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { FormikHelpers } from "formik";
 import { useState, useCallback } from "react";
 import debounce from "lodash/debounce";
+import { formatPhoneNumber } from "@/lib/format-utils";
 
 interface AddressLookupResult {
   postcode: string;
@@ -40,7 +41,12 @@ const validationSchema = Yup.object()
     // Step 2
     name: Yup.string().required("Name is required"),
     email: Yup.string().email("Invalid email").required("Email is required"),
-    phone: Yup.string().required("Phone number is required"),
+    phone: Yup.string()
+      .required("Phone number is required")
+      .matches(
+        /^(?:(?:\(?(?:0(?:0|11)\)?[\s-]?\(?|\+)44\)?[\s-]?(?:\(?0\)?[\s-]?)?)|(?:\(?0))(?:(?:\d{5}\)?[\s-]?\d{4,5})|(?:\d{4}\)?[\s-]?(?:\d{5}|\d{3}[\s-]?\d{3}))|(?:\d{3}\)?[\s-]?\d{3}[\s-]?\d{3,4})|(?:\d{2}\)?[\s-]?\d{4}[\s-]?\d{4}))(?:[\s-]?(?:x|ext\.?|\#)\d{3,4})?$/,
+        "Please enter a valid UK phone number"
+      ),
     numberOfBuyers: Yup.number().when("quoteType", {
       is: (val: string) => ["purchase", "transfer-of-equity"].includes(val),
       then: () => Yup.number().min(1).required("Number of buyers is required"),
@@ -421,12 +427,38 @@ const ConveyancingPricingPage = () => {
                               >
                                 Phone Number
                               </label>
-                              <Field
-                                id="phone"
-                                name="phone"
-                                type="tel"
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-kmk-blueberry focus:ring-kmk-blueberry"
-                              />
+                              <Field name="phone">
+                                {({ field, form }: any) => (
+                                  <input
+                                    {...field}
+                                    type="tel"
+                                    id="phone"
+                                    placeholder="07123 456789"
+                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-kmk-blueberry focus:ring-kmk-blueberry"
+                                    onChange={(e) => {
+                                      const input = e.target;
+                                      const selectionStart =
+                                        input.selectionStart;
+                                      const formattedNumber = formatPhoneNumber(
+                                        e.target.value,
+                                        field.value
+                                      );
+                                      form.setFieldValue(
+                                        "phone",
+                                        formattedNumber
+                                      );
+
+                                      // Restore cursor position on next tick
+                                      setTimeout(() => {
+                                        input.setSelectionRange(
+                                          selectionStart,
+                                          selectionStart
+                                        );
+                                      }, 0);
+                                    }}
+                                  />
+                                )}
+                              </Field>
                               {errors.phone && touched.phone && (
                                 <p className="mt-1 text-sm text-red-600">
                                   {errors.phone}
