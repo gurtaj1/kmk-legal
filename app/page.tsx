@@ -5,6 +5,7 @@ import { Formik, Form, Field, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -195,9 +196,11 @@ const Page = () => {
                   whileHover="whileHover"
                   whileTap="whileTap"
                 >
-                  <Button variant="outline" className="w-full">
-                    Get a Free Quote
-                  </Button>
+                  <Link href="/quote-calculator">
+                    <Button variant="outline" className="w-full">
+                      Get a Free Quote
+                    </Button>
+                  </Link>
                 </motion.div>
               </div>
             </div>
