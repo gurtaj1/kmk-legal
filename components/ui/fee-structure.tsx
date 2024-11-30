@@ -72,7 +72,7 @@ const FeeStructure = ({
               whileHover="whileHover"
               whileTap="whileTap"
             >
-              <Link href="/#contact">
+              <Link href="/quote-calculator">
                 <Button
                   variant="outline"
                   className="w-full border-kmk-logoBlue text-kmk-logoBlue hover:bg-kmk-logoBlue hover:text-white"

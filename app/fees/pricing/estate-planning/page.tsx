@@ -1,27 +1,49 @@
 "use client";
 
 import PageLoadTransitionWrapper from "@/components/ui/page-load-transition-wrapper";
+import ScrollMotionWrapper from "@/components/ui/scroll-motion-wrapper";
+import PricingHeroSection from "@/components/ui/pricing-hero-section";
+import FeeStructure from "@/components/ui/fee-structure";
+import PricingProcess from "@/components/ui/pricing-process";
 
 const EstatePlanningPricingPage = () => {
   return (
     <PageLoadTransitionWrapper>
       <div className="min-h-screen flex flex-col bg-gradient-to-br from-kmk-blueberry/10 to-kmk-blueberry/30">
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <h1 className="text-6xl font-bold text-center mb-8 text-kmk-logoBlue">
-              Estate Planning, Wills & Probate Pricing
-            </h1>
-            <div className="prose max-w-none">
-              <p className="text-lg mb-4">
-                Pricing for wills, probate and estate administration services.
-              </p>
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <h2 className="text-2xl font-semibold mb-4">Fee Structure</h2>
-                <p>Detailed pricing information will be displayed here.</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
+          <PricingHeroSection
+            imageSrc="/estate-planning.jpg"
+            imageAlt="Estate Planning Pricing"
+            title="Estate Planning, Wills & Probate Pricing"
+            description="Our transparent pricing structure for wills, probate and estate administration services. We believe in providing clear, upfront costs with no hidden fees."
+          />
+        </ScrollMotionWrapper>
+
+        {/* Fee Structure Section */}
+        <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
+          <FeeStructure
+            title="Our Fee Structure"
+            description="Detailed pricing information will be displayed here. Our fee structure is designed to be transparent and competitive, ensuring you receive excellent value for our comprehensive estate planning services."
+            servicePage="/services/estate-planning"
+            image={{
+              src: "/estate-planning.jpg",
+              alt: "Estate Planning Services",
+            }}
+          />
+        </ScrollMotionWrapper>
+
+        {/* Service Process Section */}
+        <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
+          <PricingProcess
+            title="Our Process"
+            subtitle="How We Work"
+            description="Our dedicated approach to estate planning ensures thorough and careful handling of your affairs. We manage all aspects with attention to detail and maintain clear communication throughout each stage, helping you plan for the future with confidence."
+            image={{
+              src: "/flowchart.jpg",
+              alt: "Estate Planning Process Flowchart",
+            }}
+          />
+        </ScrollMotionWrapper>
       </div>
     </PageLoadTransitionWrapper>
   );
