@@ -267,6 +267,7 @@ const AboutPage = () => {
                       setSubmitting(true);
 
                       const templateParams = {
+                        currentPage: "about page",
                         name: values.name,
                         email: values.email,
                         phone: values.phone || "Not provided",
@@ -276,7 +277,7 @@ const AboutPage = () => {
 
                       await emailjs.send(
                         EMAILJS_CONFIG.SERVICE_ID,
-                        EMAILJS_CONFIG.HOME_TEMPLATE_ID,
+                        EMAILJS_CONFIG.CONTACT_TEMPLATE_ID,
                         templateParams,
                         EMAILJS_CONFIG.PUBLIC_KEY
                       );

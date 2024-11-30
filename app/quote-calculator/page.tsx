@@ -73,6 +73,7 @@ const ConveyancingPricingPage = () => {
       setSubmitting(true);
 
       const templateParams = {
+        currentPage: "quote calculator page",
         transactionType: values.transactionType,
         currentPropertyValue: values.currentPropertyValue,
         currentPropertyType: values.currentPropertyType,
@@ -88,7 +89,7 @@ const ConveyancingPricingPage = () => {
 
       await emailjs.send(
         EMAILJS_CONFIG.SERVICE_ID,
-        EMAILJS_CONFIG.CONTACT_TEMPLATE_ID,
+        EMAILJS_CONFIG.QUOTE_TEMPLATE_ID,
         templateParams,
         EMAILJS_CONFIG.PUBLIC_KEY
       );

@@ -184,6 +184,7 @@ const ContactPage = () => {
                   setSubmitting(true);
 
                   const templateParams = {
+                    currentPage: "contact page",
                     area: values.area,
                     firstName: values.firstName,
                     surname: values.surname,
