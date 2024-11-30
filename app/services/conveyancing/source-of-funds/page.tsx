@@ -1,9 +1,8 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import PageLoadTransitionWrapper from "@/components/ui/page-load-transition-wrapper";
-import ScrollMotionWrapper from "@/components/ui/scroll-motion-wrapper";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 interface SourceOfFunds {
   sideA: {
@@ -189,124 +188,223 @@ const SourceOfFundsCard = ({
   const [showSideB, setShowSideB] = useState(false);
 
   return (
-    <Card
-      className={`${getCardStyles(
-        source.sideA.title,
-        index
-      )} relative overflow-hidden`}
-      onMouseEnter={() => setShowSideB(true)}
-      onMouseLeave={() => setShowSideB(false)}
+    <motion.div
+      className="relative"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false }}
+      transition={{ duration: 0.5 }}
     >
-      <CardContent
-        className={`p-6 ${
-          index % 4 === 0
-            ? "pr-12"
-            : index % 4 === 1
-            ? "pl-12"
-            : index % 4 === 2
-            ? "py-8"
-            : "px-8"
-        }`}
+      <Card
+        className={`${getCardStyles(
+          source.sideA.title,
+          index
+        )} relative overflow-hidden`}
+        onMouseEnter={() => setShowSideB(true)}
+        onMouseLeave={() => setShowSideB(false)}
       >
-        <h3
-          className={`text-xl font-semibold mb-2 ${
-            index % 2 === 0 ? "translate-x-0" : "translate-x-4"
+        <CardContent
+          className={`p-6 ${
+            index % 4 === 0
+              ? "pr-12"
+              : index % 4 === 1
+              ? "pl-12"
+              : index % 4 === 2
+              ? "py-8"
+              : "px-8"
           }`}
         >
-          {showSideB ? source.sideB.title : source.sideA.title}
-        </h3>
-        <div className="relative min-h-[100px]">
-          <p
-            className={`absolute w-full transition-all duration-300 ease-in-out ${
-              showSideB
-                ? "opacity-0 translate-y-4"
-                : "opacity-100 translate-y-0"
-            } ${index % 3 === 0 ? "text-gray-700" : "text-gray-600"} ${
-              index % 2 === 0 ? "pl-0" : "pl-4"
+          <h3
+            className={`text-xl font-semibold mb-2 ${
+              index % 2 === 0 ? "translate-x-0" : "translate-x-4"
             }`}
           >
-            {source.sideA.content}
-          </p>
-          <p
-            className={`absolute w-full transition-all duration-300 ease-in-out ${
-              showSideB
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 -translate-y-4"
-            } font-medium text-gray-800 whitespace-pre-line`}
-          >
-            {source.sideB.content}
-          </p>
-        </div>
-        {/* {showSideB && source.sideB2 && (
-          <p className="absolute w-full transition-all duration-300 ease-in-out opacity-100 translate-y-0 font-medium text-gray-800 whitespace-pre-line">
-            <h3
-              className={`text-xl font-semibold mb-2 ${
-                index % 2 === 0 ? "translate-x-0" : "translate-x-4"
+            {showSideB ? source.sideB.title : source.sideA.title}
+          </h3>
+          <div className="relative min-h-[100px]">
+            <p
+              className={`absolute w-full transition-all duration-300 ease-in-out ${
+                showSideB
+                  ? "opacity-0 translate-y-4"
+                  : "opacity-100 translate-y-0"
+              } ${index % 3 === 0 ? "text-gray-700" : "text-gray-600"} ${
+                index % 2 === 0 ? "pl-0" : "pl-4"
               }`}
             >
-              {source.sideB2.title}
-            </h3>
-            <div className="relative min-h-[100px]">
-              <p
-                className={
-                  "absolute w-full transition-all duration-300 ease-in-out opacity-100 translate-y-0 font-medium text-gray-800 whitespace-pre-line"
-                }
+              {source.sideA.content}
+            </p>
+            <p
+              className={`absolute w-full transition-all duration-300 ease-in-out ${
+                showSideB
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 -translate-y-4"
+              } font-medium text-gray-800 whitespace-pre-line`}
+            >
+              {source.sideB.content}
+            </p>
+          </div>
+          {/* {showSideB && source.sideB2 && (
+            <p className="absolute w-full transition-all duration-300 ease-in-out opacity-100 translate-y-0 font-medium text-gray-800 whitespace-pre-line">
+              <h3
+                className={`text-xl font-semibold mb-2 ${
+                  index % 2 === 0 ? "translate-x-0" : "translate-x-4"
+                }`}
               >
-                {source.sideB2.content}
-              </p>
-            </div>
-          </p>
-        )} */}
-      </CardContent>
-    </Card>
+                {source.sideB2.title}
+              </h3>
+              <div className="relative min-h-[100px]">
+                <p
+                  className={
+                    "absolute w-full transition-all duration-300 ease-in-out opacity-100 translate-y-0 font-medium text-gray-800 whitespace-pre-line"
+                  }
+                >
+                  {source.sideB2.content}
+                </p>
+              </div>
+            </p>
+          )} */}
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+};
+
+const FloatingElement = ({
+  color,
+  size,
+  position,
+  delay = 0,
+}: {
+  color: string;
+  size: "sm" | "md" | "lg";
+  position: string;
+  delay?: number;
+}) => {
+  const sizeClasses = {
+    sm: "w-12 h-12",
+    md: "w-20 h-20",
+    lg: "w-32 h-32",
+  };
+
+  return (
+    <motion.div
+      className={`absolute ${sizeClasses[size]} ${position} opacity-50`}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{
+        opacity: [0.1, 0.2, 0.1],
+        y: [0, -20, 0],
+        x: [0, 10, 0],
+      }}
+      transition={{
+        duration: 5,
+        repeat: Infinity,
+        delay: delay,
+        ease: "easeInOut",
+      }}
+    >
+      <div
+        className="w-full h-full rounded-full blur-md"
+        style={{ backgroundColor: color }}
+      />
+    </motion.div>
   );
 };
 
 const SourceOfFundsPage = () => {
   return (
-    <PageLoadTransitionWrapper>
-      <div className="min-h-screen bg-gradient-to-b from-white to-muted/50">
-        <ScrollMotionWrapper>
-          <section className="py-16">
-            <div className="container mx-auto px-4">
-              <h1 className="text-4xl md:text-6xl font-bold text-kmk-logoBlue mb-8">
-                Source of Funds Explained
-              </h1>
-              <p className="text-lg mb-12 max-w-3xl">
-                To comply with anti-money laundering regulations, we need to
-                verify the source of funds for your property transaction. Below
-                are common sources and their required evidence.
-              </p>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 relative">
-                {sourcesOfFunds.map((source, index) => (
-                  <SourceOfFundsCard
-                    key={source.sideA.title}
-                    source={source}
-                    index={index}
-                  />
-                ))}
-              </div>
-
-              <div className="mt-12 bg-yellow-50 p-6 rounded-lg space-y-4">
-                <p className="text-sm">
-                  * Please note that additional documentation may be required
-                  depending on your specific circumstances.
-                </p>
-                <p className="text-sm">
-                  * All documents must be original or certified copies. We
-                  cannot accept photocopies or scanned documents.
-                </p>
-                <p className="text-sm">
-                  * Bank statements should cover at least the last 3 months and
-                  show the accumulation of funds.
-                </p>
-              </div>
-            </div>
-          </section>
-        </ScrollMotionWrapper>
+    <div className="relative min-h-screen w-full">
+      {/* Floating Elements Container */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <FloatingElement
+          color="#ec489a"
+          size="lg"
+          position="top-[20%] left-[10%]"
+        />
+        <FloatingElement
+          color="#22c55e"
+          size="md"
+          position="top-[40%] right-[10%]"
+          delay={1}
+        />
+        <FloatingElement
+          color="#3b82f6"
+          size="sm"
+          position="bottom-[20%] left-[20%]"
+          delay={2}
+        />
+        <FloatingElement
+          color="#a855f7"
+          size="lg"
+          position="bottom-[40%] right-[20%]"
+          delay={1.5}
+        />
+        <FloatingElement
+          color="#f59e0b"
+          size="md"
+          position="top-[60%] left-[30%]"
+          delay={2.5}
+        />
+        <FloatingElement
+          color="#14b8a6"
+          size="sm"
+          position="bottom-[60%] right-[15%]"
+          delay={3}
+        />
+        <FloatingElement
+          color="#6366f1"
+          size="md"
+          position="top-[15%] right-[25%]"
+          delay={2.8}
+        />
+        <FloatingElement
+          color="#ef4444"
+          size="sm"
+          position="bottom-[30%] left-[40%]"
+          delay={1.8}
+        />
+        <FloatingElement
+          color="#8b5cf6"
+          size="lg"
+          position="top-[45%] left-[15%]"
+          delay={3.2}
+        />
       </div>
-    </PageLoadTransitionWrapper>
+
+      {/* Main content with all sections preserved */}
+      <div className="relative z-10 w-full">
+        <div className="container mx-auto px-4 py-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-8">
+            Source of Funds Explained
+          </h1>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {sourcesOfFunds.map((source, index) => (
+              <SourceOfFundsCard
+                key={source.sideA.title}
+                source={source}
+                index={index}
+              />
+            ))}
+          </div>
+
+          {/* Notes section */}
+          <div className="mt-12 bg-yellow-50 p-6 rounded-lg space-y-4">
+            <p className="text-sm">
+              * Please note that additional documentation may be required
+              depending on your specific circumstances.
+            </p>
+            <p className="text-sm">
+              * All documents must be original or certified copies. We cannot
+              accept photocopies or scanned documents.
+            </p>
+            <p className="text-sm">
+              * Bank statements should cover at least the last 3 months and show
+              the accumulation of funds.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
