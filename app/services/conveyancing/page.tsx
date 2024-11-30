@@ -1,13 +1,17 @@
 "use client";
 
-import ServiceOverview from "@/components/ui/service-overview";
+import { motion } from "framer-motion";
 
+import ServiceOverview from "@/components/ui/service-overview";
 import ExpertiseAndTeamSection from "@/components/ui/expertise-and-team-section";
 import ServicePathsGrid from "@/components/ui/service-paths-grid";
 import GetInTouch from "@/components/ui/get-in-touch";
 import ServiceNews from "@/components/ui/service-news";
 import ScrollMotionWrapper from "@/components/ui/scroll-motion-wrapper";
 import PageLoadTransitionWrapper from "@/components/ui/page-load-transition-wrapper";
+import Link from "next/link";
+
+import { buttonVariants } from "@/app/globals/framer-variants";
 
 const testimonials = [
   {
@@ -101,6 +105,37 @@ const ConveyancingPage = () => {
         {/* Price & Service Information Section */}
         <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
           <ServicePathsGrid serviceId="conveyancing" />
+          <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-4xl mx-auto px-4 py-8">
+            <motion.div
+              variants={buttonVariants}
+              initial="initial"
+              whileHover="whileHover"
+              whileTap="whileTap"
+              className="flex-1 max-w-md"
+            >
+              <Link
+                href="/services/conveyancing/conveyancing-process"
+                className="bg-kmk-emeraldGreen hover:bg-kmk-emeraldGreen/90 text-white px-8 py-6 rounded-full text-center text-lg font-medium transition-colors duration-200 flex items-center justify-center h-full"
+              >
+                <span>Learn About Our Conveyancing Process</span>
+              </Link>
+            </motion.div>
+
+            <motion.div
+              variants={buttonVariants}
+              initial="initial"
+              whileHover="whileHover"
+              whileTap="whileTap"
+              className="flex-1 max-w-md"
+            >
+              <Link
+                href="/services/conveyancing/source-of-funds"
+                className="bg-kmk-emeraldGreen hover:bg-kmk-emeraldGreen/90 text-white px-8 py-6 rounded-full text-center text-lg font-medium transition-colors duration-200 flex items-center justify-center h-full"
+              >
+                <span>Source of Funds Information</span>
+              </Link>
+            </motion.div>
+          </div>
         </ScrollMotionWrapper>
 
         {/* Get in Touch Section */}

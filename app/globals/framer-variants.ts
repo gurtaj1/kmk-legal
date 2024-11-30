@@ -52,3 +52,35 @@ export const pulsingIconVariants = {
     },
   },
 };
+
+export const floatingPillVariants = {
+  initial: {
+    x: 0,
+  },
+  animate: (index: number) => ({
+    x: [0, index % 2 === 0 ? 2 : -2, 0],
+    y: [0, index % 2 === 0 ? 2 : -2, 0],
+    transition: {
+      duration: 4,
+      ease: "easeInOut",
+      repeat: Infinity,
+      delay: index * 0.4,
+    },
+  }),
+  whileHover: (index: number) => ({
+    scale: 1.02,
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 20,
+    },
+  }),
+  whileTap: {
+    scale: 0.98,
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 20,
+    },
+  },
+};
