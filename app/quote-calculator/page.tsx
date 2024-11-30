@@ -163,7 +163,8 @@ const initialValues = {
   considerationValue: "",
 };
 
-const IDEAL_POSTCODES_API_KEY = process.env.IDEAL_POSTCODES_API_KEY!;
+const IDEAL_POSTCODES_API_KEY =
+  process.env.NEXT_PUBLIC_IDEAL_POSTCODES_API_KEY!;
 
 const ConveyancingPricingPage = () => {
   const [postcode, setPostcode] = useState("");
