@@ -64,7 +64,7 @@ const pricingLinks = [
     description: "Commercial property transaction fees and pricing structure",
   },
   {
-    serviceId: "children",
+    serviceId: "children-law",
     href: "/fees/pricing/children",
     title: "Price & Service Information for Children Law",
     image: "/children-law.jpg",
@@ -72,7 +72,7 @@ const pricingLinks = [
       "Transparent pricing for children law proceedings and representation",
   },
   {
-    serviceId: "family",
+    serviceId: "family-law",
     href: "/fees/pricing/family",
     title: "Price & Service Information for Matrimonial & Family Law",
     image: "/family-law.jpg",
