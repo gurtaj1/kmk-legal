@@ -9,7 +9,7 @@ interface LogoWithTextColorProps extends MotionSVGProps {
 const LogoWithTextColor = (props: LogoWithTextColorProps) => (
   <motion.svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 1000 512"
+    viewBox="60 0 900 524"
     id="Layer_1"
     data-name="Layer 1"
     {...props}
