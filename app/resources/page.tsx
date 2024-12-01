@@ -7,6 +7,65 @@ import { Card, CardContent } from "@/components/ui/card";
 import PageLoadTransitionWrapper from "@/components/ui/page-load-transition-wrapper";
 import { buttonVariants } from "@/app/globals/framer-variants";
 
+const variousNews = [
+  {
+    title: "News Title 1",
+    description: "Brief description of the news item...",
+    href: "/news/1",
+  },
+  {
+    title: "News Title 2",
+    description: "Brief description of the news item...",
+    href: "/news/2",
+  },
+  {
+    title: "News Title 3",
+    description: "Brief description of the news item...",
+    href: "/news/3",
+  },
+];
+
+const recentNews = [
+  {
+    title: "News Title 1",
+    href: "/news/1",
+  },
+  {
+    title: "News Title 2",
+    href: "/news/2",
+  },
+  {
+    title: "News Title 3",
+    href: "/news/3",
+  },
+];
+
+const legalResources = [
+  {
+    title: "Resource Title 1",
+    href: "/resource/1",
+  },
+  {
+    title: "Resource Title 2",
+    href: "/resource/2",
+  },
+  {
+    title: "Resource Title 3",
+    href: "/resource/3",
+  },
+];
+
+const processFlowcharts = [
+  {
+    title: "Conveyancing Process",
+    href: "/services/conveyancing/conveyancing-process",
+  },
+  {
+    title: "Source of Funds",
+    href: "/services/conveyancing/source-of-funds",
+  },
+];
+
 const ResourcesPage = () => {
   return (
     <PageLoadTransitionWrapper>
@@ -31,60 +90,57 @@ const ResourcesPage = () => {
               Legal Resources and News
             </h1>
 
-            {/* Featured Content Box */}
-            <motion.div
-              variants={buttonVariants}
-              whileHover="whileHover"
-              whileTap="whileTap"
-              className="mb-12"
-            >
-              <Card className="relative overflow-hidden">
-                <CardContent className="p-8">
-                  <div className="relative z-10">
-                    <h2 className="text-3xl font-bold mb-4 text-kmk-logoBlue">
-                      Latest Legal Updates
-                    </h2>
-                    <p className="text-lg mb-4">
-                      Stay informed with our most recent legal news and
-                      insights.
-                    </p>
-                  </div>
-                  <div
-                    className="absolute inset-0 opacity-10"
-                    style={{
-                      backgroundImage: "url('/legal-pattern.jpg')",
-                      backgroundSize: "cover",
-                    }}
-                  />
-                </CardContent>
-              </Card>
-            </motion.div>
-
             {/* Main Grid Layout */}
             <div className="grid md:grid-cols-3 gap-8">
               {/* Left Column - News and Links */}
               <div className="md:col-span-2 space-y-8">
+                {/* Featured Content Box */}
+                <motion.div
+                  variants={buttonVariants}
+                  whileHover="whileHover"
+                  whileTap="whileTap"
+                  className="mb-12"
+                >
+                  <Card className="relative overflow-hidden">
+                    <CardContent className="p-12 min-h-[300px] flex items-center">
+                      <div className="relative z-10">
+                        <h2 className="text-3xl font-bold mb-4 text-kmk-logoBlue">
+                          Main Headline
+                        </h2>
+                      </div>
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          backgroundImage: "url('/headline.jpg')",
+                          backgroundSize: "cover",
+                          backgroundPosition: "center",
+                          opacity: 0.15,
+                        }}
+                      />
+                    </CardContent>
+                  </Card>
+                </motion.div>
                 <div className="space-y-4">
                   <h3 className="text-2xl font-semibold text-kmk-logoBlue">
                     Links to Various Firm News
                   </h3>
                   <div className="grid gap-4">
                     {/* News items would be mapped here */}
-                    {[1, 2, 3].map((item) => (
+                    {variousNews.map((item, index) => (
                       <motion.div
-                        key={item}
+                        key={`${item.title}-${index}`}
                         variants={buttonVariants}
                         whileHover="whileHover"
                         whileTap="whileTap"
                       >
-                        <Link href="#" className="block">
+                        <Link href={item.href} className="block">
                           <Card>
                             <CardContent className="p-4">
                               <h4 className="font-semibold mb-2">
-                                News Title {item}
+                                {item.title}
                               </h4>
                               <p className="text-sm text-gray-600">
-                                Brief description of the news item...
+                                {item.description}
                               </p>
                             </CardContent>
                           </Card>
@@ -104,13 +160,13 @@ const ResourcesPage = () => {
                       Recent News
                     </h3>
                     <ul className="space-y-2">
-                      {[1, 2, 3, 4].map((item) => (
-                        <li key={item}>
+                      {recentNews.map((item, index) => (
+                        <li key={`${item.title}-${index}`}>
                           <Link
-                            href="#"
-                            className="text-sm hover:text-kmk-logoBlue"
+                            href={item.href}
+                            className="text-sm hover:text-kmk-emeraldGreen"
                           >
-                            News Article {item}
+                            {item.title}
                           </Link>
                         </li>
                       ))}
@@ -125,13 +181,13 @@ const ResourcesPage = () => {
                       Legal Resources
                     </h3>
                     <ul className="space-y-2">
-                      {[1, 2, 3].map((item) => (
-                        <li key={item}>
+                      {legalResources.map((item, index) => (
+                        <li key={`${item.title}-${index}`}>
                           <Link
-                            href="#"
-                            className="text-sm hover:text-kmk-logoBlue"
+                            href={item.href}
+                            className="text-sm hover:text-kmk-emeraldGreen"
                           >
-                            Resource {item}
+                            {item.title}
                           </Link>
                         </li>
                       ))}
@@ -145,14 +201,20 @@ const ResourcesPage = () => {
                     <h3 className="text-xl font-semibold mb-4 text-kmk-logoBlue">
                       Process Flowcharts
                     </h3>
-                    <ul className="space-y-2">
-                      {[1, 2, 3].map((item) => (
-                        <li key={item}>
+                    <h4 className="text-kmk-logoBlue mb-2 underline">
+                      Conveyancing
+                    </h4>
+                    <ul className="space-y-2 ml-4">
+                      {processFlowcharts.map((item, index) => (
+                        <li
+                          key={`${item.title}-${index}`}
+                          className="list-disc"
+                        >
                           <Link
-                            href="#"
-                            className="text-sm hover:text-kmk-logoBlue"
+                            href={item.href}
+                            className="text-sm hover:text-kmk-emeraldGreen"
                           >
-                            Flowchart {item}
+                            {item.title}
                           </Link>
                         </li>
                       ))}
