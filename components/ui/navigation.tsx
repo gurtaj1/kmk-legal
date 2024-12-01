@@ -211,7 +211,7 @@ const Navbar = () => {
                       className="hover:text-kmk-blueberry flex items-center gap-2"
                     >
                       <Phone className="h-4 w-4" />
-                      +44 (0) 123 456 7890
+                      +447389109307
                     </a>
                   </div>
                 </div>
@@ -386,7 +386,7 @@ const Navbar = () => {
                 className="hover:text-kmk-blueberry flex items-center gap-2"
               >
                 <Phone className="h-4 w-4" />
-                +44 (0) 123 456 7890
+                +447389109307
               </a>
             </div>
             <Search />

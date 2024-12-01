@@ -39,31 +39,31 @@ const Footer = () => {
           <div className="flex gap-4 mt-5">
             <Link
               href="https://www.facebook.com/share/1KzcDWawZk/"
-              className="text-white hover:text-[#FFD700]"
+              className="text-white hover:text-kmk-gold"
             >
               <Facebook className="h-5 w-5" />
             </Link>
             <Link
               href="https://x.com/KmkLegal86577?t=indWvXOr4yU86Xg1v9sdEA&s=08"
-              className="text-white hover:text-[#FFD700]"
+              className="text-white hover:text-kmk-gold"
             >
               <Twitter className="h-5 w-5" />
             </Link>
             <Link
               href="https://www.instagram.com/kmk.legal/"
-              className="text-white hover:text-[#FFD700]"
+              className="text-white hover:text-kmk-gold"
             >
               <Instagram className="h-5 w-5" />
             </Link>
             <Link
               href="https://www.linkedin.com/company/kmk-legal/"
-              className="text-white hover:text-[#FFD700]"
+              className="text-white hover:text-kmk-gold"
             >
               <Linkedin className="h-5 w-5" />
             </Link>
             <Link
               href="https://www.tiktok.com/@infowad5pv?_t=ZG-8rq9mCzXm6b&_r=1"
-              className="text-white hover:text-[#FFD700]"
+              className="text-white hover:text-kmk-gold"
             >
               <TikTokIcon className="h-5 w-5" />
             </Link>
@@ -77,12 +77,12 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-4">Important Links</h3>
           <ul className="space-y-2">
             <li>
-              <Link href="/about#complaints" className="hover:text-[#FFD700]">
+              <Link href="/about#complaints" className="hover:text-kmk-gold">
                 Complaints
               </Link>
             </li>
             <li>
-              <Link href="/privacy-policy" className="hover:text-[#FFD700]">
+              <Link href="/privacy-policy" className="hover:text-kmk-gold">
                 Privacy Policy
               </Link>
             </li>
@@ -91,20 +91,45 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold mb-4">Contact Information</h3>
           <ul className="space-y-2">
-            <li className="flex items-center">
-              <Mail className="mr-2" /> info@kmklegal.co.uk
+            <li>
+              <div className="flex items-center group">
+                <Mail className="mr-2 group-hover:text-kmk-gold" />
+                <a
+                  href="mailto:info@kmklegal.co.uk"
+                  className="hover:text-kmk-gold"
+                >
+                  info@kmklegal.co.uk
+                </a>
+              </div>
             </li>
-            <li className="flex items-center">
-              <Phone className="mr-2" /> +447389109307
+            <li>
+              <div className="flex items-center group">
+                <Phone className="mr-2 group-hover:text-kmk-gold" />
+                <a href="tel:+447389109307" className="hover:text-kmk-gold">
+                  +447389109307
+                </a>
+              </div>
             </li>
-            <li className="flex items-center">
-              <MapPin className="mr-2" /> Luton
+            <li>
+              <div className="flex items-center group">
+                <MapPin className="mr-2 group-hover:text-kmk-gold" />
+                <a
+                  href="https://maps.app.goo.gl/2qF44bscq8eRYV6t5"
+                  className="hover:text-kmk-gold"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Luton
+                </a>
+              </div>
             </li>
-            <li className="flex items-center">
-              <PoundSterling className="mr-2" />
-              <Link href="/quote-calculator" className="hover:text-[#FFD700]">
-                Get a free quote now
-              </Link>
+            <li>
+              <div className="flex items-center group">
+                <PoundSterling className="mr-2 group-hover:text-kmk-gold" />
+                <Link href="/quote-calculator" className="hover:text-kmk-gold">
+                  Get a free quote now
+                </Link>
+              </div>
             </li>
           </ul>
         </div>
