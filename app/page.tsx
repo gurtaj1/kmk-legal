@@ -204,7 +204,7 @@ const Page = () => {
                 >
                   <Link href="#contact">
                     <Button
-                      variant="outline"
+                      // variant="outline"
                       className="w-full bg-kmk-logoGrey text-white hover:bg-kmk-gold hover:text-black"
                     >
                       Arrange a Callback
@@ -218,7 +218,7 @@ const Page = () => {
                 >
                   <Link href="/quote-calculator">
                     <Button
-                      variant="outline"
+                      // variant="outline"
                       className="w-full bg-kmk-blueberry text-white hover:bg-kmk-emeraldGreen hover:text-white"
                     >
                       Get a Free Quote
