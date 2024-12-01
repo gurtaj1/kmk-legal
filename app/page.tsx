@@ -16,21 +16,20 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import LogoColor from "@/components/svg/logo-color";
 import SmartCarousel from "@/components/ui/smart-carousel";
 import PageLoadTransitionWrapper from "@/components/ui/page-load-transition-wrapper";
-
-import { buttonVariants } from "@/app/globals/framer-variants";
-import { formatPhoneNumber } from "@/lib/format-utils";
-
 import ScrollMotionWrapper from "@/components/ui/scroll-motion-wrapper";
 import { EMAILJS_CONFIG } from "@/lib/emailjs-config";
 import { showToast } from "@/lib/toast-utils";
 import ServiceCard from "@/components/ui/service-card";
+
+import { buttonVariants } from "@/app/globals/framer-variants";
+import { formatPhoneNumber } from "@/lib/format-utils";
+import { kmkHexColors } from "@/constants";
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -155,11 +154,15 @@ const Page = () => {
             backgroundPosition: "center",
           }}
         >
-          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute inset-0 bg-kmk-logoBlue/30" />
 
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div className="flex items-center justify-start align-middle space-x-0">
-              <LogoColor className="w-60 h-30 pt-3" mFill="#fff" kFill="#fff" />
+              <LogoColor
+                className="w-60 h-30 pt-3"
+                mFill={kmkHexColors.logoGrey}
+                kFill={"#fff"}
+              />
               <h1 className="text-8xl font-bold mb-2 text-white font-castoro -translate-x-8">
                 LEGAL
               </h1>
@@ -179,7 +182,7 @@ const Page = () => {
                   </ul>
                 </CardContent>
               </Card>
-              <Card className="bg-transparent border-0 shadow-none text-white">
+              <Card className="border-0 shadow-none text-white bg-black/20 rounded-xl backdrop-blur-sm shadow-[0_0_40px_10px_rgba(0,0,0,0.2)]">
                 <CardContent className="p-0">
                   <h2 className="text-2xl font-semibold mb-4">Our Ethos</h2>
                   <p className="mb-3">
@@ -199,11 +202,14 @@ const Page = () => {
                   whileHover="whileHover"
                   whileTap="whileTap"
                 >
-                  <a href="#contact">
-                    <Button className="w-full bg-kmk-logoBlue text-white">
+                  <Link href="#contact">
+                    <Button
+                      variant="outline"
+                      className="w-full bg-kmk-logoGrey text-white hover:bg-kmk-gold hover:text-black"
+                    >
                       Arrange a Callback
                     </Button>
-                  </a>
+                  </Link>
                 </motion.div>
                 <motion.div
                   variants={buttonVariants}
@@ -211,7 +217,10 @@ const Page = () => {
                   whileTap="whileTap"
                 >
                   <Link href="/quote-calculator">
-                    <Button variant="outline" className="w-full">
+                    <Button
+                      variant="outline"
+                      className="w-full bg-kmk-blueberry text-white hover:bg-kmk-emeraldGreen hover:text-white"
+                    >
                       Get a Free Quote
                     </Button>
                   </Link>
