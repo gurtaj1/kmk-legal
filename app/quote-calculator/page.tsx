@@ -259,13 +259,11 @@ const ConveyancingPricingPage = () => {
           <div className="container mx-auto px-4 py-12">
             <div className="bg-white rounded-lg shadow-xl overflow-hidden">
               <div className="bg-kmk-blueberry p-8 text-white text-center">
-                <h1 className="text-3xl font-bold mb-4">
-                  Conveyancing Quote Calculator
-                </h1>
+                <h1 className="text-3xl font-bold mb-4">Conveyancing Quote</h1>
                 <p className="text-white/80">
-                  Get an instant quote for your conveyancing needs. We&apos;ll
-                  provide you with a detailed breakdown of costs based on your
-                  specific requirements.
+                  Get an quote for your conveyancing needs. We&apos;ll provide
+                  you with a detailed breakdown of costs based on your specific
+                  requirements.
                 </p>
               </div>
 
