@@ -189,8 +189,12 @@ const Page = () => {
                   whileTap="whileTap"
                 >
                   <Link href="#contact">
-                    <Button className="w-full bg-kmk-logoGrey text-white hover:bg-kmk-gold hover:text-black">
-                      Arrange a Callback
+                    <Button className="w-full bg-kmk-logoGrey text-white hover:bg-kmk-gold hover:text-black relative group overflow-hidden">
+                      {/* Outer border effect */}
+                      <span className="absolute inset-0 rounded-md border-2 border-kmk-logoGrey group-hover:border-kmk-gold group-hover:scale-105 transition-transform duration-200"></span>
+                      {/* Inner border effect */}
+                      <span className="absolute inset-[3px] rounded-md border border-white/30"></span>
+                      <span className="relative">Arrange a Callback</span>
                     </Button>
                   </Link>
                 </motion.div>
@@ -200,8 +204,12 @@ const Page = () => {
                   whileTap="whileTap"
                 >
                   <Link href="/quote-calculator">
-                    <Button className="w-full bg-kmk-blueberry text-white hover:bg-kmk-emeraldGreen hover:text-white">
-                      Get a Free Quote
+                    <Button className="w-full bg-kmk-blueberry text-white hover:bg-kmk-emeraldGreen hover:text-white relative group overflow-hidden">
+                      {/* Outer border effect */}
+                      <span className="absolute inset-0 rounded-md border-2 border-kmk-blueberry group-hover:border-kmk-emeraldGreen group-hover:scale-105 transition-transform duration-200"></span>
+                      {/* Inner border effect */}
+                      <span className="absolute inset-[3px] rounded-md border border-white/30"></span>
+                      <span className="relative">Get a Free Quote</span>
                     </Button>
                   </Link>
                 </motion.div>
