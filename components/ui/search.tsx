@@ -39,12 +39,8 @@ export default function Search() {
     setQuery(value);
     if (value.length > 1) {
       const searchResults = fuse.search(value);
-      console.log("Raw search results:", searchResults.length, "items found");
-      console.log("Search results:", searchResults);
 
       const mappedResults = searchResults.map((result) => result.item);
-      console.log("Mapped results:", mappedResults.length, "items mapped");
-      console.log("Mapped results data:", mappedResults);
 
       setResults(mappedResults);
       setShowResults(true);
@@ -72,7 +68,7 @@ export default function Search() {
 
       {showResults && results.length > 0 && (
         <div
-          className="fixed bottom-[60px] sm:bottom-auto sm:absolute sm:top-full left-0 right-0 mx-auto w-[calc(100%-2rem)] sm:w-full bg-white rounded-md shadow-lg border border-gray-200 max-h-[80vh] sm:max-h-96 z-[100]"
+          className="fixed bottom-[60px] sm:bottom-auto sm:absolute sm:top-full left-0 right-0 mx-auto w-[calc(100%-2rem)] sm:w-full bg-white rounded-md shadow-lg border border-gray-200 max-h-[80vh] sm:max-h-96 overflow-hidden z-[100]"
           onWheel={(e) => {
             e.stopPropagation();
             e.preventDefault();
@@ -84,8 +80,8 @@ export default function Search() {
           }}
         >
           <div
-            className="results-container overflow-y-auto"
-            style={{ maxHeight: "calc(80vh - 40px)" }}
+            className="results-container overflow-y-auto h-full"
+            style={{ maxHeight: "inherit" }}
           >
             {results.map((result, index) => (
               <button
