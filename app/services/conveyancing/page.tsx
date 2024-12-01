@@ -98,12 +98,13 @@ const ConveyancingPage = () => {
         </ScrollMotionWrapper>
 
         {/* Expertise and Team Section */}
-        <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
+        <ScrollMotionWrapper
+          transitionOpacity
+          transitionY
+          transitionScale
+          className={"bg-gray-50"}
+        >
           <ExpertiseAndTeamSection {...expertiseProps} />
-        </ScrollMotionWrapper>
-
-        {/* Price & Service Information Section */}
-        <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
           <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-24 max-w-4xl mx-auto px-4 py-8">
             <motion.div
               variants={buttonVariants}
@@ -145,6 +146,10 @@ const ConveyancingPage = () => {
               </Link>
             </motion.div>
           </div>
+        </ScrollMotionWrapper>
+
+        {/* Price & Service Information Section */}
+        <ScrollMotionWrapper transitionOpacity transitionY transitionScale>
           <ServicePathsGrid serviceId="conveyancing" />
         </ScrollMotionWrapper>
 

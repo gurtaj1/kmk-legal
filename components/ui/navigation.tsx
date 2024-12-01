@@ -37,7 +37,7 @@ const Navbar = () => {
 
   const menuItems: MenuItems = {
     about: {
-      title: "About",
+      title: "About Us",
       titleLink: "/about",
       items: [
         {

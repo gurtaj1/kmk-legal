@@ -157,13 +157,13 @@ const Page = () => {
           <div className="absolute inset-0 bg-kmk-logoBlue/30" />
 
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div className="flex items-center justify-start align-middle space-x-0">
+            <div className="flex items-center justify-start align-middle space-x-0 flex-wrap h-[32px] sm:h-[44px] md:h-[60px]">
               <LogoColor
-                className="w-60 h-30 pt-3"
+                className="w-32 sm:w-44 md:w-60 h-full pt-3"
                 mFill={kmkHexColors.logoGrey}
                 kFill={"#fff"}
               />
-              <h1 className="text-8xl font-bold mb-2 text-white font-castoro -translate-x-8">
+              <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white font-castoro -translate-x-3 sm:-translate-x-5 md:-translate-x-8 leading-none flex items-center">
                 LEGAL
               </h1>
             </div>
