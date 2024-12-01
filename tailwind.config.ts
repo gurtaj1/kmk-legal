@@ -17,6 +17,7 @@ const config: Config = {
           logoGrey: kmkColors.logoGrey,
           offwhite: kmkColors.offwhite,
           charcoalGrey: kmkColors.charcoalGrey,
+          lightGrey: kmkColors.lightGrey,
           emeraldGreen: kmkColors.emeraldGreen,
           forestGreen: kmkColors.forestGreen,
           gold: kmkColors.gold,

@@ -1,6 +1,7 @@
 export const kmkColors = {
   logoBlue: "rgb(19, 8, 87)",
   logoGrey: "rgb(147, 148, 153)",
+  lightGrey: "rgb(178, 179, 184)",
   offwhite: "rgb(248, 248, 248)",
   charcoalGrey: "rgb(164 169 171)",
   emeraldGreen: "rgb(52 138 12)",
@@ -13,6 +14,7 @@ export const kmkColors = {
 export const kmkHexColors = {
   logoBlue: "#130857",
   logoGrey: "#939499",
+  lightGrey: "#B2B3B8",
   offwhite: "#F8F8F8",
   charcoalGrey: "#A4A9A7",
   emeraldGreen: "#348A0C",
@@ -22,7 +24,7 @@ export const kmkHexColors = {
   blueberry: "#2E63CF",
 };
 
-export const navbarHeight = "100px";
+export const navbarHeight = "96px";
 export const navbarMobileHeight = "80px";
-export const navbarHeightNumber = 100;
+export const navbarHeightNumber = 96;
 export const navbarMobileHeightNumber = 80;

@@ -43,7 +43,7 @@ export default function RootLayout({
           <InitialRenderAnimationWrapper>
             <Navbar />
             <ToastProvider />
-            <main className="flex-grow pt-[80px] md:pt-[100px]">
+            <main className="flex-grow pt-[80px] md:pt-[96px]">
               <Suspense fallback={<Loading showText />}>
                 <AnimatePresence mode="wait">{children}</AnimatePresence>
               </Suspense>
