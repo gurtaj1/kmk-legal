@@ -293,7 +293,7 @@ const Page = () => {
           id="contact"
         >
           <div
-            className="absolute inset-0 bg-gradient-to-tr from-kmk-emeraldGreen/60 to-muted"
+            className="absolute inset-0 bg-gradient-to-tr from-kmk-lightGrey/30 to-kmk-offwhite"
             style={{
               clipPath: "polygon(0 6%, 100% 0, 100% 100%, 0 100%)",
             }}
