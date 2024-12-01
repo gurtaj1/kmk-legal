@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { kmkColors } from "@/constants";
+import { useScrollToSection } from "@/app/globals/hooks/use-scroll-to-section";
 
 const TikTokIcon = ({ className }: { className?: string }) => (
   <svg
@@ -27,6 +28,8 @@ const TikTokIcon = ({ className }: { className?: string }) => (
 );
 
 const Footer = () => {
+  const scrollToSection = useScrollToSection();
+
   return (
     <footer className="bg-kmk-logoBlue text-white p-8">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -77,7 +80,16 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-4">Important Links</h3>
           <ul className="space-y-2">
             <li>
-              <Link href="/about#complaints" className="hover:text-kmk-gold">
+              <Link
+                href="/about#complaints"
+                onClick={(e) =>
+                  scrollToSection({
+                    sectionId: "complaints",
+                    targetPath: "/about",
+                  })(e)
+                }
+                className="hover:text-kmk-gold"
+              >
                 Complaints
               </Link>
             </li>
