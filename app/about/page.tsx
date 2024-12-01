@@ -80,9 +80,9 @@ const AboutPage = () => {
               fill
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-black/10" />
+            <div className="absolute inset-0 bg-kmk-logoBlue/30" />
           </div>
-          <div className="relative container mx-auto h-full flex flex-col items-center justify-center">
+          <div className="relative container mx-auto h-full flex flex-col items-center justify-center bg-black/20 rounded-xl backdrop-blur-sm shadow-[0_0_40px_10px_rgba(0,0,0,0.2)]">
             <h1 className="text-7xl font-bold text-white mb-4">About Us</h1>
             <p className="text-lg leading-relaxed mb-6 text-white text-center max-w-2xl">
               At KMK Legal, we pride ourselves on delivering exceptional legal

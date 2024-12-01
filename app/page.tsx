@@ -203,10 +203,7 @@ const Page = () => {
                   whileTap="whileTap"
                 >
                   <Link href="#contact">
-                    <Button
-                      // variant="outline"
-                      className="w-full bg-kmk-logoGrey text-white hover:bg-kmk-gold hover:text-black"
-                    >
+                    <Button className="w-full bg-kmk-logoGrey text-white hover:bg-kmk-gold hover:text-black">
                       Arrange a Callback
                     </Button>
                   </Link>
@@ -217,10 +214,7 @@ const Page = () => {
                   whileTap="whileTap"
                 >
                   <Link href="/quote-calculator">
-                    <Button
-                      // variant="outline"
-                      className="w-full bg-kmk-blueberry text-white hover:bg-kmk-emeraldGreen hover:text-white"
-                    >
+                    <Button className="w-full bg-kmk-blueberry text-white hover:bg-kmk-emeraldGreen hover:text-white">
                       Get a Free Quote
                     </Button>
                   </Link>
