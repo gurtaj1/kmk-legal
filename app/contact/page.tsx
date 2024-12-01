@@ -155,7 +155,7 @@ const ContactPage = () => {
                 <div>
                   <h3 className="font-semibold text-xl mb-2">Get in Touch</h3>
                   <div className="space-y-2 text-muted-foreground">
-                    <p>Phone: 01234 567890</p>
+                    <p>Phone: +447389109307</p>
                     <p>Email: info@kmklegal.com</p>
                   </div>
                 </div>
