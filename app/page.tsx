@@ -155,6 +155,16 @@ const Page = () => {
           }}
         >
           <div className="absolute inset-0 bg-kmk-logoBlue/30" />
+          {/* place below code back when a video has been made */}
+          {/* <video
+            className="absolute inset-0 w-full h-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source src={"/mo-teeth-invideo.mp4"} type="video/mp4" />
+          </video> */}
 
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div className="mb-4">
