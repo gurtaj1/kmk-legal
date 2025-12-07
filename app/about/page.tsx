@@ -21,21 +21,19 @@ import { formatPhoneNumber } from "@/lib/format-utils";
 
 const teamMembers = [
   {
-    title: "John Smith",
+    title: "Shoab Khan",
     image: "/headshot-placeholder.jpg",
-    description:
-      "Senior Partner - 15 years experience in commercial property law",
+    description: "Licensed Conveyancer/Director",
   },
   {
-    title: "Sarah Johnson",
+    title: "Yasmeen Khan",
     image: "/headshot-placeholder.jpg",
-    description:
-      "Family Law Specialist - Expert in matrimonial and children law",
+    description: "Solicitor",
   },
   {
-    title: "David Williams",
+    title: "Abid Mahmood",
     image: "/headshot-placeholder.jpg",
-    description: "Conveyancing Lead - Over 20 years in residential property",
+    description: "Business Development Manager/Director",
   },
 ];
 
