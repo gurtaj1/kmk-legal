@@ -101,6 +101,65 @@ const serviceLinks = [
   },
 ];
 
+const testimonials = [
+  {
+    name: "B",
+    review:
+      "Shoaib was professional, approachable and very transparent in his dealings with us. He kept us updated throughout the process with efficiency and knowledge.",
+    service: "Property Matter",
+    rating: 5,
+  },
+  {
+    name: "Anneka",
+    review:
+      "He kept me updated throughout the process and made sure I always knew what was required. Excellent service for property purchase.",
+    service: "Conveyancing",
+    rating: 5,
+  },
+  {
+    name: "Dimple",
+    review:
+      "Super responsive, knowledgeable, and always happy to answer any question, big or small. Made the property transaction seamless.",
+    service: "Property Transaction",
+    rating: 5,
+  },
+  {
+    name: "Naeem",
+    review:
+      "He provided exceptional service ensuring the process was smooth and stress free. Highly recommend for home purchases.",
+    service: "Home Purchase",
+    rating: 5,
+  },
+  {
+    name: "Farah",
+    review:
+      "He saved us! Mr Shoaib has been communicating with the other solicitor in a highly professional manner and resolved critical issues.",
+    service: "Property Purchase",
+    rating: 5,
+  },
+  {
+    name: "Fazal",
+    review:
+      "Made everything swift and effortless with fantastic communication skills. Handled both purchase and sale seamlessly.",
+    service: "Dual Property Transaction",
+    rating: 5,
+  },
+  {
+    name: "Alfred",
+    review:
+      "Communication was prompt and thorough throughout the process. Very professional and efficient service.",
+    service: "Conveyancing",
+    rating: 5,
+  },
+  {
+    name: "Mustafa Hayat",
+    review:
+      "He was professional, knowledgeable, and approachable throughout the process. Made everything easy to understand.",
+    service: "Property Matter",
+    rating: 5,
+  },
+];
+
 const Page = () => {
   const handleSubmit = async (
     values: typeof initialValues,
@@ -283,16 +342,26 @@ const Page = () => {
                 Client Testimonials
               </h2>
               <SmartCarousel
-                items={[...Array(6)].map((_, i) => (
+                items={testimonials.map((testimonial, i) => (
                   <Card key={i} className="mx-2">
                     <CardContent className="p-6">
-                      <p className="mb-4">
-                        &quot;Excellent service and professional advice
-                        throughout the whole process.&quot;
+                      <div className="flex mb-2">
+                        {[...Array(testimonial.rating)].map((_, starIndex) => (
+                          <svg
+                            key={starIndex}
+                            className="w-5 h-5 text-yellow-400 fill-current"
+                            viewBox="0 0 20 20"
+                          >
+                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                          </svg>
+                        ))}
+                      </div>
+                      <p className="mb-4 italic">
+                        &quot;{testimonial.review}&quot;
                       </p>
-                      <p className="font-semibold">Client Name</p>
+                      <p className="font-semibold">{testimonial.name}</p>
                       <p className="text-sm text-muted-foreground">
-                        Service Used: Conveyancing
+                        Service Used: {testimonial.service}
                       </p>
                     </CardContent>
                   </Card>
